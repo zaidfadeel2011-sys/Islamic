@@ -55,6 +55,13 @@
             --accent: #f00;
         }
 
+        [data-theme="blue"] {
+            --primary: #003366;
+            --secondary: #004d99;
+            --gold: #ffd700;
+            --accent: #3399ff;
+        }
+
         [data-theme="white"] {
             --primary: #ffffff;
             --secondary: #f0f0f0;
@@ -69,6 +76,13 @@
             --secondary: #ff8c42;
             --gold: #ffd700;
             --accent: #ff4500;
+        }
+
+        [data-theme="purple"] {
+            --primary: #4b0082;
+            --secondary: #663399;
+            --gold: #ffd700;
+            --accent: #9370db;
         }
 
         * {
@@ -604,32 +618,6 @@
             font-weight: bold;
         }
 
-        /* شاشة القرآن */
-        .quran-container {
-            text-align: center;
-        }
-
-        .quran-surah {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            padding: 25px 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            margin: 20px 0;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 3px solid var(--gold);
-            direction: rtl;
-        }
-
-        .quran-info {
-            color: var(--gold);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
         /* شاشة الأحاديث */
         .hadith-container {
             text-align: center;
@@ -868,6 +856,19 @@
             font-weight: bold;
         }
 
+        /* معلومات اليوم */
+        .today-date {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
         /* إصلاحات للشاشات الصغيرة */
         @media (max-width: 768px) {
             .page-content {
@@ -1039,18 +1040,22 @@
                         <span class="stat-value" id="user-streak">0</span>
                         <span class="stat-label">متواصل</span>
                     </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="completed-tasks">0</span>
+                        <span class="stat-label">المهام</span>
+                    </div>
                 </div>
             </div>
             
-            <!-- كلمة اليوم -->
+            <!-- آية اليوم -->
             <div class="card">
-                <h2 class="section-title">كلمة اليوم</h2>
+                <h2 class="section-title">آية اليوم</h2>
                 <div class="decorative-line"></div>
-                <p style="font-size: 1.4rem; text-align: center; line-height: 1.8; padding: 20px 0;">
+                <p id="daily-verse" style="font-size: 1.4rem; text-align: center; line-height: 1.8; padding: 20px 0;">
                     ﴿ فَاذْكُرُونِي أَذْكُرْكُمْ ﴾
                 </p>
                 <div class="decorative-line"></div>
-                <p style="text-align: center; opacity: 0.8; margin-top: 10px;">سورة البقرة: الآية ١٥٢</p>
+                <p id="verse-info" style="text-align: center; opacity: 0.8; margin-top: 10px;">سورة البقرة: الآية ١٥٢</p>
             </div>
             
             <!-- هدف اليوم -->
@@ -1119,6 +1124,11 @@
     <div id="prayer-times-page" class="page">
         <div class="page-content">
             <div class="card">
+                <!-- تاريخ اليوم -->
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div class="today-date" id="today-date">اليوم: --/--/----</div>
+                </div>
+                
                 <div class="prayer-grid header">
                     <div>الصلاة</div>
                     <div>جماعة</div>
@@ -1237,7 +1247,7 @@
                         <div class="menu-icon">🌅</div>
                         <div class="menu-content">
                             <h3 class="menu-title">أذكار الصباح</h3>
-                            <p class="menu-desc">أذكار وأدعية الصباح</p>
+                            <p class="menu-desc">أذكار وأذكار الصباح</p>
                         </div>
                     </div>
                     
@@ -1245,7 +1255,7 @@
                         <div class="menu-icon">🌇</div>
                         <div class="menu-content">
                             <h3 class="menu-title">أذكار المساء</h3>
-                            <p class="menu-desc">أذكار وأدعية المساء</p>
+                            <p class="menu-desc">أذكار وأذكار المساء</p>
                         </div>
                     </div>
                     
@@ -1253,20 +1263,36 @@
                         <div class="menu-icon">🌙</div>
                         <div class="menu-content">
                             <h3 class="menu-title">أذكار النوم</h3>
-                            <p class="menu-desc">أذكار وأدعية قبل النوم</p>
+                            <p class="menu-desc">أذكار وأذكار قبل النوم</p>
                         </div>
                     </div>
                     
-                    <div class="menu-item" onclick="showPage('quran-page')">
-                        <div class="menu-icon">📖</div>
+                    <div class="menu-item" onclick="showPage('wakeup-azkar-page')">
+                        <div class="menu-icon">⏰</div>
                         <div class="menu-content">
-                            <h3 class="menu-title">آيات قرآنية</h3>
-                            <p class="menu-desc">آيات مختارة من القرآن الكريم</p>
+                            <h3 class="menu-title">أذكار الاستيقاظ</h3>
+                            <p class="menu-desc">أذكار وأذكار بعد الاستيقاظ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" onclick="showPage('mosque-azkar-page')">
+                        <div class="menu-icon">🕌</div>
+                        <div class="menu-content">
+                            <h3 class="menu-title">أذكار المسجد</h3>
+                            <p class="menu-desc">أذكار دخول وخروج المسجد</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" onclick="showPage('after-prayer-azkar-page')">
+                        <div class="menu-icon">🙏</div>
+                        <div class="menu-content">
+                            <h3 class="menu-title">أذكار بعد الصلاة</h3>
+                            <p class="menu-desc">أذكار وأذكار بعد الصلوات</p>
                         </div>
                     </div>
                     
                     <div class="menu-item" onclick="showPage('hadith-page')">
-                        <div class="menu-icon">🕌</div>
+                        <div class="menu-icon">📜</div>
                         <div class="menu-content">
                             <h3 class="menu-title">أحاديث نبوية</h3>
                             <p class="menu-desc">أحاديث شريفة مختارة</p>
@@ -1339,22 +1365,60 @@
         </div>
     </div>
 
-    <!-- صفحة القرآن -->
-    <div id="quran-page" class="page">
+    <!-- صفحة أذكار الاستيقاظ -->
+    <div id="wakeup-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
-                <div class="quran-container">
-                    <h2 class="section-title">آيات قرآنية</h2>
+                <div class="azkar-container">
+                    <h2 class="section-title">أذكار الاستيقاظ</h2>
                     <div class="decorative-line"></div>
-                    <div class="quran-info" id="quran-info">سورة البقرة - الآية ١٥٢</div>
+                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="wakeup-counter">١ من ٦</div>
                     
-                    <div class="quran-surah" id="quran-text">
-                        ﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾
-                    </div>
+                    <div class="azkar-text" id="wakeup-text"></div>
                     
                     <div class="azkar-controls">
-                        <button class="action-btn" onclick="prevQuranVerse()">السابق</button>
-                        <button class="action-btn" onclick="nextQuranVerse()">التالي</button>
+                        <button class="action-btn" onclick="prevWakeupAzkar()">السابق</button>
+                        <button class="action-btn" onclick="nextWakeupAzkar()">التالي</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أذكار المسجد -->
+    <div id="mosque-azkar-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <div class="azkar-container">
+                    <h2 class="section-title">أذكار المسجد</h2>
+                    <div class="decorative-line"></div>
+                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="mosque-counter">١ من ٥</div>
+                    
+                    <div class="azkar-text" id="mosque-text"></div>
+                    
+                    <div class="azkar-controls">
+                        <button class="action-btn" onclick="prevMosqueAzkar()">السابق</button>
+                        <button class="action-btn" onclick="nextMosqueAzkar()">التالي</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أذكار بعد الصلاة -->
+    <div id="after-prayer-azkar-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <div class="azkar-container">
+                    <h2 class="section-title">أذكار بعد الصلاة</h2>
+                    <div class="decorative-line"></div>
+                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="after-prayer-counter">١ من ٦</div>
+                    
+                    <div class="azkar-text" id="after-prayer-text"></div>
+                    
+                    <div class="azkar-controls">
+                        <button class="action-btn" onclick="prevAfterPrayerAzkar()">السابق</button>
+                        <button class="action-btn" onclick="nextAfterPrayerAzkar()">التالي</button>
                     </div>
                 </div>
             </div>
@@ -1437,8 +1501,10 @@
                         <option value="gold">الذهبي</option>
                         <option value="navy">الكحلي</option>
                         <option value="red">الأحمر الغامق</option>
+                        <option value="blue">الأزرق الهادئ</option>
                         <option value="white">اللون الأبيض</option>
                         <option value="orange">اللون البرتقالي</option>
+                        <option value="purple">اللون البنفسجي</option>
                     </select>
                     
                     <div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 15px;">
@@ -1493,15 +1559,25 @@
             streak: 0,
             lastDay: '',
             prayerStars: {},
+            todayPrayerStars: {},
             tasbeehCount: 0,
             currentMorningAzkar: 0,
             currentEveningAzkar: 0,
+            currentWakeupAzkar: 0,
+            currentMosqueAzkar: 0,
+            currentAfterPrayerAzkar: 0,
             currentPrayerTip: 0,
-            currentQuranVerse: 0,
             currentHadith: 0,
             currentSleepAzkar: 0,
             completedTasks: {},
-            theme: 'green'
+            theme: 'green',
+            lastPrayerDay: '',
+            lastVerseDay: '',
+            currentDailyVerse: 0,
+            lastGoalDay: '',
+            currentDailyGoal: 0,
+            lastTipDay: '',
+            currentDailyTip: 0
         };
 
         const levelRequirements = [0, 1000, 2500, 5000, 10000, 20000, 35000, 50000, 75000, 100000];
@@ -1511,18 +1587,72 @@
         let isLoggedIn = false;
         let currentPage = 'login-page';
 
-        // المهام اليومية
+        // آيات يومية متنوعة
+        const dailyVerses = [
+            { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾", info: "سورة البقرة - الآية ١٥٢" },
+            { text: "﴿ وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ ﴾", info: "سورة البقرة - الآية ٤٣" },
+            { text: "﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾", info: "سورة النساء - الآية ١٠٣" },
+            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
+            { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
+            { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
+            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزْقًا ۖ نَحْنُ نَرْزُقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
+            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامَ الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
+            { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزَقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
+            { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾", info: "سورة المؤمنون - الآية ١-٢" },
+            { text: "﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ ﴾", info: "سورة التوبة - الآية ١١٩" },
+            { text: "﴿ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ﴾", info: "سورة البقرة - الآية ١٥٣" },
+            { text: "﴿ وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ ۚ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ ﴾", info: "سورة هود - الآية ٨٨" },
+            { text: "﴿ رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ ﴾", info: "سورة البقرة - الآية ٢٠١" },
+            { text: "﴿ فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾", info: "سورة الشرح - الآية ٥-٦" }
+        ];
+
+        // المهام اليومية المتنوعة
         const dailyTasks = [
-            { id: 'prayer', title: 'أكمل الصلوات الخمس', desc: 'صلِّ جميع الصلوات اليوم', points: 100, category: 'prayer' },
-            { id: 'morning_azkar', title: 'أذكار الصباح', desc: 'اقرأ أذكار الصباح كاملة', points: 50, category: 'azkar' },
-            { id: 'evening_azkar', title: 'أذكار المساء', desc: 'اقرأ أذكار المساء كاملة', points: 50, category: 'azkar' },
-            { id: 'quran', title: 'قراءة القرآن', desc: 'اقرأ صفحة من القرآن', points: 75, category: 'quran' },
-            { id: 'tasbeeh', title: 'التسبيح', desc: 'سبح الله 100 مرة', points: 30, category: 'tasbeeh' },
-            { id: 'fasting', title: 'صيام التطوع', desc: 'صم يوم تطوع', points: 200, category: 'extra' },
-            { id: 'charity', title: 'الصدقة', desc: 'تصدق ولو بالقليل', points: 100, category: 'extra' },
-            { id: 'parents', title: 'بر الوالدين', desc: 'اتصل بوالديك أو زرهم', points: 150, category: 'extra' },
-            { id: 'sunnah', title: 'السنن الرواتب', desc: 'صلِّ السنن الرواتب', points: 80, category: 'prayer' },
-            { id: 'night_prayer', title: 'قيام الليل', desc: 'قم لصلاة الليل', points: 120, category: 'prayer' }
+            { id: 'prayer', title: 'أكمل الصلوات الخمس', desc: 'صلِّ جميع الصلوات اليوم في وقتها', points: 100, category: 'prayer' },
+            { id: 'quran', title: 'قراءة القرآن', desc: 'اقرأ جزءاً من القرآن الكريم', points: 50, category: 'quran' },
+            { id: 'morning_azkar', title: 'أذكار الصباح', desc: 'اقرأ أذكار الصباح كاملة', points: 30, category: 'azkar' },
+            { id: 'evening_azkar', title: 'أذكار المساء', desc: 'اقرأ أذكار المساء كاملة', points: 30, category: 'azkar' },
+            { id: 'fasting', title: 'صيام التطوع', desc: 'صم يوم تطوع (الإثنين أو الخميس)', points: 80, category: 'worship' },
+            { id: 'charity', title: 'الصدقة اليومية', desc: 'تصدق ولو بشيء بسيط', points: 40, category: 'social' },
+            { id: 'parents', title: 'بر الوالدين', desc: 'اتصل بوالديك أو زرهما', points: 60, category: 'social' },
+            { id: 'sunnah', title: 'السنن الرواتب', desc: 'صلِّ راتبة الفجر أو الظهر', points: 25, category: 'prayer' },
+            { id: 'tasbeeh', title: 'التسبيح اليومي', desc: 'سبح الله 100 مرة', points: 20, category: 'azkar' },
+            { id: 'istighfar', title: 'الاستغفار', desc: 'استغفر الله 100 مرة', points: 20, category: 'azkar' },
+            { id: 'neighbor', title: 'حق الجوار', desc: 'اسأل عن جارك أو ساعده', points: 35, category: 'social' },
+            { id: 'knowledge', title: 'طلب العلم', desc: 'اقرأ حديثاً أو آية وتفكر فيها', points: 30, category: 'knowledge' }
+        ];
+
+        // أهداف يومية متنوعة
+        const dailyGoals = [
+            "أكمل صلواتك الخمس في وقتها لتكسب 100 نقطة",
+            "اقرأ جزءاً من القرآن اليوم لتنال 50 نقطة",
+            "حافظ على أذكار الصباح والمساء لتحصل على 60 نقطة",
+            "تصدق اليوم ولو بالقليل لتنال 40 نقطة",
+            "صلِّ راتبة الفجر والظهر لتحصل على 25 نقطة",
+            "استغفر الله 100 مرة اليوم لتنال 20 نقطة",
+            "اسأل عن جارك أو ساعده لتحصل على 35 نقطة",
+            "اقرأ حديثاً وتفكر فيه لتنال 30 نقطة",
+            "صلِّ صلاة الضحى لتحصل على 30 نقطة",
+            "أكمل صلاة التراويح (في رمضان) لتنال 50 نقطة"
+        ];
+
+        // نصائح يومية متنوعة
+        const dailyTips = [
+            "حافظ على الصلاة في وقتها فهي أول ما يحاسب عليه العبد يوم القيامة",
+            "الاستغفار يمحو الذنوب ويرفع الدرجات ويجلب الرزق",
+            "صلة الرحم تزيد في العمر وتوسع في الرزق وتدخل الجنة",
+            "بر الوالدين من أحب الأعمال إلى الله تعالى بعد الصلاة",
+            "الصدقة تطفئ غضب الرب وتدفع البلاء وتزيد في العمر",
+            "طلب العلم فريضة على كل مسلم ومسلمة",
+            "الذكر يطرد الشيطان ويرضي الرحمن ويجلب البركة",
+            "حفظ اللسان من الفتن وأعظم أسباب النجاة",
+            "الصبر على البلاء من علامات الإيمان الكامل",
+            "التوكل على الله مع الأخذ بالأسباب من أعظم العبادات",
+            "الرفق بالحيوان من أسباب مغفرة الذنوب",
+            "إماطة الأذى عن الطريق صدقة",
+            "تبسمك في وجه أخيك صدقة",
+            "كلمة طيبة صدقة",
+            "مساعدة المحتاج من أفضل القربات"
         ];
 
         // أذكار الصباح
@@ -1556,15 +1686,33 @@
             "اللهم عالم الغيب والشهادة، فاطر السماوات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم."
         ];
 
-        // آيات قرآنية
-        const quranVerses = [
-            { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾", info: "سورة البقرة - الآية ١٥٢" },
-            { text: "﴿ وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ ﴾", info: "سورة البقرة - الآية ٤٣" },
-            { text: "﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾", info: "سورة النساء - الآية ١٠٣" },
-            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
-            { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
-            { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
-            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزْقًا ۖ نَحْنُ نَرْزُقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" }
+        // أذكار الاستيقاظ
+        const wakeupAzkar = [
+            "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور. الحمد لله الذي رد علي روحي وعافاني في جسدي وأذن لي بذكره.",
+            "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، سبحان الله والحمد لله ولا إله إلا الله والله أكبر ولا حول ولا قوة إلا بالله العلي العظيم.",
+            "أصبحنا على فطرة الإسلام وكلمة الإخلاص ودين نبينا محمد صلى الله عليه وسلم وملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.",
+            "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك المصير. اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك أنك أنت الله لا إله إلا أنت وأن محمداً عبدك ورسولك.",
+            "اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك فلك الحمد ولك الشكر.",
+            "رضيت بالله رباً وبالإسلام ديناً وبمحمد صلى الله عليه وسلم نبياً ورسولاً."
+        ];
+
+        // أذكار المسجد
+        const mosqueAzkar = [
+            "أعوذ بالله العظيم وبوجهه الكريم وسلطانه القديم من الشيطان الرجيم. بسم الله والحمد لله، اللهم صل على محمد وعلى آل محمد، اللهم اغفر لي ذنوبي وافتح لي أبواب رحمتك.",
+            "اللهم افتح لي أبواب رحمتك. (عند الدخول) اللهم إني أسألك من فضلك. (عند الخروج)",
+            "سبحان الله والحمد لله ولا إله إلا الله والله أكبر ولا حول ولا قوة إلا بالله العلي العظيم، اللهم اغفر لي ذنوبي وافتح لي أبواب فضلك.",
+            "اللهم اجعل في قلبي نوراً وفي لساني نوراً وفي بصري نوراً وفي سمعي نوراً وعن يميني نوراً وعن يساري نوراً وفوقي نوراً وتحتي نوراً وأمامي نوراً وخلفي نوراً واجعل لي نوراً.",
+            "اللهم إني أسألك من خير ما في هذا المسجد وخير ما حوله، وأعوذ بك من شر ما في هذا المسجد وشر ما حوله."
+        ];
+
+        // أذكار بعد الصلاة
+        const afterPrayerAzkar = [
+            "أستغفر الله (3 مرات). اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام.",
+            "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. اللهم لا مانع لما أعطيت ولا معطي لما منعت ولا ينفع ذا الجد منك الجد.",
+            "سبحان الله (33 مرة)، الحمد لله (33 مرة)، الله أكبر (33 مرة). لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",
+            "اللهم أعني على ذكرك وشكرك وحسن عبادتك. اللهم إني أسألك علماً نافعاً ورزقاً طيباً وعملاً متقبلاً.",
+            "اللهم اجعلني من التوابين واجعلني من المتطهرين واجعلني من عبادك الصالحين.",
+            "اللهم إنك عفو تحب العفو فاعف عني. اللهم إني أعوذ بك من العجز والكسل والجبن والبخل والهرم وعذاب القبر."
         ];
 
         // أحاديث نبوية
@@ -1589,32 +1737,10 @@
             "التأني والطمأنينة في الصلاة من أركانها"
         ];
 
-        // أهداف يومية
-        const dailyGoals = [
-            "أكمل صلواتك الخمس في المسجد للحصول على 100 نقطة",
-            "صلي صلاة البردين (الفجر والعصر) لتكسب 40 نقطة",
-            "لا تنسى أدعية الصباح والمساء لتنال 30 نقطة",
-            "أكمل صلواتك الخمس لتكسب 100 نقطة",
-            "صلي في المسجد مع الجماعة لتنال 75 نقطة",
-            "حافظ على أذكار الصباح والمساء لتنال 50 نقطة"
-        ];
-
-        // نصائح يومية
-        const dailyTips = [
-            "حافظ على الصلاة في وقتها فهي أول ما يحاسب عليه العبد يوم القيامة",
-            "الاستغفار يمحو الذنوب ويرفع الدرجات ويجلب الرزق",
-            "صلة الرحم تزيد في العمر وتوسع في الرزق",
-            "بر الوالدين من أحب الأعمال إلى الله تعالى",
-            "الصدقة تطفئ غضب الرب وتدفع البلاء",
-            "تعلم العلم الشرعي فطلب العلم فريضة على كل مسلم",
-            "الذكر يطرد الشيطان ويرضي الرحمن"
-        ];
-
         // التهيئة
         function initApp() {
             loadData();
             
-            // إخفاء شاشة البداية بعد 2 ثانية
             setTimeout(() => {
                 document.getElementById('splash-screen').style.opacity = '0';
                 setTimeout(() => {
@@ -1628,33 +1754,29 @@
                     
                     updateHijriDate();
                     updateTime();
-                    showRandomGoal();
+                    updateDailyGoal();
+                    updateDailyVerse();
+                    updateDailyTip();
                     updateMorningAzkar();
                     updateEveningAzkar();
+                    updateWakeupAzkar();
+                    updateMosqueAzkar();
+                    updateAfterPrayerAzkar();
                     updatePrayerTip();
-                    updateQuranVerse();
                     updateHadith();
                     updateLevel();
                     
-                    // تحديث الوقت كل دقيقة
                     setInterval(updateTime, 60000);
+                    setInterval(checkPrayerDayUpdate, 60000);
                 }, 300);
             }, 2000);
             
-            // إصلاحات للهواتف
             setupMobileFeatures();
-            
-            // تحديث التاريخ كل ساعة
             setInterval(updateHijriDate, 60 * 60 * 1000);
-            
-            // تحديث أوقات الصلاة كل ساعة
             setInterval(fetchPrayerTimes, 60 * 60 * 1000);
-            
-            // حفظ البيانات كل دقيقة
             setInterval(saveData, 60 * 1000);
         }
 
-        // إعداد مميزات الهواتف
         function setupMobileFeatures() {
             let lastTouchEnd = 0;
             document.addEventListener('touchend', function(e) {
@@ -1677,13 +1799,13 @@
             }
         }
 
-        // تحميل البيانات
         function loadData() {
             try {
                 const savedUser = localStorage.getItem('islamicApp_user');
                 if (savedUser) {
                     const parsed = JSON.parse(savedUser);
                     userData = { ...userData, ...parsed };
+                    checkPrayerDayUpdate();
                 }
                 
                 const savedTheme = localStorage.getItem('islamicApp_theme') || 'green';
@@ -1694,7 +1816,6 @@
             }
         }
 
-        // حفظ البيانات
         function saveData() {
             try {
                 localStorage.setItem('islamicApp_user', JSON.stringify(userData));
@@ -1704,7 +1825,128 @@
             }
         }
 
-        // تغيير السمة
+        // تحديث آية اليوم
+        function updateDailyVerse() {
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            if (userData.lastVerseDay !== todayStr) {
+                userData.currentDailyVerse = Math.floor(Math.random() * dailyVerses.length);
+                userData.lastVerseDay = todayStr;
+                saveData();
+            }
+            
+            const dailyVerseElement = document.getElementById('daily-verse');
+            const verseInfoElement = document.getElementById('verse-info');
+            
+            if (dailyVerseElement) {
+                dailyVerseElement.textContent = dailyVerses[userData.currentDailyVerse].text;
+            }
+            
+            if (verseInfoElement) {
+                verseInfoElement.textContent = dailyVerses[userData.currentDailyVerse].info;
+            }
+        }
+
+        // تحديث هدف اليوم
+        function updateDailyGoal() {
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            if (userData.lastGoalDay !== todayStr) {
+                userData.currentDailyGoal = Math.floor(Math.random() * dailyGoals.length);
+                userData.lastGoalDay = todayStr;
+                saveData();
+            }
+            
+            const dailyGoalElement = document.getElementById('daily-goal-text');
+            if (dailyGoalElement) {
+                dailyGoalElement.textContent = dailyGoals[userData.currentDailyGoal];
+            }
+        }
+
+        // تحديث نصيحة اليوم
+        function updateDailyTip() {
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            if (userData.lastTipDay !== todayStr) {
+                userData.currentDailyTip = Math.floor(Math.random() * dailyTips.length);
+                userData.lastTipDay = todayStr;
+                saveData();
+            }
+            
+            const dailyTipElement = document.getElementById('daily-tip');
+            if (dailyTipElement) {
+                dailyTipElement.textContent = dailyTips[userData.currentDailyTip];
+            }
+        }
+
+        function checkPrayerDayUpdate() {
+            const today = new Date();
+            const todayStr = today.toDateString();
+            
+            if (userData.lastPrayerDay !== todayStr) {
+                if (userData.lastPrayerDay && userData.todayPrayerStars) {
+                    userData.prayerStars[userData.lastPrayerDay] = {
+                        stars: { ...userData.todayPrayerStars },
+                        points: calculateTodayPrayerPoints()
+                    };
+                }
+                
+                resetPrayerTableForNewDay();
+                userData.lastPrayerDay = todayStr;
+                updateTodayDate();
+                fetchPrayerTimes();
+                showNotification('تم تجديد جدول الصلاة لليوم الجديد!');
+                saveData();
+            }
+        }
+
+        function resetPrayerTableForNewDay() {
+            const todayPoints = calculateTodayPrayerPoints();
+            
+            userData.todayPrayerStars = {
+                'الفجر': [false, false, false, false],
+                'الظهر': [false, false, false, false],
+                'العصر': [false, false, false, false],
+                'المغرب': [false, false, false, false],
+                'العشاء': [false, false, false, false]
+            };
+            
+            if (currentPage === 'prayer-times-page') {
+                updatePrayerDisplay();
+                updateDailyProgress();
+            }
+        }
+
+        function calculateTodayPrayerPoints() {
+            let totalPoints = 0;
+            const prayerPoints = [30, 25, 20, 15];
+            
+            Object.values(userData.todayPrayerStars || {}).forEach(stars => {
+                if (stars && Array.isArray(stars)) {
+                    stars.forEach((active, idx) => {
+                        if (active) {
+                            totalPoints += prayerPoints[idx];
+                        }
+                    });
+                }
+            });
+            
+            return totalPoints;
+        }
+
+        function updateTodayDate() {
+            const today = new Date();
+            const todayStr = today.toLocaleDateString('ar-SA');
+            const todayElement = document.getElementById('today-date');
+            
+            if (todayElement) {
+                todayElement.textContent = `اليوم: ${todayStr}`;
+            }
+        }
+
         function changeTheme(theme, initial = false) {
             userData.theme = theme;
             document.body.setAttribute('data-theme', theme);
@@ -1720,8 +1962,10 @@
                 gold: '#4b3f0b',
                 navy: '#001f3f',
                 red: '#3b0000',
+                blue: '#003366',
                 white: '#ffffff',
-                orange: '#ff6b00'
+                orange: '#ff6b00',
+                purple: '#4b0082'
             };
             
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
@@ -1735,7 +1979,6 @@
             }
         }
 
-        // تحديث المستوى
         function updateLevel() {
             let level = 1;
             for (let i = levelRequirements.length - 1; i >= 0; i--) {
@@ -1752,7 +1995,6 @@
             const nextLevelPoints = levelRequirements[level] || levelRequirements[levelRequirements.length - 1];
             const progressPercent = ((currentPoints - currentLevelPoints) / (nextLevelPoints - currentLevelPoints)) * 100;
             
-            // تحديث واجهة المستوى
             const levelElement = document.getElementById('level-text');
             const progressElement = document.getElementById('level-progress-fill');
             const currentPointsElement = document.getElementById('current-points');
@@ -1768,7 +2010,6 @@
             if (userAvatarElement) userAvatarElement.textContent = levelNames[level - 1].charAt(0);
         }
 
-        // عرض الصفحة
         function showPage(pageId) {
             if (pageId === 'login-page' && isLoggedIn) {
                 pageId = 'home-page';
@@ -1778,16 +2019,13 @@
                 pageId = 'login-page';
             }
             
-            // إخفاء جميع الصفحات
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // إظهار الصفحة المطلوبة
             document.getElementById(pageId).classList.add('active');
             currentPage = pageId;
             
-            // تحديث عنوان الهيدر
             const pageTitles = {
                 'home-page': 'الرئيسية',
                 'prayer-page': 'الصلاة',
@@ -1798,7 +2036,9 @@
                 'morning-azkar-page': 'أذكار الصباح',
                 'evening-azkar-page': 'أذكار المساء',
                 'sleep-azkar-page': 'أذكار النوم',
-                'quran-page': 'آيات قرآنية',
+                'wakeup-azkar-page': 'أذكار الاستيقاظ',
+                'mosque-azkar-page': 'أذكار المسجد',
+                'after-prayer-azkar-page': 'أذكار بعد الصلاة',
                 'hadith-page': 'أحاديث نبوية',
                 'tasbeeh-page': 'التسبيح',
                 'tasks-page': 'المهام',
@@ -1810,18 +2050,19 @@
                 mainTitle.textContent = pageTitles[pageId];
             }
             
-            // تحديث التنقل النشط
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // تحديث المحتوى حسب الصفحة
             switch(pageId) {
                 case 'home-page':
                     updateStats();
                     updateLevel();
-                    showRandomTip();
+                    updateDailyVerse();
+                    updateDailyGoal();
+                    updateDailyTip();
                     fetchPrayerTimes();
+                    updateTodayDate();
                     document.querySelector('.nav-item[onclick*="home-page"]').classList.add('active');
                     break;
                 case 'prayer-page':
@@ -1829,14 +2070,19 @@
                 case 'wudu-page':
                 case 'prayer-tips-page':
                     document.querySelector('.nav-item[onclick*="prayer-page"]').classList.add('active');
-                    if (pageId === 'prayer-times-page') updatePrayerDisplay();
+                    if (pageId === 'prayer-times-page') {
+                        updatePrayerDisplay();
+                        updateTodayDate();
+                    }
                     if (pageId === 'prayer-tips-page') updatePrayerTip();
                     break;
                 case 'azkar-page':
                 case 'morning-azkar-page':
                 case 'evening-azkar-page':
                 case 'sleep-azkar-page':
-                case 'quran-page':
+                case 'wakeup-azkar-page':
+                case 'mosque-azkar-page':
+                case 'after-prayer-azkar-page':
                 case 'hadith-page':
                     document.querySelector('.nav-item[onclick*="azkar-page"]').classList.add('active');
                     break;
@@ -1854,7 +2100,6 @@
             }
         }
 
-        // تحديث الوقت الحالي
         function updateTime() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('ar-SA', { 
@@ -1869,7 +2114,6 @@
             }
         }
 
-        // تسجيل الدخول
         function login() {
             const usernameInput = document.getElementById('username-input');
             const username = usernameInput ? usernameInput.value.trim() : userData.username;
@@ -1886,20 +2130,21 @@
             isLoggedIn = true;
             saveData();
             
-            // إظهار الهيدر وشريط التنقل
             document.getElementById('main-header').style.display = 'flex';
             document.getElementById('bottom-nav').style.display = 'flex';
             
-            // إظهار اسم المستخدم
             document.getElementById('user-name').textContent = userData.username;
             
-            // الانتقال للصفحة الرئيسية
+            checkPrayerDayUpdate();
+            updateDailyVerse();
+            updateDailyGoal();
+            updateDailyTip();
+            
             showPage('home-page');
             
             showNotification(`مرحباً ${userData.username}`);
         }
 
-        // تحديث التاريخ الهجري
         function updateHijriDate() {
             const today = new Date();
             
@@ -1923,22 +2168,13 @@
             }
         }
 
-        // عرض هدف عشوائي
-        function showRandomGoal() {
-            const randomIndex = Math.floor(Math.random() * dailyGoals.length);
-            const goalElement = document.getElementById('daily-goal-text');
-            if (goalElement) {
-                goalElement.textContent = dailyGoals[randomIndex];
-            }
-        }
-
         // جلب أوقات الصلاة
         async function fetchPrayerTimes() {
             const today = new Date();
             const todayStr = today.toISOString().split('T')[0];
             
             try {
-                const response = await fetch(`https://api.aladhan.com/v1/timingsByCity/${todayStr}?city=Kuwait&country=Kuwait&method=4`);
+                const response = await fetch(`https://api.aladhan.com/v1/timingsByAddress/${todayStr}?address=Hawalli, Kuwait&method=4`);
                 const data = await response.json();
                 
                 if (data.code === 200) {
@@ -1951,20 +2187,20 @@
                         { name: 'العشاء', time: timings.Isha }
                     ];
                     
-                    showNotification('تم تحديث أوقات الصلاة اليومية');
+                    showNotification('تم تحديث أوقات الصلاة لمنطقة حولي');
                 }
             } catch (error) {
                 console.log('خطأ في جلب أوقات الصلاة:', error);
                 prayerData = [
-                    { name: 'الفجر', time: '04:30' },
-                    { name: 'الظهر', time: '12:15' },
-                    { name: 'العصر', time: '15:45' },
-                    { name: 'المغرب', time: '18:30' },
-                    { name: 'العشاء', time: '20:00' }
+                    { name: 'الفجر', time: '04:45' },
+                    { name: 'الظهر', time: '11:45' },
+                    { name: 'العصر', time: '15:15' },
+                    { name: 'المغرب', time: '17:50' },
+                    { name: 'العشاء', time: '19:15' }
                 ];
                 
                 if (navigator.onLine) {
-                    showNotification('تعذر تحديث أوقات الصلاة، استخدام الأوقات الافتراضية');
+                    showNotification('تعذر تحديث أوقات الصلاة، استخدام الأوقات الافتراضية لمنطقة حولي');
                 }
             }
             
@@ -1973,16 +2209,19 @@
             }
         }
 
-        // تحديث عرض الصلاة
         function updatePrayerDisplay() {
             const prayerTimesElement = document.getElementById('prayer-times');
             if (!prayerTimesElement) return;
+            
+            if (!userData.todayPrayerStars) {
+                resetPrayerTableForNewDay();
+            }
             
             let html = '';
             
             prayerData.forEach(prayer => {
                 const prayerKey = prayer.name;
-                const stars = userData.prayerStars[prayerKey] || [false, false, false, false];
+                const stars = userData.todayPrayerStars[prayerKey] || [false, false, false, false];
                 
                 html += `
                     <div class="prayer-grid">
@@ -2005,22 +2244,20 @@
             checkTaskCompletion('prayer');
         }
 
-        // تبديل نجمة الصلاة
         function togglePrayerStar(prayerName, starIndex, points) {
-            if (!userData.prayerStars[prayerName]) {
-                userData.prayerStars[prayerName] = [false, false, false, false];
+            if (!userData.todayPrayerStars[prayerName]) {
+                userData.todayPrayerStars[prayerName] = [false, false, false, false];
             }
             
-            const wasActive = userData.prayerStars[prayerName][starIndex];
+            const wasActive = userData.todayPrayerStars[prayerName][starIndex];
             
-            userData.prayerStars[prayerName][starIndex] = !wasActive;
+            userData.todayPrayerStars[prayerName][starIndex] = !wasActive;
             
             if (!wasActive) {
                 userData.points += points;
                 showNotification(`+${points} نقطة لصلاة ${prayerName}`);
                 
-                // تحقق إذا كان قد أكمل جميع النجوم
-                const allStars = userData.prayerStars[prayerName];
+                const allStars = userData.todayPrayerStars[prayerName];
                 if (allStars.every(star => star)) {
                     const bonusPoints = 50;
                     userData.points += bonusPoints;
@@ -2039,30 +2276,41 @@
             saveData();
         }
 
-        // تحديث الإحصائيات
         function updateStats() {
             const userPointsElement = document.getElementById('user-points');
             const userDaysElement = document.getElementById('user-days');
             const userStreakElement = document.getElementById('user-streak');
+            const completedTasksElement = document.getElementById('completed-tasks');
             
             if (userPointsElement) userPointsElement.textContent = userData.points;
             if (userDaysElement) userDaysElement.textContent = userData.days;
             if (userStreakElement) userStreakElement.textContent = userData.streak;
             
+            // حساب المهام المكتملة اليوم
+            const today = new Date().toDateString();
+            let completedToday = 0;
+            dailyTasks.forEach(task => {
+                if (userData.completedTasks[`${today}_${task.id}`]) {
+                    completedToday++;
+                }
+            });
+            if (completedTasksElement) completedTasksElement.textContent = completedToday;
+            
             updateDailyProgress();
         }
 
-        // تحديث تقدم اليوم
         function updateDailyProgress() {
             let totalPoints = 0;
             let maxPoints = 200;
             
-            Object.values(userData.prayerStars).forEach(stars => {
-                stars.forEach((active, idx) => {
-                    if (active) {
-                        totalPoints += [30, 25, 20, 15][idx];
-                    }
-                });
+            Object.values(userData.todayPrayerStars || {}).forEach(stars => {
+                if (stars && Array.isArray(stars)) {
+                    stars.forEach((active, idx) => {
+                        if (active) {
+                            totalPoints += [30, 25, 20, 15][idx];
+                        }
+                    });
+                }
             });
             
             const percent = Math.min(Math.round((totalPoints / maxPoints) * 100), 100);
@@ -2079,10 +2327,9 @@
             if (progressPercentElement) progressPercentElement.textContent = percent + '%';
             if (progressPercent2Element) progressPercent2Element.textContent = percent + '%';
             if (progressTextElement) progressTextElement.textContent = `إنجاز اليوم: ${percent}%`;
-            if (progressPointsElement) progressPointsElement.textContent = `النقاط: ${userData.points}`;
+            if (progressPointsElement) progressPointsElement.textContent = `النقاط الإجمالية: ${userData.points}`;
         }
 
-        // تسجيل حضور اليوم
         function markDay() {
             const today = new Date();
             const todayStr = today.toDateString();
@@ -2113,7 +2360,6 @@
             showNotification('تم تسجيل حضور اليوم! +50 نقطة');
         }
 
-        // تحديث عرض المهام
         function updateTasksDisplay() {
             const tasksContainer = document.getElementById('daily-tasks');
             if (!tasksContainer) return;
@@ -2141,7 +2387,6 @@
             tasksContainer.innerHTML = html;
         }
 
-        // تبديل حالة المهمة
         function toggleTask(taskId, points) {
             const today = new Date().toDateString();
             const taskKey = `${today}_${taskId}`;
@@ -2152,7 +2397,6 @@
                 userData.points += points;
                 showNotification(`ممتاز! +${points} نقطة لإكمال المهمة`);
                 
-                // تحقق إذا أكمل جميع المهام
                 const completedTasksCount = dailyTasks.filter(task => 
                     userData.completedTasks[`${today}_${task.id}`]
                 ).length;
@@ -2175,7 +2419,6 @@
             saveData();
         }
 
-        // التحقق من اكتمال المهام
         function checkTaskCompletion(category) {
             const today = new Date().toDateString();
             const tasksInCategory = dailyTasks.filter(task => task.category === category);
@@ -2183,10 +2426,9 @@
             tasksInCategory.forEach(task => {
                 const taskKey = `${today}_${task.id}`;
                 
-                // مثال: إذا كانت المهمة متعلقة بالصلاة، تحقق إذا أكمل 5 صلوات
                 if (category === 'prayer' && task.id === 'prayer') {
-                    const completedPrayers = Object.values(userData.prayerStars).filter(stars => 
-                        stars && stars[0] // إذا كان قد صلى جماعة
+                    const completedPrayers = Object.values(userData.todayPrayerStars).filter(stars => 
+                        stars && stars[0]
                     ).length;
                     
                     if (completedPrayers >= 5 && !userData.completedTasks[taskKey]) {
@@ -2198,10 +2440,20 @@
                         saveData();
                     }
                 }
+                
+                if (category === 'azkar' && (task.id === 'tasbeeh' || task.id === 'istighfar')) {
+                    if (task.id === 'tasbeeh' && userData.tasbeehCount >= 100 && !userData.completedTasks[taskKey]) {
+                        userData.completedTasks[taskKey] = true;
+                        userData.points += task.points;
+                        showNotification(`🎯 أكملت مهمة ${task.title}! +${task.points} نقطة`);
+                        updateStats();
+                        updateLevel();
+                        saveData();
+                    }
+                }
             });
         }
 
-        // تحديث أذكار الصباح
         function updateMorningAzkar() {
             const morningTextElement = document.getElementById('morning-text');
             const morningCounterElement = document.getElementById('morning-counter');
@@ -2211,7 +2463,6 @@
                 `${userData.currentMorningAzkar + 1}/${morningAzkar.length}`;
         }
 
-        // التالي في أذكار الصباح
         function nextMorningAzkar() {
             userData.currentMorningAzkar = (userData.currentMorningAzkar + 1) % morningAzkar.length;
             updateMorningAzkar();
@@ -2219,7 +2470,6 @@
             updateStats();
             updateLevel();
             
-            // تحقق إذا أكمل جميع أذكار الصباح
             if (userData.currentMorningAzkar === 0) {
                 checkTaskCompletion('azkar');
             }
@@ -2227,7 +2477,6 @@
             saveData();
         }
 
-        // السابق في أذكار الصباح
         function prevMorningAzkar() {
             userData.currentMorningAzkar = (userData.currentMorningAzkar - 1 + morningAzkar.length) % morningAzkar.length;
             updateMorningAzkar();
@@ -2241,7 +2490,6 @@
             }
         }
 
-        // تحديث أذكار المساء
         function updateEveningAzkar() {
             const eveningTextElement = document.getElementById('evening-text');
             const eveningCounterElement = document.getElementById('evening-counter');
@@ -2251,7 +2499,6 @@
                 `${userData.currentEveningAzkar + 1}/${eveningAzkar.length}`;
         }
 
-        // التالي في أذكار المساء
         function nextEveningAzkar() {
             userData.currentEveningAzkar = (userData.currentEveningAzkar + 1) % eveningAzkar.length;
             updateEveningAzkar();
@@ -2259,7 +2506,6 @@
             updateStats();
             updateLevel();
             
-            // تحقق إذا أكمل جميع أذكار المساء
             if (userData.currentEveningAzkar === 0) {
                 checkTaskCompletion('azkar');
             }
@@ -2267,7 +2513,6 @@
             saveData();
         }
 
-        // السابق في أذكار المساء
         function prevEveningAzkar() {
             userData.currentEveningAzkar = (userData.currentEveningAzkar - 1 + eveningAzkar.length) % eveningAzkar.length;
             updateEveningAzkar();
@@ -2281,7 +2526,99 @@
             }
         }
 
-        // عرض ذكر نوم تالي
+        function updateWakeupAzkar() {
+            const wakeupTextElement = document.getElementById('wakeup-text');
+            const wakeupCounterElement = document.getElementById('wakeup-counter');
+            
+            if (wakeupTextElement) wakeupTextElement.textContent = wakeupAzkar[userData.currentWakeupAzkar];
+            if (wakeupCounterElement) wakeupCounterElement.textContent = 
+                `${userData.currentWakeupAzkar + 1}/${wakeupAzkar.length}`;
+        }
+
+        function nextWakeupAzkar() {
+            userData.currentWakeupAzkar = (userData.currentWakeupAzkar + 1) % wakeupAzkar.length;
+            updateWakeupAzkar();
+            userData.points += 5;
+            updateStats();
+            updateLevel();
+            saveData();
+        }
+
+        function prevWakeupAzkar() {
+            userData.currentWakeupAzkar = (userData.currentWakeupAzkar - 1 + wakeupAzkar.length) % wakeupAzkar.length;
+            updateWakeupAzkar();
+            
+            if (userData.points > 0) {
+                userData.points -= 2;
+                updateStats();
+                updateLevel();
+                saveData();
+                showNotification('-2 نقطة للرجوع للذكر السابق');
+            }
+        }
+
+        function updateMosqueAzkar() {
+            const mosqueTextElement = document.getElementById('mosque-text');
+            const mosqueCounterElement = document.getElementById('mosque-counter');
+            
+            if (mosqueTextElement) mosqueTextElement.textContent = mosqueAzkar[userData.currentMosqueAzkar];
+            if (mosqueCounterElement) mosqueCounterElement.textContent = 
+                `${userData.currentMosqueAzkar + 1}/${mosqueAzkar.length}`;
+        }
+
+        function nextMosqueAzkar() {
+            userData.currentMosqueAzkar = (userData.currentMosqueAzkar + 1) % mosqueAzkar.length;
+            updateMosqueAzkar();
+            userData.points += 5;
+            updateStats();
+            updateLevel();
+            saveData();
+        }
+
+        function prevMosqueAzkar() {
+            userData.currentMosqueAzkar = (userData.currentMosqueAzkar - 1 + mosqueAzkar.length) % mosqueAzkar.length;
+            updateMosqueAzkar();
+            
+            if (userData.points > 0) {
+                userData.points -= 2;
+                updateStats();
+                updateLevel();
+                saveData();
+                showNotification('-2 نقطة للرجوع للذكر السابق');
+            }
+        }
+
+        function updateAfterPrayerAzkar() {
+            const afterPrayerTextElement = document.getElementById('after-prayer-text');
+            const afterPrayerCounterElement = document.getElementById('after-prayer-counter');
+            
+            if (afterPrayerTextElement) afterPrayerTextElement.textContent = afterPrayerAzkar[userData.currentAfterPrayerAzkar];
+            if (afterPrayerCounterElement) afterPrayerCounterElement.textContent = 
+                `${userData.currentAfterPrayerAzkar + 1}/${afterPrayerAzkar.length}`;
+        }
+
+        function nextAfterPrayerAzkar() {
+            userData.currentAfterPrayerAzkar = (userData.currentAfterPrayerAzkar + 1) % afterPrayerAzkar.length;
+            updateAfterPrayerAzkar();
+            userData.points += 5;
+            updateStats();
+            updateLevel();
+            saveData();
+        }
+
+        function prevAfterPrayerAzkar() {
+            userData.currentAfterPrayerAzkar = (userData.currentAfterPrayerAzkar - 1 + afterPrayerAzkar.length) % afterPrayerAzkar.length;
+            updateAfterPrayerAzkar();
+            
+            if (userData.points > 0) {
+                userData.points -= 2;
+                updateStats();
+                updateLevel();
+                saveData();
+                showNotification('-2 نقطة للرجوع للذكر السابق');
+            }
+        }
+
         function showNextSleepAzkar() {
             userData.currentSleepAzkar = (userData.currentSleepAzkar + 1) % sleepAzkar.length;
             const sleepTextElement = document.getElementById('sleep-text');
@@ -2294,7 +2631,6 @@
             saveData();
         }
 
-        // تحديث نصائح الصلاة
         function updatePrayerTip() {
             const prayerTipElement = document.getElementById('prayer-tip-text');
             if (prayerTipElement) {
@@ -2302,7 +2638,6 @@
             }
         }
 
-        // التالي في نصائح الصلاة
         function nextPrayerTip() {
             userData.currentPrayerTip = (userData.currentPrayerTip + 1) % prayerTips.length;
             updatePrayerTip();
@@ -2312,44 +2647,11 @@
             saveData();
         }
 
-        // السابق في نصائح الصلاة
         function prevPrayerTip() {
             userData.currentPrayerTip = (userData.currentPrayerTip - 1 + prayerTips.length) % prayerTips.length;
             updatePrayerTip();
         }
 
-        // تحديث الآيات القرآنية
-        function updateQuranVerse() {
-            const quranTextElement = document.getElementById('quran-text');
-            const quranInfoElement = document.getElementById('quran-info');
-            
-            if (quranTextElement) quranTextElement.textContent = quranVerses[userData.currentQuranVerse].text;
-            if (quranInfoElement) quranInfoElement.textContent = quranVerses[userData.currentQuranVerse].info;
-        }
-
-        // التالي في الآيات القرآنية
-        function nextQuranVerse() {
-            userData.currentQuranVerse = (userData.currentQuranVerse + 1) % quranVerses.length;
-            updateQuranVerse();
-            userData.points += 10;
-            updateStats();
-            updateLevel();
-            
-            // تحقق إذا قرأ عدداً معيناً من الآيات
-            if (userData.currentQuranVerse === 0) {
-                checkTaskCompletion('quran');
-            }
-            
-            saveData();
-        }
-
-        // السابق في الآيات القرآنية
-        function prevQuranVerse() {
-            userData.currentQuranVerse = (userData.currentQuranVerse - 1 + quranVerses.length) % quranVerses.length;
-            updateQuranVerse();
-        }
-
-        // تحديث الأحاديث النبوية
         function updateHadith() {
             const hadithTextElement = document.getElementById('hadith-text');
             const hadithInfoElement = document.getElementById('hadith-info');
@@ -2358,7 +2660,6 @@
             if (hadithInfoElement) hadithInfoElement.textContent = hadiths[userData.currentHadith].info;
         }
 
-        // التالي في الأحاديث النبوية
         function nextHadith() {
             userData.currentHadith = (userData.currentHadith + 1) % hadiths.length;
             updateHadith();
@@ -2368,13 +2669,11 @@
             saveData();
         }
 
-        // السابق في الأحاديث النبوية
         function prevHadith() {
             userData.currentHadith = (userData.currentHadith - 1 + hadiths.length) % hadiths.length;
             updateHadith();
         }
 
-        // إضافة تسبيحة
         function addTasbeeh(count) {
             userData.tasbeehCount += count;
             const tasbeehCountElement = document.getElementById('tasbeeh-count');
@@ -2384,7 +2683,6 @@
             updateStats();
             updateLevel();
             
-            // تحقق إذا وصل إلى 100 تسبيحة
             if (userData.tasbeehCount >= 100) {
                 checkTaskCompletion('tasbeeh');
             }
@@ -2400,13 +2698,11 @@
             }
         }
 
-        // حفظ التسبيح
         function saveTasbeeh() {
             saveData();
             showNotification('تم حفظ عدد التسبيح');
         }
 
-        // تصفير التسبيح
         function resetTasbeeh() {
             if (userData.tasbeehCount > 0) {
                 if (confirm(`هل تريد تصفير العداد؟ لديك ${userData.tasbeehCount} تسبيحة`)) {
@@ -2421,16 +2717,6 @@
             }
         }
 
-        // عرض نصيحة عشوائية
-        function showRandomTip() {
-            const randomIndex = Math.floor(Math.random() * dailyTips.length);
-            const dailyTipElement = document.getElementById('daily-tip');
-            if (dailyTipElement) {
-                dailyTipElement.textContent = dailyTips[randomIndex];
-            }
-        }
-
-        // عرض إشعار
         function showNotification(message) {
             const oldNotification = document.querySelector('.notification');
             if (oldNotification) oldNotification.remove();
@@ -2448,7 +2734,6 @@
             }, 3000);
         }
 
-        // بدء التطبيق
         window.addEventListener('load', initApp);
 
         document.addEventListener('visibilitychange', function() {
@@ -2457,6 +2742,10 @@
                 updateTime();
                 if (isLoggedIn) {
                     fetchPrayerTimes();
+                    checkPrayerDayUpdate();
+                    updateDailyVerse();
+                    updateDailyGoal();
+                    updateDailyTip();
                 }
             }
         });
