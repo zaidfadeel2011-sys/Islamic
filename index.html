@@ -785,16 +785,23 @@
             background: rgba(255, 215, 0, 0.1);
             border: 2px solid var(--gold);
             border-radius: 15px;
-            padding: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .reciter-card:active {
+            transform: scale(0.98);
+            background: rgba(255, 215, 0, 0.2);
         }
 
         .reciter-title {
             color: var(--gold);
             text-align: center;
             font-size: 1.3rem;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .quran-surahs {
@@ -1274,9 +1281,9 @@
                 <!-- جدول الصلاة المحدث -->
                 <div class="prayer-grid header">
                     <div>الصلاة</div>
-                    <div>الفرض</div>
+                    <div>الجماعة</div>
+                    <div>المفرد</div>
                     <div>النوافل</div>
-                    <div>المتأخر</div>
                 </div>
                 
                 <div id="prayer-times">
@@ -1285,45 +1292,45 @@
                             <span class="prayer-icon">🌅</span>
                             الفجر
                         </div>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 0, 30)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 1, 15)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 2, 10)">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 0, 30, 'جماعة')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 1, 20, 'مفرد')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 2, 10, 'نوافل')">☆</button>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
                             <span class="prayer-icon">☀️</span>
                             الظهر
                         </div>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 0, 30)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 1, 15)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 2, 10)">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 0, 30, 'جماعة')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 1, 20, 'مفرد')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 2, 10, 'نوافل')">☆</button>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
                             <span class="prayer-icon">⛅</span>
                             العصر
                         </div>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 0, 30)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 1, 15)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 2, 10)">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 0, 30, 'جماعة')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 1, 20, 'مفرد')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 2, 10, 'نوافل')">☆</button>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
                             <span class="prayer-icon">🌇</span>
                             المغرب
                         </div>
-                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 0, 30)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 1, 15)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 2, 10)">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 0, 30, 'جماعة')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 1, 20, 'مفرد')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 2, 10, 'نوافل')">☆</button>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
                             <span class="prayer-icon">🌙</span>
                             العشاء
                         </div>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 0, 30)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 1, 15)">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 2, 10)">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 0, 30, 'جماعة')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 1, 20, 'مفرد')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 2, 10, 'نوافل')">☆</button>
                     </div>
                 </div>
                 
@@ -1646,281 +1653,48 @@
                     <div class="decorative-line"></div>
                     <p style="text-align: center; color: var(--gold); margin-bottom: 20px;">استمع إلى تلاوات قرآنية بصوت الشيوخ</p>
                     
-                    <div class="reciters-container">
-                        <!-- قائمة الشيخ أحمد النفيس -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ أحمد النفيس</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtube.com/shorts/hZwA9D2nDqM?si=R0CcddGvrY5lSZQz')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/9HW7j9lZZTU?si=AGx5otPHL_rKOFo2')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/sVL0vdNqPpw?si=UpOWDRTfnFKbA74a')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/Byyrubr7eqQ?si=kxxRel7fpYxphIzy')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/WJ6OWeTTqtU?si=t0ugk-JvWmIF2vlA')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/0nKqbDR_ya0?si=qGZEC5UtTYmH4Fda')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/-Rvavu8vyEw?si=3O3C6ca-MNG4MNJD')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/3Tg-FhFeC6E?si=mQpm9DPKNtJfUrDH')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ أحمد النفيس</div>
-                                </div>
-                            </div>
+                    <!-- قائمة أسماء الشيوخ -->
+                    <div class="reciters-container" id="reciters-list">
+                        <div class="reciter-card" onclick="showSheikhSurahs('ahmad-al-nafees')">
+                            <div class="reciter-title">الشيخ أحمد النفيس</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
                         </div>
                         
-                        <!-- قائمة الشيخ مشاري العفاسي -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ مشاري العفاسي</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/pUb9EW770d0?si=oRaxURYbJWdZDeDl')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/Y1M6hJHHrjM?si=nVu4jM1fFuCvINSp')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/kFn64z09MWA?si=I4w2xXISrlMdYw2I')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/IDvV7Tvt8gM?si=_zzEnZ9OJ1z-OmXn')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/PUec_OAAsuw?si=R8dA8s4v5fYqGyWl')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/ZB2Vaea3U6c?si=nbnNy7p-oCX-oc1w')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/fLHVCOLU_WI?si=56GqZZN9qQFJTCB2')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/dZTfXiPSZyE?si=Kavl4kRrhLGiLWPR')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ مشاري العفاسي</div>
-                                </div>
-                            </div>
+                        <div class="reciter-card" onclick="showSheikhSurahs('mishari-al-afasy')">
+                            <div class="reciter-title">الشيخ مشاري العفاسي</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
                         </div>
                         
-                        <!-- قائمة الشيخ وديع اليمني -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ وديع اليمني</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtube.com/shorts/qWzAyszODe4?si=ZdpBZiZpJBcxzqsF')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/oV8ZuycmnSA?si=sXrAOTDtC0CwzU9m')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/O4_q50GxnSU?si=eUQrpz15I21MMZ__')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/ZhRXf6nSbpw?si=7DFLlKM_QMPUTH9F')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/i1_Gbsu9IH8?si=YiOe553HSpG_PNxM')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/EM0pLYUvdbA?si=bp6eP_-Qd0kOytku')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/lQYNKmL0noU?si=hHMKfGYiN2Snh8FH')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/jmEIZdVKVcA?si=t64faP4fptd25WJ-')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ وديع اليمني</div>
-                                </div>
-                            </div>
+                        <div class="reciter-card" onclick="showSheikhSurahs('wadee-al-yamani')">
+                            <div class="reciter-title">الشيخ وديع اليمني</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
                         </div>
                         
-                        <!-- قائمة الشيخ المنشاوي -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ المنشاوي</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtube.com/shorts/CvsQN-mlwxo?si=eJFx3jbug2ySAoQm')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/y-NAlOnFC8Q?si=hpcXljVUK_sE34m7')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/0dFMfvdPWWs?si=JB4B55id0FxhIN4F')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/KeEyZIab-ls?si=1jSw5oAl-amllJtP')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/yJA709soIZU?si=z0IXIYVAgJm7hcuC')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/W9iLEttC7JY?si=gGcY03kxU_-7QYu7')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/6MItl7jFRU0?si=8jJ-PDV3HMtwpkYJ')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/qk7__8tEW7k?si=MvCkMubN3I9n6ynm')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ المنشاوي</div>
-                                </div>
-                            </div>
+                        <div class="reciter-card" onclick="showSheikhSurahs('al-minshawi')">
+                            <div class="reciter-title">الشيخ المنشاوي</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
                         </div>
                         
-                        <!-- قائمة الشيخ فارس عباد -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ فارس عباد</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/3DCJ56cqXFc?si=OAkEf2KVZCpWmQTC')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/V9pB_j8thUs?si=HMFP607j3UIzB3g2')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/gEXTojT9QZo?si=ct-mWJhEWY8JTYOq')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/Ngr967sqruw?si=lgqKasVohl466Te2')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/04ZbB_JwajQ?si=EZAjk-VP2gbVdm2t')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/53ykFDqvz1Q?si=qbQRNVzNq4vin1DV')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/YemSpFfeIkM?si=SQF9defWx1g-SWcx')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/1CFODKmQKZQ?si=n3fEGZ5XAAx0jBYW')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ فارس عباد</div>
-                                </div>
-                            </div>
+                        <div class="reciter-card" onclick="showSheikhSurahs('fares-abbad')">
+                            <div class="reciter-title">الشيخ فارس عباد</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
                         </div>
                         
-                        <!-- قائمة الشيخ عبدالرحمن السديس -->
-                        <div class="reciter-card">
-                            <h3 class="reciter-title">الشيخ عبدالرحمن السديس</h3>
-                            <div class="quran-surahs">
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/m3EBoMovUg8?si=aVjobRK0ILolvKAG')">
-                                    <div class="surah-title">سورة الفاتحة</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/MspLXPfFzjg?si=VslU40oUh191AK-1')">
-                                    <div class="surah-title">سورة البقرة</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/YtIwAJn6J7s?si=oz95aMyngu0ANk7T')">
-                                    <div class="surah-title">سورة يس</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/NYti96AJOFc?si=GtSbThmQ2tRa0X2B')">
-                                    <div class="surah-title">سورة الملك</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/PyzTyTv85-M?si=85XZAFAFn8VsNnIM')">
-                                    <div class="surah-title">سورة القيامة</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/Ww-L6S4cESM?si=BeBH3GlZns5wfteX')">
-                                    <div class="surah-title">سورة الدخان</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/xB4JmhhouFQ?si=_sgz5GyiUht2b9bC')">
-                                    <div class="surah-title">سورة الكهف</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                                
-                                <div class="surah-card" onclick="openYouTubeSurah('https://youtu.be/pdoAaIBv3cY?si=N9XxHGghx-d3xkpL')">
-                                    <div class="surah-title">سورة الرحمن</div>
-                                    <div class="surah-desc">الشيخ عبدالرحمن السديس</div>
-                                </div>
-                            </div>
+                        <div class="reciter-card" onclick="showSheikhSurahs('abdulrahman-al-sudais')">
+                            <div class="reciter-title">الشيخ عبدالرحمن السديس</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                        </div>
+                    </div>
+                    
+                    <!-- قائمة السور تظهر عند اختيار الشيخ -->
+                    <div id="surahs-container" style="display: none; margin-top: 30px;">
+                        <div class="section-title" id="sheikh-name"></div>
+                        <div class="decorative-line"></div>
+                        <div class="quran-surahs" id="surahs-list">
+                            <!-- السور ستظهر هنا عبر JavaScript -->
+                        </div>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button class="action-btn" onclick="showRecitersList()">العودة إلى قائمة الشيوخ</button>
                         </div>
                     </div>
                 </div>
@@ -2153,6 +1927,88 @@
             "احرص على دعاء الاستفتاح في بداية الصلاة",
             "التأني والطمأنينة في الصلاة من أركانها"
         ];
+
+        // بيانات الشيوخ والسور
+        const sheikhsData = {
+            'ahmad-al-nafees': {
+                name: 'الشيخ أحمد النفيس',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/hZwA9D2nDqM?si=R0CcddGvrY5lSZQz' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/9HW7j9lZZTU?si=AGx5otPHL_rKOFo2' },
+                    { title: 'سورة يس', url: 'https://youtu.be/sVL0vdNqPpw?si=UpOWDRTfnFKbA74a' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/Byyrubr7eqQ?si=kxxRel7fpYxphIzy' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/WJ6OWeTTqtU?si=t0ugk-JvWmIF2vlA' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/0nKqbDR_ya0?si=qGZEC5UtTYmH4Fda' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/-Rvavu8vyEw?si=3O3C6ca-MNG4MNJD' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/3Tg-FhFeC6E?si=mQpm9DPKNtJfUrDH' }
+                ]
+            },
+            'mishari-al-afasy': {
+                name: 'الشيخ مشاري العفاسي',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtu.be/pUb9EW770d0?si=oRaxURYbJWdZDeDl' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/Y1M6hJHHrjM?si=nVu4jM1fFuCvINSp' },
+                    { title: 'سورة يس', url: 'https://youtu.be/kFn64z09MWA?si=I4w2xXISrlMdYw2I' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/IDvV7Tvt8gM?si=_zzEnZ9OJ1z-OmXn' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/PUec_OAAsuw?si=R8dA8s4v5fYqGyWl' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/ZB2Vaea3U6c?si=nbnNy7p-oCX-oc1w' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/fLHVCOLU_WI?si=56GqZZN9qQFJTCB2' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/dZTfXiPSZyE?si=Kavl4kRrhLGiLWPR' }
+                ]
+            },
+            'wadee-al-yamani': {
+                name: 'الشيخ وديع اليمني',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/qWzAyszODe4?si=ZdpBZiZpJBcxzqsF' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/oV8ZuycmnSA?si=sXrAOTDtC0CwzU9m' },
+                    { title: 'سورة يس', url: 'https://youtu.be/O4_q50GxnSU?si=eUQrpz15I21MMZ__' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/ZhRXf6nSbpw?si=7DFLlKM_QMPUTH9F' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/i1_Gbsu9IH8?si=YiOe553HSpG_PNxM' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/EM0pLYUvdbA?si=bp6eP_-Qd0kOytku' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/lQYNKmL0noU?si=hHMKfGYiN2Snh8FH' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/jmEIZdVKVcA?si=t64faP4fptd25WJ-' }
+                ]
+            },
+            'al-minshawi': {
+                name: 'الشيخ المنشاوي',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/CvsQN-mlwxo?si=eJFx3jbug2ySAoQm' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/y-NAlOnFC8Q?si=hpcXljVUK_sE34m7' },
+                    { title: 'سورة يس', url: 'https://youtu.be/0dFMfvdPWWs?si=JB4B55id0FxhIN4F' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/KeEyZIab-ls?si=1jSw5oAl-amllJtP' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/yJA709soIZU?si=z0IXIYVAgJm7hcuC' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/W9iLEttC7JY?si=gGcY03kxU_-7QYu7' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/6MItl7jFRU0?si=8jJ-PDV3HMtwpkYJ' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/qk7__8tEW7k?si=MvCkMubN3I9n6ynm' }
+                ]
+            },
+            'fares-abbad': {
+                name: 'الشيخ فارس عباد',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtu.be/3DCJ56cqXFc?si=OAkEf2KVZCpWmQTC' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/V9pB_j8thUs?si=HMFP607j3UIzB3g2' },
+                    { title: 'سورة يس', url: 'https://youtu.be/gEXTojT9QZo?si=ct-mWJhEWY8JTYOq' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/Ngr967sqruw?si=lgqKasVohl466Te2' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/04ZbB_JwajQ?si=EZAjk-VP2gbVdm2t' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/53ykFDqvz1Q?si=qbQRNVzNq4vin1DV' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/YemSpFfeIkM?si=SQF9defWx1g-SWcx' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/1CFODKmQKZQ?si=n3fEGZ5XAAx0jBYW' }
+                ]
+            },
+            'abdulrahman-al-sudais': {
+                name: 'الشيخ عبدالرحمن السديس',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtu.be/m3EBoMovUg8?si=aVjobRK0ILolvKAG' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/MspLXPfFzjg?si=VslU40oUh191AK-1' },
+                    { title: 'سورة يس', url: 'https://youtu.be/YtIwAJn6J7s?si=oz95aMyngu0ANk7T' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/NYti96AJOFc?si=GtSbThmQ2tRa0X2B' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/PyzTyTv85-M?si=85XZAFAFn8VsNnIM' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/Ww-L6S4cESM?si=BeBH3GlZns5wfteX' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/xB4JmhhouFQ?si=_sgz5GyiUht2b9bC' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/pdoAaIBv3cY?si=N9XxHGghx-d3xkpL' }
+                ]
+            }
+        };
 
         // متغيرات عامة
         let isLoggedIn = false;
@@ -2393,7 +2249,7 @@
 
         function calculateTodayPrayerPoints() {
             let totalPoints = 0;
-            const prayerPoints = [30, 15, 10];
+            const prayerPoints = [30, 20, 10]; // 30 للجماعة، 20 للمفرد، 10 للنوافل
             
             Object.values(userData.todayPrayerStars || {}).forEach(stars => {
                 if (stars && Array.isArray(stars)) {
@@ -2649,7 +2505,7 @@
             checkTaskCompletion('prayer');
         }
 
-        function togglePrayerStar(prayerName, starIndex, points) {
+        function togglePrayerStar(prayerName, starIndex, points, type) {
             if (!userData.todayPrayerStars[prayerName]) {
                 userData.todayPrayerStars[prayerName] = [false, false, false];
             }
@@ -2660,7 +2516,7 @@
             
             if (!wasActive) {
                 userData.points += points;
-                showNotification(`+${points} نقطة لصلاة ${prayerName}`);
+                showNotification(`+${points} نقطة لصلاة ${prayerName} (${type})`);
                 
                 const allStars = userData.todayPrayerStars[prayerName];
                 if (allStars.every(star => star)) {
@@ -2671,7 +2527,7 @@
             } else {
                 userData.points -= points;
                 if (userData.points < 0) userData.points = 0;
-                showNotification(`-${points} نقطة لإلغاء ${prayerName}`);
+                showNotification(`-${points} نقطة لإلغاء ${prayerName} (${type})`);
             }
             
             updateLevelDisplay();
@@ -2682,13 +2538,13 @@
 
         function updateDailyProgress() {
             let totalPoints = 0;
-            let maxPoints = 275; // 5 صلوات × 55 نقطة لكل صلاة
+            let maxPoints = 300; // 5 صلوات × 60 نقطة لكل صلاة (30+20+10)
             
             Object.values(userData.todayPrayerStars || {}).forEach(stars => {
                 if (stars && Array.isArray(stars)) {
                     stars.forEach((active, idx) => {
                         if (active) {
-                            totalPoints += [30, 15, 10][idx];
+                            totalPoints += [30, 20, 10][idx];
                         }
                     });
                 }
@@ -2736,10 +2592,47 @@
             showNotification('تم تسجيل حضور اليوم! +50 نقطة');
         }
 
+        // عرض سور الشيخ المحدد
+        function showSheikhSurahs(sheikhId) {
+            const sheikh = sheikhsData[sheikhId];
+            if (!sheikh) return;
+            
+            // إخفاء قائمة الشيوخ
+            document.getElementById('reciters-list').style.display = 'none';
+            
+            // إظهار قائمة السور
+            const surahsContainer = document.getElementById('surahs-container');
+            const sheikhNameElement = document.getElementById('sheikh-name');
+            const surahsListElement = document.getElementById('surahs-list');
+            
+            surahsContainer.style.display = 'block';
+            sheikhNameElement.textContent = sheikh.name;
+            
+            // إنشاء قائمة السور
+            let surahsHTML = '';
+            sheikh.surahs.forEach((surah, index) => {
+                surahsHTML += `
+                    <div class="surah-card" onclick="openYouTubeSurah('${surah.url}')">
+                        <div class="surah-title">${surah.title}</div>
+                        <div class="surah-desc">${sheikh.name}</div>
+                    </div>
+                `;
+            });
+            
+            surahsListElement.innerHTML = surahsHTML;
+        }
+
+        // عرض قائمة الشيوخ
+        function showRecitersList() {
+            document.getElementById('reciters-list').style.display = 'flex';
+            document.getElementById('surahs-container').style.display = 'none';
+        }
+
         // تشغيل سورة قرآنية مباشرة في يوتيوب
         function openYouTubeSurah(youtubeURL) {
             if (youtubeURL) {
                 window.open(youtubeURL, '_blank');
+                showNotification('جاري فتح السورة في اليوتيوب');
             } else {
                 showNotification('لا يوجد رابط متاح');
             }
@@ -3142,4 +3035,4 @@
         });
     </script>
 </body>
-</html>index.html
+</html>
