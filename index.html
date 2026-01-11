@@ -589,7 +589,7 @@
         /* شاشة الصلاة - جدول */
         .prayer-grid {
             display: grid;
-            grid-template-columns: 1.5fr repeat(4, 1fr);
+            grid-template-columns: 1fr repeat(3, 1fr);
             gap: 10px;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -609,13 +609,17 @@
             text-align: right;
             font-weight: 600;
             color: var(--gold);
+            font-size: 1.1rem;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
         }
 
-        .prayer-time {
-            font-size: 0.9rem;
+        .prayer-icon {
+            font-size: 1.4rem;
             opacity: 0.8;
-            margin-top: 5px;
-            color: var(--accent);
         }
 
         .prayer-btn {
@@ -835,11 +839,6 @@
             margin: 0;
         }
 
-        .surah-player {
-            width: 100%;
-            margin-top: 15px;
-        }
-
         /* شاشة المهام */
         .tasks-container {
             display: flex;
@@ -1007,7 +1006,7 @@
             }
             
             .prayer-grid {
-                grid-template-columns: 1.2fr repeat(4, 1fr);
+                grid-template-columns: 1fr repeat(3, 1fr);
                 font-size: 0.9rem;
                 gap: 8px;
             }
@@ -1272,67 +1271,63 @@
                     <div class="today-date" id="today-date">اليوم: --/--/----</div>
                 </div>
                 
+                <!-- جدول الصلاة المحدث -->
                 <div class="prayer-grid header">
                     <div>الصلاة</div>
-                    <div>صلاة</div>
-                    <div>نافلة</div>
-                    <div>ذكر</div>
-                    <div>نقاط</div>
+                    <div>الفرض</div>
+                    <div>النوافل</div>
+                    <div>المتأخر</div>
                 </div>
                 
                 <div id="prayer-times">
                     <div class="prayer-grid">
                         <div class="prayer-name">
+                            <span class="prayer-icon">🌅</span>
                             الفجر
-                            <div class="prayer-time">أول النهار</div>
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 0, 30)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 1, 15)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('الفجر', 2, 10)">☆</button>
-                        <div style="text-align: center; color: var(--gold); font-weight: bold;">55</div>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
+                            <span class="prayer-icon">☀️</span>
                             الظهر
-                            <div class="prayer-time">منتصف النهار</div>
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 0, 30)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 1, 15)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('الظهر', 2, 10)">☆</button>
-                        <div style="text-align: center; color: var(--gold); font-weight: bold;">55</div>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
+                            <span class="prayer-icon">⛅</span>
                             العصر
-                            <div class="prayer-time">آخر النهار</div>
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('العصر', 0, 30)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('العصر', 1, 15)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('العصر', 2, 10)">☆</button>
-                        <div style="text-align: center; color: var(--gold); font-weight: bold;">55</div>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
+                            <span class="prayer-icon">🌇</span>
                             المغرب
-                            <div class="prayer-time">بعد الغروب</div>
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 0, 30)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 1, 15)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('المغرب', 2, 10)">☆</button>
-                        <div style="text-align: center; color: var(--gold); font-weight: bold;">55</div>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
+                            <span class="prayer-icon">🌙</span>
                             العشاء
-                            <div class="prayer-time">آخر الليل</div>
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 0, 30)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 1, 15)">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('العشاء', 2, 10)">☆</button>
-                        <div style="text-align: center; color: var(--gold); font-weight: bold;">55</div>
                     </div>
                 </div>
                 
+                <!-- شريط التقدم -->
                 <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 20px; margin: 25px 0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                         <div>
@@ -1346,6 +1341,7 @@
                     </div>
                 </div>
                 
+                <!-- زر تسجيل حضور اليوم -->
                 <div style="text-align: center; margin-top: 20px;">
                     <button class="action-btn" onclick="markDay()" style="padding: 15px 30px; font-size: 1.1rem;">
                         تسجيل حضور اليوم
@@ -2027,8 +2023,6 @@
             currentDailyTip: 0
         };
 
-        // تمت إزالة مصفوفة levelNames لأننا سنعرض فقط الأرقام
-
         // آيات يومية متنوعة
         const dailyVerses = [
             { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾", info: "سورة البقرة - الآية ١٥٢" },
@@ -2037,8 +2031,8 @@
             { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
             { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
             { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
-            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزُقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
-            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامَ الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
+            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزِقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
+            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامُوا الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
             { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
             { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾", info: "سورة المؤمنون - الآية ١-٢" },
             { text: "﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ ﴾", info: "سورة التوبة - الآية ١١٩" },
@@ -2051,7 +2045,7 @@
         // المهام اليومية المحدثة
         const dailyTasks = [
             { id: 'prayer_5', title: 'أكمل الصلوات الخمس', desc: 'صلِّ جميع الصلوات اليوم في وقتها', points: 100, category: 'prayer' },
-            { id: 'quran_hizb', title: 'قراءة حزب من القرآن', desc: 'اقرأ حزباً من القرآن الكريم ', points: 70, category: 'quran' },
+            { id: 'quran_hizb', title: 'قراءة حزب من القرآن', desc: 'اقرأ حزباً من القرآن الكريم (20 صفحة)', points: 70, category: 'quran' },
             { id: 'morning_azkar', title: 'أذكار الصباح', desc: 'اقرأ أذكار الصباح كاملة', points: 30, category: 'azkar' },
             { id: 'evening_azkar', title: 'أذكار المساء', desc: 'اقرأ أذكار المساء كاملة', points: 30, category: 'azkar' },
             { id: 'sunnah', title: 'السنن والرواتب', desc: 'صلِّ السنن الرواتب اليومية', points: 50, category: 'prayer' },
@@ -2159,6 +2153,10 @@
             "احرص على دعاء الاستفتاح في بداية الصلاة",
             "التأني والطمأنينة في الصلاة من أركانها"
         ];
+
+        // متغيرات عامة
+        let isLoggedIn = false;
+        let currentPage = 'login-page';
 
         // التهيئة
         function initApp() {
@@ -2747,8 +2745,6 @@
             }
         }
 
-        // وظيفة playSurah القديمة تم حذفها واستبدالها بـ openYouTubeSurah مباشرة
-
         function updateTasksDisplay() {
             const tasksContainer = document.getElementById('daily-tasks');
             if (!tasksContainer) return;
@@ -3146,4 +3142,4 @@
         });
     </script>
 </body>
-</html>
+</html>index.html
