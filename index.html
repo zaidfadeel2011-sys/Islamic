@@ -227,12 +227,12 @@
             transform: translateX(-50%);
         }
 
-        /* زر السمة في الزاوية */
-        .theme-switcher {
+        /* زر الإعدادات في الزاوية */
+        .settings-switcher {
             position: relative;
         }
 
-        .theme-dot {
+        .settings-dot {
             width: 30px;
             height: 30px;
             border-radius: 50%;
@@ -246,53 +246,8 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .theme-dot:hover {
+        .settings-dot:hover {
             transform: scale(1.1);
-        }
-
-        .theme-menu {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-            padding: 10px;
-            z-index: 1001;
-            display: none;
-            width: 200px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .theme-menu.active {
-            display: block;
-        }
-
-        .theme-option {
-            display: flex;
-            align-items: center;
-            padding: 8px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 5px;
-        }
-
-        .theme-option:hover {
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .theme-preview {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-left: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .theme-name {
-            font-size: 0.9rem;
         }
 
         /* شريط التنقل السفلي */
@@ -1006,6 +961,139 @@
             display: inline-block;
         }
 
+        /* صفحة الإعدادات */
+        .settings-page-content {
+            text-align: center;
+        }
+
+        .settings-option {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: right;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .settings-option:active {
+            transform: scale(0.98);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .settings-option-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .settings-option-title {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+            flex: 1;
+            text-align: right;
+        }
+
+        .settings-option-desc {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 5px 0 0 0;
+            text-align: right;
+        }
+
+        /* قائمة السمات */
+        .theme-menu {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1001;
+            display: none;
+            width: 200px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-menu.active {
+            display: block;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 5px;
+        }
+
+        .theme-option:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .theme-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-left: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-name {
+            font-size: 0.9rem;
+        }
+
+        /* صفحة المصادر */
+        .sources-list {
+            text-align: right;
+            padding: 20px;
+        }
+
+        .source-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: var(--transition);
+        }
+
+        .source-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .source-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .source-desc {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .source-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
         /* إصلاحات للشاشات الصغيرة */
         @media (max-width: 768px) {
             .page-content {
@@ -1131,46 +1219,8 @@
             </div>
         </div>
         <div class="main-title" id="page-main-title">الرئيسية</div>
-        <div class="theme-switcher">
-            <div class="theme-dot" onclick="toggleThemeMenu()">🎨</div>
-            <div class="theme-menu" id="theme-menu">
-                <div class="theme-option" onclick="changeTheme('green')">
-                    <div class="theme-preview" style="background: #0b3d2e;"></div>
-                    <span class="theme-name">الأخضر الإسلامي</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('dark')">
-                    <div class="theme-preview" style="background: #111;"></div>
-                    <span class="theme-name">المظهر المظلم</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('gold')">
-                    <div class="theme-preview" style="background: #4b3f0b;"></div>
-                    <span class="theme-name">الذهبي</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('navy')">
-                    <div class="theme-preview" style="background: #001f3f;"></div>
-                    <span class="theme-name">الكحلي</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('red')">
-                    <div class="theme-preview" style="background: #3b0000;"></div>
-                    <span class="theme-name">الأحمر الغامق</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('blue')">
-                    <div class="theme-preview" style="background: #003366;"></div>
-                    <span class="theme-name">الأزرق الهادئ</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('white')">
-                    <div class="theme-preview" style="background: #ffffff;"></div>
-                    <span class="theme-name">اللون الأبيض</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('orange')">
-                    <div class="theme-preview" style="background: #ff6b00;"></div>
-                    <span class="theme-name">البرتقالي</span>
-                </div>
-                <div class="theme-option" onclick="changeTheme('purple')">
-                    <div class="theme-preview" style="background: #4b0082;"></div>
-                    <span class="theme-name">البنفسجي</span>
-                </div>
-            </div>
+        <div class="settings-switcher">
+            <div class="settings-dot" onclick="showPage('settings-page')">⚙️</div>
         </div>
     </div>
 
@@ -1655,6 +1705,11 @@
                     
                     <!-- قائمة أسماء الشيوخ -->
                     <div class="reciters-container" id="reciters-list">
+                        <div class="reciter-card" onclick="showSheikhSurahs('yaser-al-dosari')">
+                            <div class="reciter-title">الشيخ ياسر الدوسري</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                        </div>
+                        
                         <div class="reciter-card" onclick="showSheikhSurahs('ahmad-al-nafees')">
                             <div class="reciter-title">الشيخ أحمد النفيس</div>
                             <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
@@ -1740,6 +1795,88 @@
         </div>
     </div>
 
+    <!-- صفحة الإعدادات -->
+    <div id="settings-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <div class="settings-page-content">
+                    <h2 class="section-title">الإعدادات</h2>
+                    <div class="decorative-line"></div>
+                    
+                    <div class="settings-option" onclick="showThemesMenu()">
+                        <div class="settings-option-icon">🎨</div>
+                        <div style="flex: 1;">
+                            <h3 class="settings-option-title">السمات</h3>
+                            <p class="settings-option-desc">تغيير مظهر التطبيق</p>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option" onclick="showPage('sources-page')">
+                        <div class="settings-option-icon">📚</div>
+                        <div style="flex: 1;">
+                            <h3 class="settings-option-title">المصادر</h3>
+                            <p class="settings-option-desc">المصادر الحقيقية للأذكار والآيات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-option" onclick="resetUserData()">
+                        <div class="settings-option-icon">🔄</div>
+                        <div style="flex: 1;">
+                            <h3 class="settings-option-title">تصفير البيانات</h3>
+                            <p class="settings-option-desc">إعادة تعيين النقاط والمستوى والبيانات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة المصادر -->
+    <div id="sources-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <h2 class="section-title">المصادر</h2>
+                <div class="decorative-line"></div>
+                
+                <div class="sources-list">
+                    <div class="source-item">
+                        <div class="source-title">الأذكار</div>
+                        <div class="source-desc">مأخوذة من كتب الأذكار المعتمدة مثل "حصن المسلم" و"الكلم الطيب"</div>
+                    </div>
+                    
+                    <div class="source-item">
+                        <div class="source-title">الآيات القرآنية</div>
+                        <div class="source-desc">من المصحف الشريف - طبعة مجمع الملك فهد لطباعة المصحف الشريف</div>
+                    </div>
+                    
+                    <div class="source-item">
+                        <div class="source-title">الأحاديث النبوية</div>
+                        <div class="source-desc">من الصحيحين (البخاري ومسلم) وكتب السنن المعتمدة</div>
+                    </div>
+                    
+                    <div class="source-item">
+                        <div class="source-title">أحكام الوضوء والصلاة</div>
+                        <div class="source-desc">من كتب الفقه المعتمدة مثل "فقه السنة" و"المغني"</div>
+                    </div>
+                    
+                    <div class="source-item">
+                        <div class="source-title">التفسير</div>
+                        <div class="source-desc">تفسير ابن كثير وتفسير السعدي وتفسير الطبري</div>
+                    </div>
+                    
+                    <div class="source-item">
+                        <div class="source-title">التلاوات القرآنية</div>
+                        <div class="source-desc">من القنوات الرسمية للشيوخ على يوتيوب</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- شريط التنقل السفلي -->
     <div class="bottom-nav" style="display: none;" id="bottom-nav">
         <button class="nav-item active" onclick="showPage('home-page')">
@@ -1766,6 +1903,46 @@
             <span class="nav-icon">✅</span>
             <span>المهام</span>
         </button>
+    </div>
+
+    <!-- قائمة السمات (تظهر عند الضغط على السمات) -->
+    <div class="theme-menu" id="theme-menu">
+        <div class="theme-option" onclick="changeTheme('green')">
+            <div class="theme-preview" style="background: #0b3d2e;"></div>
+            <span class="theme-name">الأخضر الإسلامي</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('dark')">
+            <div class="theme-preview" style="background: #111;"></div>
+            <span class="theme-name">المظهر المظلم</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('gold')">
+            <div class="theme-preview" style="background: #4b3f0b;"></div>
+            <span class="theme-name">الذهبي</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('navy')">
+            <div class="theme-preview" style="background: #001f3f;"></div>
+            <span class="theme-name">الكحلي</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('red')">
+            <div class="theme-preview" style="background: #3b0000;"></div>
+            <span class="theme-name">الأحمر الغامق</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('blue')">
+            <div class="theme-preview" style="background: #003366;"></div>
+            <span class="theme-name">الأزرق الهادئ</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('white')">
+            <div class="theme-preview" style="background: #ffffff;"></div>
+            <span class="theme-name">اللون الأبيض</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('orange')">
+            <div class="theme-preview" style="background: #ff6b00;"></div>
+            <span class="theme-name">البرتقالي</span>
+        </div>
+        <div class="theme-option" onclick="changeTheme('purple')">
+            <div class="theme-preview" style="background: #4b0082;"></div>
+            <span class="theme-name">البنفسجي</span>
+        </div>
     </div>
 
     <script>
@@ -1802,10 +1979,10 @@
             { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾", info: "سورة البقرة - الآية ١٥٢" },
             { text: "﴿ وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ ﴾", info: "سورة البقرة - الآية ٤٣" },
             { text: "﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾", info: "سورة النساء - الآية ١٠٣" },
-            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
+            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
             { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
             { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
-            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزِقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
+            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزُقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
             { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامُوا الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
             { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
             { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾", info: "سورة المؤمنون - الآية ١-٢" },
@@ -1928,8 +2105,21 @@
             "التأني والطمأنينة في الصلاة من أركانها"
         ];
 
-        // بيانات الشيوخ والسور
+        // بيانات الشيوخ والسور - تمت إضافة الشيخ ياسر الدوسري
         const sheikhsData = {
+            'yaser-al-dosari': {
+                name: 'الشيخ ياسر الدوسري',
+                surahs: [
+                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/MePQ7B0dNek?si=5vaWolGfhC2xrKk7' },
+                    { title: 'سورة البقرة', url: 'https://youtu.be/P0uaLRO6V1U?si=XcetcB863O0eFasd' },
+                    { title: 'سورة يس', url: 'https://youtu.be/yEAmNisPOzk?si=vWSHEjCVuYKfIYqM' },
+                    { title: 'سورة الملك', url: 'https://youtu.be/Xg3dnwXfsBc?si=azQjnht91DhGOjCV' },
+                    { title: 'سورة القيامة', url: 'https://youtu.be/Tj6M-QrsYWQ?si=VEnqhXTf1ox_4AQg' },
+                    { title: 'سورة الدخان', url: 'https://youtu.be/zmarpXKqMno?si=hamfIPAh0ZwCKSgZ' },
+                    { title: 'سورة الكهف', url: 'https://youtu.be/GYqzkR_AnKE?si=zcF1sltZGbEvA4Tk' },
+                    { title: 'سورة الرحمن', url: 'https://youtu.be/93sadl36u6s?si=Sg2bPb11-zEuXDzy' }
+                ]
+            },
             'ahmad-al-nafees': {
                 name: 'الشيخ أحمد النفيس',
                 surahs: [
@@ -2302,9 +2492,13 @@
             }
         }
 
-        function toggleThemeMenu() {
+        function showThemesMenu() {
             const themeMenu = document.getElementById('theme-menu');
             if (themeMenu) {
+                const rect = themeMenu.getBoundingClientRect();
+                if (rect.left < 0) {
+                    themeMenu.style.left = '0px';
+                }
                 themeMenu.classList.toggle('active');
             }
         }
@@ -2349,7 +2543,9 @@
                 'after-prayer-azkar-page': 'أذكار بعد الصلاة',
                 'hadith-page': 'أحاديث نبوية',
                 'tasbeeh-page': 'التسبيح',
-                'tasks-page': 'المهام'
+                'tasks-page': 'المهام',
+                'settings-page': 'الإعدادات',
+                'sources-page': 'المصادر'
             };
             
             const mainTitle = document.getElementById('page-main-title');
@@ -2400,6 +2596,10 @@
                 case 'tasks-page':
                     updateTasksDisplay();
                     document.querySelector('.nav-item[onclick*="tasks-page"]').classList.add('active');
+                    break;
+                case 'settings-page':
+                case 'sources-page':
+                    // لا يوجد زر في شريط التنقل للإعدادات
                     break;
             }
         }
@@ -2982,6 +3182,29 @@
             }
         }
 
+        // تصفير بيانات المستخدم
+        function resetUserData() {
+            if (confirm('هل أنت متأكد من تصفير جميع بياناتك؟ سيتم حذف النقاط والمستوى والمهام المحفوظة.')) {
+                userData.points = 0;
+                userData.level = 1;
+                userData.tasbeehCount = 0;
+                userData.completedTasks = {};
+                userData.todayPrayerStars = {
+                    'الفجر': [false, false, false],
+                    'الظهر': [false, false, false],
+                    'العصر': [false, false, false],
+                    'المغرب': [false, false, false],
+                    'العشاء': [false, false, false]
+                };
+                
+                updateLevelDisplay();
+                saveData();
+                
+                showNotification('تم تصفير جميع بياناتك بنجاح');
+                showPage('home-page');
+            }
+        }
+
         function showNotification(message) {
             const oldNotification = document.querySelector('.notification');
             if (oldNotification) oldNotification.remove();
@@ -3025,11 +3248,10 @@
         // إغلاق قائمة السمات عند النقر خارجها
         document.addEventListener('click', function(event) {
             const themeMenu = document.getElementById('theme-menu');
-            const themeDot = document.querySelector('.theme-dot');
             
             if (themeMenu && themeMenu.classList.contains('active') && 
                 !themeMenu.contains(event.target) && 
-                !themeDot.contains(event.target)) {
+                !event.target.closest('.settings-option')) {
                 themeMenu.classList.remove('active');
             }
         });
