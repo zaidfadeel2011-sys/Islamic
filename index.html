@@ -801,12 +801,37 @@
             margin: 0;
         }
 
-        /* شاشة المهام */
+        /* شاشة المهام - محدث */
         .tasks-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 20px 0;
+            position: relative;
+        }
+
+        .add-task-btn {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            color: #000;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .add-task-btn:active {
+            transform: scale(0.95);
         }
 
         .task-item {
@@ -817,6 +842,12 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
+        }
+
+        .user-task-item {
+            background: rgba(0, 200, 255, 0.1);
+            border: 2px solid #00aaff;
         }
 
         .task-checkbox {
@@ -831,8 +862,16 @@
             flex-shrink: 0;
         }
 
+        .user-task-item .task-checkbox {
+            border-color: #00aaff;
+        }
+
         .task-checkbox.checked {
             background: var(--gold);
+        }
+
+        .user-task-item .task-checkbox.checked {
+            background: #00aaff;
         }
 
         .task-checkbox.checked::after {
@@ -852,6 +891,10 @@
             font-weight: bold;
         }
 
+        .user-task-item .task-title {
+            color: #00aaff;
+        }
+
         .task-desc {
             margin: 0;
             font-size: 0.9rem;
@@ -866,6 +909,31 @@
             background: rgba(255, 215, 0, 0.1);
             border-radius: 10px;
             flex-shrink: 0;
+        }
+
+        .user-task-item .task-points {
+            color: #00aaff;
+            background: rgba(0, 200, 255, 0.1);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .task-action-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .task-action-btn:hover {
+            opacity: 1;
         }
 
         /* الأزرار العامة */
@@ -1005,6 +1073,83 @@
             opacity: 0.8;
             margin: 5px 0 0 0;
             text-align: right;
+        }
+
+        /* نافذة تغيير الاسم */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-title {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 15px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn:active {
+            transform: scale(0.95);
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            color: #000;
+        }
+
+        .modal-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--gold);
         }
 
         /* قائمة السمات */
@@ -1161,6 +1306,13 @@
                 left: -150px;
                 width: 180px;
             }
+            
+            .add-task-btn {
+                bottom: 90px;
+                left: 15px;
+                width: 55px;
+                height: 55px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1185,6 +1337,22 @@
             
             .surah-card {
                 padding: 10px;
+            }
+            
+            .add-task-btn {
+                bottom: 85px;
+                left: 10px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -1757,7 +1925,7 @@
         </div>
     </div>
 
-    <!-- صفحة التسبيح -->
+    <!-- صفحة التسبيح - محدث -->
     <div id="tasbeeh-page" class="page">
         <div class="page-content">
             <div class="card">
@@ -1772,7 +1940,6 @@
                     </div>
                     
                     <div style="margin: 25px 0;">
-                        <button class="action-btn" onclick="saveTasbeeh()" style="margin: 0 5px;">حفظ</button>
                         <button class="action-btn" onclick="resetTasbeeh()" style="margin: 0 5px;">تصفير</button>
                     </div>
                 </div>
@@ -1780,7 +1947,7 @@
         </div>
     </div>
 
-    <!-- صفحة المهام -->
+    <!-- صفحة المهام - محدث -->
     <div id="tasks-page" class="page">
         <div class="page-content">
             <div class="card">
@@ -1791,17 +1958,29 @@
                 <div class="tasks-container" id="daily-tasks">
                     <!-- المهام ستُضاف هنا عبر JavaScript -->
                 </div>
+                
+                <!-- زر إضافة مهمة -->
+                <button class="add-task-btn" onclick="showAddTaskModal()">+</button>
             </div>
         </div>
     </div>
 
-    <!-- صفحة الإعدادات -->
+    <!-- صفحة الإعدادات - محدث -->
     <div id="settings-page" class="page">
         <div class="page-content">
             <div class="card">
                 <div class="settings-page-content">
                     <h2 class="section-title">الإعدادات</h2>
                     <div class="decorative-line"></div>
+                    
+                    <!-- خانة تغيير الاسم -->
+                    <div class="settings-option" onclick="showChangeNameModal()">
+                        <div class="settings-option-icon">👤</div>
+                        <div style="flex: 1;">
+                            <h3 class="settings-option-title">تغيير الاسم</h3>
+                            <p class="settings-option-desc">تغيير اسم المستخدم الخاص بك</p>
+                        </div>
+                    </div>
                     
                     <div class="settings-option" onclick="showThemesMenu()">
                         <div class="settings-option-icon">🎨</div>
@@ -1905,7 +2084,7 @@
         </button>
     </div>
 
-    <!-- قائمة السمات (تظهر عند الضغط على السمات) -->
+    <!-- قائمة السمات -->
     <div class="theme-menu" id="theme-menu">
         <div class="theme-option" onclick="changeTheme('green')">
             <div class="theme-preview" style="background: #0b3d2e;"></div>
@@ -1945,6 +2124,49 @@
         </div>
     </div>
 
+    <!-- نافذة تغيير الاسم -->
+    <div id="change-name-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2 class="modal-title">تغيير الاسم</h2>
+            <div class="decorative-line"></div>
+            <input type="text" id="new-name-input" class="modal-input" placeholder="أدخل الاسم الجديد" maxlength="20">
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" onclick="closeChangeNameModal()">إلغاء</button>
+                <button class="modal-btn modal-btn-primary" onclick="saveNewName()">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة مهمة -->
+    <div id="add-task-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2 class="modal-title">إضافة مهمة جديدة</h2>
+            <div class="decorative-line"></div>
+            <input type="text" id="task-title-input" class="modal-input" placeholder="عنوان المهمة" maxlength="50">
+            <textarea id="task-desc-input" class="modal-input" placeholder="وصف المهمة (اختياري)" rows="3" maxlength="200" style="text-align: right; font-family: inherit; resize: none;"></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" onclick="closeAddTaskModal()">إلغاء</button>
+                <button class="modal-btn modal-btn-primary" onclick="saveNewTask()">إضافة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تعديل مهمة -->
+    <div id="edit-task-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2 class="modal-title">تعديل المهمة</h2>
+            <div class="decorative-line"></div>
+            <input type="text" id="edit-task-title-input" class="modal-input" placeholder="عنوان المهمة" maxlength="50">
+            <textarea id="edit-task-desc-input" class="modal-input" placeholder="وصف المهمة (اختياري)" rows="3" maxlength="200" style="text-align: right; font-family: inherit; resize: none;"></textarea>
+            <input type="hidden" id="edit-task-id">
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" onclick="closeEditTaskModal()">إلغاء</button>
+                <button class="modal-btn modal-btn-primary" onclick="saveEditedTask()">حفظ التعديلات</button>
+                <button class="modal-btn" onclick="deleteTask()" style="background: rgba(255, 0, 0, 0.2); color: #ff4444; border: 1px solid #ff4444; margin-top: 10px;">حذف المهمة</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // البيانات
         let userData = {
@@ -1966,6 +2188,7 @@
             currentHadith: 0,
             currentSleepAzkar: 0,
             completedTasks: {},
+            userTasks: [],
             theme: 'green',
             lastPrayerDay: '',
             lastVerseDay: '',
@@ -1982,9 +2205,9 @@
             { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
             { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
             { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
-            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزُقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
-            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامُوا الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
-            { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
+            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزَقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
+            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامُوا الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمَ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
+            { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهَ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
             { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾", info: "سورة المؤمنون - الآية ١-٢" },
             { text: "﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ ﴾", info: "سورة التوبة - الآية ١١٩" },
             { text: "﴿ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ﴾", info: "سورة البقرة - الآية ١٥٣" },
@@ -1995,13 +2218,13 @@
 
         // المهام اليومية المحدثة
         const dailyTasks = [
-            { id: 'prayer_5', title: 'أكمل الصلوات الخمس', desc: 'صلِّ جميع الصلوات اليوم في وقتها', points: 100, category: 'prayer' },
-            { id: 'quran_hizb', title: 'قراءة حزب من القرآن', desc: 'اقرأ حزباً من القرآن الكريم (20 صفحة)', points: 70, category: 'quran' },
-            { id: 'morning_azkar', title: 'أذكار الصباح', desc: 'اقرأ أذكار الصباح كاملة', points: 30, category: 'azkar' },
-            { id: 'evening_azkar', title: 'أذكار المساء', desc: 'اقرأ أذكار المساء كاملة', points: 30, category: 'azkar' },
-            { id: 'sunnah', title: 'السنن والرواتب', desc: 'صلِّ السنن الرواتب اليومية', points: 50, category: 'prayer' },
-            { id: 'parents', title: 'بر الوالدين', desc: 'اتصل بوالديك أو زرهما أو أحسن إليهما', points: 70, category: 'social' },
-            { id: 'charity', title: 'الصدقة', desc: 'تصدق ولو بشيء بسيط', points: 50, category: 'social' }
+            { id: 'prayer_5', title: 'أكمل الصلوات الخمس', desc: 'صلِّ جميع الصلوات اليوم في وقتها', points: 100, category: 'prayer', type: 'system' },
+            { id: 'quran_hizb', title: 'قراءة حزب من القرآن', desc: 'اقرأ حزباً من القرآن الكريم (20 صفحة)', points: 70, category: 'quran', type: 'system' },
+            { id: 'morning_azkar', title: 'أذكار الصباح', desc: 'اقرأ أذكار الصباح كاملة', points: 30, category: 'azkar', type: 'system' },
+            { id: 'evening_azkar', title: 'أذكار المساء', desc: 'اقرأ أذكار المساء كاملة', points: 30, category: 'azkar', type: 'system' },
+            { id: 'sunnah', title: 'السنن والرواتب', desc: 'صلِّ السنن الرواتب اليومية', points: 50, category: 'prayer', type: 'system' },
+            { id: 'parents', title: 'بر الوالدين', desc: 'اتصل بوالديك أو زرهما أو أحسن إليهما', points: 70, category: 'social', type: 'system' },
+            { id: 'charity', title: 'الصدقة', desc: 'تصدق ولو بشيء بسيط', points: 50, category: 'social', type: 'system' }
         ];
 
         // نصائح يومية متنوعة
@@ -2105,7 +2328,7 @@
             "التأني والطمأنينة في الصلاة من أركانها"
         ];
 
-        // بيانات الشيوخ والسور - تمت إضافة الشيخ ياسر الدوسري
+        // بيانات الشيوخ والسور
         const sheikhsData = {
             'yaser-al-dosari': {
                 name: 'الشيخ ياسر الدوسري',
@@ -2332,20 +2555,16 @@
 
         // تحديث عرض المستوى
         function updateLevelDisplay() {
-            // حساب المستوى بناءً على النقاط (كل 1000 نقطة = مستوى)
             const oldLevel = userData.level;
             userData.level = Math.floor(userData.points / 1000) + 1;
             
-            // التأكد من أن المستوى لا يتجاوز 10
             if (userData.level > 10) {
                 userData.level = 10;
             }
             
-            // حساب النقاط للمستوى الحالي
             const pointsInCurrentLevel = userData.points % 1000;
             const progressPercentage = (pointsInCurrentLevel / 1000) * 100;
             
-            // تحديث واجهة المستخدم
             const levelNameElement = document.getElementById('level-name');
             const levelNumberElement = document.getElementById('level-number');
             const currentPointsElement = document.getElementById('current-points');
@@ -2392,7 +2611,6 @@
                 userAvatarElement.textContent = userData.level;
             }
             
-            // إذا تمت ترقية المستوى
             if (oldLevel < userData.level) {
                 showNotification(`🎉 مبروك! لقد رقيت إلى المستوى ${userData.level}`);
             }
@@ -2439,7 +2657,7 @@
 
         function calculateTodayPrayerPoints() {
             let totalPoints = 0;
-            const prayerPoints = [30, 20, 10]; // 30 للجماعة، 20 للمفرد، 10 للنوافل
+            const prayerPoints = [30, 20, 10];
             
             Object.values(userData.todayPrayerStars || {}).forEach(stars => {
                 if (stars && Array.isArray(stars)) {
@@ -2599,7 +2817,6 @@
                     break;
                 case 'settings-page':
                 case 'sources-page':
-                    // لا يوجد زر في شريط التنقل للإعدادات
                     break;
             }
         }
@@ -2680,16 +2897,14 @@
                 resetPrayerTableForNewDay();
             }
             
-            // تحديث الأزرار حسب الحالة المحفوظة
             const prayers = ['الفجر', 'الظهر', 'العصر', 'المغرب', 'العشاء'];
             
             prayers.forEach(prayerName => {
                 const stars = userData.todayPrayerStars[prayerName] || [false, false, false];
                 
-                // تحديث الأزرار
                 const buttons = prayerTimesElement.querySelectorAll(`.prayer-btn[onclick*="${prayerName}"]`);
                 buttons.forEach((button, idx) => {
-                    if (idx < 3) { // أول 3 أزرار فقط
+                    if (idx < 3) {
                         if (stars[idx]) {
                             button.textContent = '★';
                             button.classList.add('active');
@@ -2738,7 +2953,7 @@
 
         function updateDailyProgress() {
             let totalPoints = 0;
-            let maxPoints = 300; // 5 صلوات × 60 نقطة لكل صلاة (30+20+10)
+            let maxPoints = 300;
             
             Object.values(userData.todayPrayerStars || {}).forEach(stars => {
                 if (stars && Array.isArray(stars)) {
@@ -2797,10 +3012,8 @@
             const sheikh = sheikhsData[sheikhId];
             if (!sheikh) return;
             
-            // إخفاء قائمة الشيوخ
             document.getElementById('reciters-list').style.display = 'none';
             
-            // إظهار قائمة السور
             const surahsContainer = document.getElementById('surahs-container');
             const sheikhNameElement = document.getElementById('sheikh-name');
             const surahsListElement = document.getElementById('surahs-list');
@@ -2808,7 +3021,6 @@
             surahsContainer.style.display = 'block';
             sheikhNameElement.textContent = sheikh.name;
             
-            // إنشاء قائمة السور
             let surahsHTML = '';
             sheikh.surahs.forEach((surah, index) => {
                 surahsHTML += `
@@ -2838,6 +3050,7 @@
             }
         }
 
+        // تحديث عرض المهام
         function updateTasksDisplay() {
             const tasksContainer = document.getElementById('daily-tasks');
             if (!tasksContainer) return;
@@ -2845,13 +3058,14 @@
             const today = new Date().toDateString();
             let html = '';
             
+            // عرض المهام النظامية
             dailyTasks.forEach((task, index) => {
                 const isCompleted = userData.completedTasks[`${today}_${task.id}`] || false;
                 
                 html += `
                     <div class="task-item">
                         <div class="task-checkbox ${isCompleted ? 'checked' : ''}" 
-                             onclick="toggleTask('${task.id}', ${task.points})">
+                             onclick="toggleTask('${task.id}', ${task.points}, 'system')">
                         </div>
                         <div class="task-content">
                             <div class="task-title">${task.title}</div>
@@ -2862,10 +3076,44 @@
                 `;
             });
             
+            // عرض مهام المستخدم
+            userData.userTasks.forEach((task, index) => {
+                const taskKey = `user_${task.id}`;
+                const isCompleted = userData.completedTasks[`${today}_${taskKey}`] || false;
+                
+                html += `
+                    <div class="task-item user-task-item">
+                        <div class="task-checkbox ${isCompleted ? 'checked' : ''}" 
+                             onclick="toggleTask('${taskKey}', 50, 'user')">
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">${task.title}</div>
+                            <div class="task-desc">${task.desc || 'مهمة مضافة من قبلك'}</div>
+                        </div>
+                        <div class="task-points">+50</div>
+                        <div class="task-actions">
+                            <button class="task-action-btn" onclick="editTask(${index})">✏️</button>
+                            <button class="task-action-btn" onclick="removeTask(${index})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
             tasksContainer.innerHTML = html;
+            
+            // إظهار زر الإضافة فقط إذا كان عدد المهام أقل من 10
+            const addTaskBtn = document.querySelector('.add-task-btn');
+            if (addTaskBtn) {
+                if (userData.userTasks.length >= 10) {
+                    addTaskBtn.style.display = 'none';
+                    showNotification('لقد وصلت إلى الحد الأقصى للمهام المضافة (10 مهام)');
+                } else {
+                    addTaskBtn.style.display = 'flex';
+                }
+            }
         }
 
-        function toggleTask(taskId, points) {
+        function toggleTask(taskId, points, taskType) {
             const today = new Date().toDateString();
             const taskKey = `${today}_${taskId}`;
             const wasCompleted = userData.completedTasks[taskKey] || false;
@@ -2875,11 +3123,19 @@
                 userData.points += points;
                 showNotification(`ممتاز! +${points} نقطة لإكمال المهمة`);
                 
+                // حساب المهام المكتملة
                 const completedTasksCount = dailyTasks.filter(task => 
                     userData.completedTasks[`${today}_${task.id}`]
                 ).length;
                 
-                if (completedTasksCount === dailyTasks.length) {
+                const completedUserTasksCount = userData.userTasks.filter(task => 
+                    userData.completedTasks[`${today}_user_${task.id}`]
+                ).length;
+                
+                const totalCompleted = completedTasksCount + completedUserTasksCount;
+                const totalTasks = dailyTasks.length + userData.userTasks.length;
+                
+                if (totalCompleted === totalTasks && totalTasks > 0) {
                     const bonusPoints = 300;
                     userData.points += bonusPoints;
                     showNotification(`🎉 إنجاز رائع! +${bonusPoints} نقطة مكافأة لإكمال جميع مهام اليوم`);
@@ -2937,6 +3193,189 @@
             });
         }
 
+        // === وظائف نافذة تغيير الاسم ===
+        function showChangeNameModal() {
+            document.getElementById('change-name-modal').style.display = 'flex';
+            document.getElementById('new-name-input').value = userData.username;
+            document.getElementById('new-name-input').focus();
+        }
+
+        function closeChangeNameModal() {
+            document.getElementById('change-name-modal').style.display = 'none';
+        }
+
+        function saveNewName() {
+            const newName = document.getElementById('new-name-input').value.trim();
+            
+            if (!newName) {
+                showNotification('الرجاء إدخال اسم جديد');
+                return;
+            }
+            
+            if (newName === userData.username) {
+                showNotification('هذا هو اسمك الحالي');
+                closeChangeNameModal();
+                return;
+            }
+            
+            userData.username = newName;
+            document.getElementById('user-name').textContent = newName;
+            
+            saveData();
+            closeChangeNameModal();
+            
+            showNotification(`تم تغيير الاسم إلى ${newName}`);
+        }
+
+        // === وظائف التسبيح (محدث) ===
+        function addTasbeeh(count) {
+            userData.tasbeehCount += count;
+            const tasbeehCountElement = document.getElementById('tasbeeh-count');
+            if (tasbeehCountElement) tasbeehCountElement.textContent = userData.tasbeehCount;
+            
+            userData.points += count;
+            updateLevelDisplay();
+            
+            saveData();
+            
+            const circle = document.querySelector('.tasbeeh-circle');
+            if (circle) {
+                circle.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    circle.style.transform = 'scale(1)';
+                }, 150);
+            }
+        }
+
+        function resetTasbeeh() {
+            userData.tasbeehCount = 0;
+            const tasbeehCountElement = document.getElementById('tasbeeh-count');
+            if (tasbeehCountElement) tasbeehCountElement.textContent = 0;
+            saveData();
+            showNotification('تم تصفير العداد');
+        }
+
+        // === وظائف إدارة المهام ===
+        function showAddTaskModal() {
+            document.getElementById('add-task-modal').style.display = 'flex';
+            document.getElementById('task-title-input').value = '';
+            document.getElementById('task-desc-input').value = '';
+            document.getElementById('task-title-input').focus();
+        }
+
+        function closeAddTaskModal() {
+            document.getElementById('add-task-modal').style.display = 'none';
+        }
+
+        function saveNewTask() {
+            const title = document.getElementById('task-title-input').value.trim();
+            const desc = document.getElementById('task-desc-input').value.trim();
+            
+            if (!title) {
+                showNotification('الرجاء إدخال عنوان للمهمة');
+                return;
+            }
+            
+            // التحقق من عدد المهام
+            if (userData.userTasks.length >= 10) {
+                showNotification('لقد وصلت إلى الحد الأقصى للمهام المضافة (10 مهام)');
+                closeAddTaskModal();
+                return;
+            }
+            
+            const newTask = {
+                id: Date.now(),
+                title: title,
+                desc: desc,
+                points: 50,
+                type: 'user',
+                dateAdded: new Date().toISOString()
+            };
+            
+            userData.userTasks.push(newTask);
+            saveData();
+            updateTasksDisplay();
+            closeAddTaskModal();
+            
+            showNotification('تم إضافة المهمة بنجاح!');
+        }
+
+        function editTask(index) {
+            if (index >= 0 && index < userData.userTasks.length) {
+                const task = userData.userTasks[index];
+                document.getElementById('edit-task-modal').style.display = 'flex';
+                document.getElementById('edit-task-title-input').value = task.title;
+                document.getElementById('edit-task-desc-input').value = task.desc || '';
+                document.getElementById('edit-task-id').value = index;
+                document.getElementById('edit-task-title-input').focus();
+            }
+        }
+
+        function closeEditTaskModal() {
+            document.getElementById('edit-task-modal').style.display = 'none';
+        }
+
+        function saveEditedTask() {
+            const index = parseInt(document.getElementById('edit-task-id').value);
+            const title = document.getElementById('edit-task-title-input').value.trim();
+            const desc = document.getElementById('edit-task-desc-input').value.trim();
+            
+            if (!title) {
+                showNotification('الرجاء إدخال عنوان للمهمة');
+                return;
+            }
+            
+            if (index >= 0 && index < userData.userTasks.length) {
+                userData.userTasks[index].title = title;
+                userData.userTasks[index].desc = desc;
+                saveData();
+                updateTasksDisplay();
+                closeEditTaskModal();
+                
+                showNotification('تم تعديل المهمة بنجاح!');
+            }
+        }
+
+        function deleteTask() {
+            const index = parseInt(document.getElementById('edit-task-id').value);
+            
+            if (index >= 0 && index < userData.userTasks.length) {
+                if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
+                    userData.userTasks.splice(index, 1);
+                    
+                    // حذف حالة الإكمال للمهمة المحذوفة
+                    const today = new Date().toDateString();
+                    const taskKey = `user_${index}`;
+                    delete userData.completedTasks[`${today}_${taskKey}`];
+                    
+                    saveData();
+                    updateTasksDisplay();
+                    closeEditTaskModal();
+                    
+                    showNotification('تم حذف المهمة بنجاح!');
+                }
+            }
+        }
+
+        function removeTask(index) {
+            if (index >= 0 && index < userData.userTasks.length) {
+                if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
+                    userData.userTasks.splice(index, 1);
+                    
+                    // حذف حالة الإكمال للمهمة المحذوفة
+                    const today = new Date().toDateString();
+                    const taskKey = `user_${index}`;
+                    delete userData.completedTasks[`${today}_${taskKey}`];
+                    
+                    saveData();
+                    updateTasksDisplay();
+                    
+                    showNotification('تم حذف المهمة بنجاح!');
+                }
+            }
+        }
+
+        // === وظائف الأذكار والأحاديث (كما هي) ===
         function updateMorningAzkar() {
             const morningTextElement = document.getElementById('morning-text');
             const morningCounterElement = document.getElementById('morning-counter');
@@ -3144,44 +3583,6 @@
             updateHadith();
         }
 
-        function addTasbeeh(count) {
-            userData.tasbeehCount += count;
-            const tasbeehCountElement = document.getElementById('tasbeeh-count');
-            if (tasbeehCountElement) tasbeehCountElement.textContent = userData.tasbeehCount;
-            
-            userData.points += count;
-            updateLevelDisplay();
-            
-            saveData();
-            
-            const circle = document.querySelector('.tasbeeh-circle');
-            if (circle) {
-                circle.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    circle.style.transform = 'scale(1)';
-                }, 150);
-            }
-        }
-
-        function saveTasbeeh() {
-            saveData();
-            showNotification('تم حفظ عدد التسبيح');
-        }
-
-        function resetTasbeeh() {
-            if (userData.tasbeehCount > 0) {
-                if (confirm(`هل تريد تصفير العداد؟ لديك ${userData.tasbeehCount} تسبيحة`)) {
-                    userData.tasbeehCount = 0;
-                    const tasbeehCountElement = document.getElementById('tasbeeh-count');
-                    if (tasbeehCountElement) tasbeehCountElement.textContent = 0;
-                    saveData();
-                    showNotification('تم تصفير العداد');
-                }
-            } else {
-                showNotification('العداد بالفعل صفر');
-            }
-        }
-
         // تصفير بيانات المستخدم
         function resetUserData() {
             if (confirm('هل أنت متأكد من تصفير جميع بياناتك؟ سيتم حذف النقاط والمستوى والمهام المحفوظة.')) {
@@ -3189,6 +3590,7 @@
                 userData.level = 1;
                 userData.tasbeehCount = 0;
                 userData.completedTasks = {};
+                userData.userTasks = [];
                 userData.todayPrayerStars = {
                     'الفجر': [false, false, false],
                     'الظهر': [false, false, false],
