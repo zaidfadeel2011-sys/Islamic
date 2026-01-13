@@ -12,84 +12,91 @@
         :root {
             --primary: #0b3d2e;
             --secondary: #146356;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #0a8;
-            --card-bg: rgba(0, 0, 0, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.05);
             --text: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
         }
 
         [data-theme="green"] {
             --primary: #0b3d2e;
             --secondary: #146356;
+            --gold: #d4af37;
             --accent: #0a8;
-            --gold: #ffd700;
+            --card-bg: rgba(255, 255, 255, 0.05);
         }
 
         [data-theme="dark"] {
-            --primary: #111;
-            --secondary: #222;
-            --accent: #0a8;
-            --gold: #ffd700;
-            --card-bg: rgba(30, 30, 30, 0.8);
+            --primary: #0a1929;
+            --secondary: #1a2b3c;
+            --gold: #d4af37;
+            --accent: #4dabf7;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --text: #e2e8f0;
         }
 
         [data-theme="gold"] {
-            --primary: #4b3f0b;
-            --secondary: #8c731e;
+            --primary: #3a2c0a;
+            --secondary: #5a4a1a;
             --gold: #ffd700;
             --accent: #ffaa00;
+            --card-bg: rgba(90, 74, 26, 0.3);
         }
 
         [data-theme="navy"] {
             --primary: #001f3f;
             --secondary: #002b5c;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #0af;
+            --card-bg: rgba(0, 31, 63, 0.3);
         }
 
         [data-theme="red"] {
             --primary: #3b0000;
             --secondary: #5a0000;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #f00;
+            --card-bg: rgba(59, 0, 0, 0.3);
         }
 
         [data-theme="blue"] {
             --primary: #003366;
             --secondary: #004d99;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #3399ff;
+            --card-bg: rgba(0, 51, 102, 0.3);
         }
 
         [data-theme="white"] {
             --primary: #ffffff;
             --secondary: #f0f0f0;
-            --gold: #d4af37;
+            --gold: #b8860b;
             --accent: #0b3d2e;
-            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(240, 240, 240, 0.9);
             --text: #333333;
         }
 
         [data-theme="orange"] {
             --primary: #ff6b00;
             --secondary: #ff8c42;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #ff4500;
+            --card-bg: rgba(255, 107, 0, 0.1);
         }
 
         [data-theme="purple"] {
             --primary: #4b0082;
             --secondary: #663399;
-            --gold: #ffd700;
+            --gold: #d4af37;
             --accent: #9370db;
+            --card-bg: rgba(75, 0, 130, 0.3);
         }
 
         * {
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
             box-sizing: border-box;
         }
 
@@ -121,30 +128,32 @@
         }
 
         .splash-logo {
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--gold);
             margin-bottom: 20px;
             animation: pulse 2s infinite;
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
         }
 
         .splash-title {
             color: var(--gold);
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 30px;
             text-align: center;
             font-weight: bold;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--gold);
-            border-top-color: transparent;
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(212, 175, 55, 0.3);
+            border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -156,10 +165,10 @@
         /* الصفحات */
         .page {
             position: fixed;
-            top: 60px;
+            top: 70px;
             left: 0;
             width: 100%;
-            height: calc(100% - 140px);
+            height: calc(100% - 150px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: none;
@@ -173,8 +182,8 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* الهيدر العلوي */
@@ -183,71 +192,76 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 60px;
-            background: rgba(0, 0, 0, 0.8);
+            height: 70px;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 15px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 0 20px;
+            border-bottom: 2px solid var(--gold);
             z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--gold), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            color: #000;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .user-name {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
         }
 
         .main-title {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        /* زر الإعدادات في الزاوية */
+        /* زر الإعدادات */
         .settings-switcher {
             position: relative;
         }
 
         .settings-dot {
-            width: 30px;
-            height: 30px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            background: var(--gold);
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             transition: var(--transition);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .settings-dot:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(30deg);
         }
 
         /* شريط التنقل السفلي */
@@ -257,27 +271,28 @@
             left: 0;
             width: 100%;
             height: 80px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 10px 5px;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 12px 10px;
+            border-top: 2px solid var(--gold);
             z-index: 1000;
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             transition: var(--transition);
-            padding: 8px 5px;
-            border-radius: 10px;
-            min-width: 60px;
+            padding: 10px 8px;
+            border-radius: 15px;
+            min-width: 65px;
             background: none;
             border: none;
             cursor: pointer;
@@ -285,17 +300,24 @@
 
         .nav-item.active {
             color: var(--gold);
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
         }
 
         .nav-icon {
-            font-size: 1.3rem;
-            margin-bottom: 4px;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.2);
         }
 
         /* المحتوى */
         .page-content {
-            padding: 15px;
+            padding: 20px;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -305,21 +327,28 @@
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .section-title {
             color: var(--gold);
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-weight: bold;
         }
 
         .section-title::after {
@@ -328,9 +357,9 @@
             bottom: 0;
             right: 50%;
             transform: translateX(50%);
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         /* شاشة تسجيل الدخول */
@@ -344,73 +373,93 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .login-logo {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             color: var(--gold);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
         }
 
         .login-title {
             color: var(--gold);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .login-input {
             width: 100%;
-            max-width: 300px;
-            padding: 15px;
-            margin: 20px 0;
+            max-width: 350px;
+            padding: 18px;
+            margin: 25px 0;
             border: 2px solid var(--gold);
-            border-radius: 25px;
+            border-radius: 30px;
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-align: center;
             outline: none;
+            transition: var(--transition);
+        }
+
+        .login-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .login-btn {
             background: linear-gradient(45deg, var(--gold), #ffaa00);
             color: #000;
             border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            padding: 18px 50px;
+            border-radius: 30px;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
         }
 
         .login-btn:active {
             transform: scale(0.95);
         }
 
-        /* شاشة الرئيسية */
         /* مستوى المستخدم */
         .level-card {
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 15px;
+            margin: 25px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
+            border-radius: 20px;
             border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .level-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .level-title {
             color: var(--gold);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin: 0;
         }
@@ -418,37 +467,40 @@
         .level-number {
             background: var(--gold);
             color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 8px 20px;
+            border-radius: 25px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .level-progress-container {
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .level-labels {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-size: 1rem;
             color: var(--gold);
+            font-weight: 600;
         }
 
         .level-bar {
-            height: 20px;
+            height: 25px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .level-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--gold), var(--accent));
-            border-radius: 10px;
+            border-radius: 12px;
             transition: width 0.8s ease;
             position: relative;
             overflow: hidden;
@@ -463,7 +515,7 @@
             bottom: 0;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.3) 50%, 
                 transparent 100%);
             animation: shimmer 2s infinite;
         }
@@ -473,55 +525,64 @@
             100% { transform: translateX(100%); }
         }
 
-        .level-points {
-            text-align: center;
-            margin-top: 10px;
-            color: var(--gold);
-            font-size: 0.9rem;
-        }
-
-        .level-points-value {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--accent);
-        }
-
         /* قائمة الخيارات الداخلية */
         .internal-menu {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .menu-item {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(212, 175, 55, 0.1);
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             cursor: pointer;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
         }
 
         .menu-item:active {
             transform: scale(0.98);
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(212, 175, 55, 0.2);
         }
 
         .menu-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--gold);
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border-radius: 15px;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover .menu-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .menu-content {
@@ -530,61 +591,62 @@
 
         .menu-title {
             color: var(--gold);
-            margin: 0 0 5px 0;
-            font-size: 1.2rem;
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
             font-weight: bold;
         }
 
         .menu-desc {
             margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            opacity: 0.9;
         }
 
-        /* شاشة الصلاة - جدول */
+        /* شاشة الصلاة */
         .prayer-grid {
             display: grid;
             grid-template-columns: 1fr repeat(3, 1fr);
-            gap: 10px;
-            padding: 15px 0;
+            gap: 15px;
+            padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             align-items: center;
         }
 
         .prayer-grid.header {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-            padding: 15px 10px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
+            border-radius: 15px;
+            padding: 20px 15px;
             font-weight: bold;
             color: var(--gold);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .prayer-name {
             text-align: right;
             font-weight: 600;
             color: var(--gold);
-            font-size: 1.1rem;
-            padding: 10px 0;
+            font-size: 1.2rem;
+            padding: 12px 0;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 8px;
+            gap: 12px;
         }
 
         .prayer-icon {
-            font-size: 1.4rem;
-            opacity: 0.8;
+            font-size: 1.6rem;
+            opacity: 0.9;
         }
 
         .prayer-btn {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             border: 2px solid var(--gold);
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(212, 175, 55, 0.1);
             color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -596,7 +658,8 @@
         .prayer-btn.active {
             background: var(--gold);
             color: #000;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            transform: scale(1.1);
         }
 
         /* شاشة الأذكار */
@@ -605,61 +668,78 @@
         }
 
         .azkar-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            padding: 25px 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            margin: 20px 0;
-            min-height: 180px;
+            font-size: 1.4rem;
+            line-height: 2;
+            padding: 30px 25px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            margin: 25px 0;
+            min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-right: 3px solid var(--gold);
+            border-right: 4px solid var(--gold);
+            box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         .azkar-controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
         }
 
         /* شاشة التسبيح */
         .tasbeeh-count {
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--gold);
             font-weight: bold;
-            margin: 20px 0;
+            margin: 25px 0;
             font-family: 'Courier New', monospace;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
         }
 
         .tasbeeh-circle {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 3px solid var(--gold);
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.3));
+            border: 4px solid var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.3));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
+            margin: 0 auto 30px;
             cursor: pointer;
             transition: var(--transition);
             user-select: none;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tasbeeh-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 30%, rgba(212, 175, 55, 0.1) 70%);
+            transition: var(--transition);
         }
 
         .tasbeeh-circle:active {
             transform: scale(0.95);
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.4));
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
         }
 
         .tasbeeh-text {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
+            position: relative;
+            z-index: 1;
         }
 
         /* شاشة الأحاديث */
@@ -668,17 +748,18 @@
         }
 
         .hadith-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            padding: 25px 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            margin: 20px 0;
-            min-height: 180px;
+            font-size: 1.3rem;
+            line-height: 2;
+            padding: 30px 25px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            margin: 25px 0;
+            min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-right: 3px solid var(--gold);
+            border-right: 4px solid var(--gold);
+            box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* شاشة كيفية الوضوء */
@@ -689,39 +770,46 @@
         .wudu-steps {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .wudu-step {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.1));
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             text-align: right;
+            transition: var(--transition);
+        }
+
+        .wudu-step:hover {
+            transform: translateX(-5px);
         }
 
         .wudu-step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--gold);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
             color: #000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .wudu-step-text {
             flex: 1;
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
 
         /* شاشة القرآن */
@@ -732,38 +820,49 @@
         .reciters-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 25px;
+            margin: 25px 0;
         }
 
         .reciter-card {
-            background: rgba(255, 215, 0, 0.1);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 25px;
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reciter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .reciter-card:active {
             transform: scale(0.98);
-            background: rgba(255, 215, 0, 0.2);
         }
 
         .reciter-title {
             color: var(--gold);
             text-align: center;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             font-weight: bold;
         }
 
         .quran-surahs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         @media (max-width: 480px) {
@@ -773,10 +872,10 @@
         }
 
         .surah-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 15px;
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
@@ -784,45 +883,44 @@
 
         .surah-card:active {
             transform: scale(0.98);
-            background: rgba(255, 215, 0, 0.15);
         }
 
         .surah-title {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin: 0 0 5px 0;
+            margin: 0 0 8px 0;
         }
 
         .surah-desc {
             color: var(--text);
-            font-size: 0.8rem;
-            opacity: 0.7;
+            font-size: 0.9rem;
+            opacity: 0.8;
             margin: 0;
         }
 
-        /* شاشة المهام - محدث */
+        /* شاشة المهام */
         .tasks-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 25px 0;
             position: relative;
         }
 
         .add-task-btn {
             position: fixed;
-            bottom: 100px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
+            bottom: 110px;
+            left: 25px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--gold), #ffaa00);
             color: #000;
             border: none;
-            font-size: 2rem;
+            font-size: 2.2rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
             z-index: 999;
             display: flex;
             align-items: center;
@@ -835,31 +933,38 @@
         }
 
         .task-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.1));
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             position: relative;
+            transition: var(--transition);
+        }
+
+        .task-item:hover {
+            transform: translateX(-5px);
         }
 
         .user-task-item {
-            background: rgba(0, 200, 255, 0.1);
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 150, 255, 0.2));
             border: 2px solid #00aaff;
         }
 
         .task-checkbox {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border: 2px solid var(--gold);
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             flex-shrink: 0;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .user-task-item .task-checkbox {
@@ -878,6 +983,7 @@
             content: '✓';
             color: #000;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .task-content {
@@ -886,8 +992,8 @@
 
         .task-title {
             color: var(--gold);
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
             font-weight: bold;
         }
 
@@ -897,56 +1003,64 @@
 
         .task-desc {
             margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
         }
 
         .task-points {
             color: var(--gold);
             font-weight: bold;
-            font-size: 1.1rem;
-            padding: 5px 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
+            font-size: 1.2rem;
+            padding: 8px 18px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 15px;
             flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         .user-task-item .task-points {
             color: #00aaff;
-            background: rgba(0, 200, 255, 0.1);
+            background: rgba(0, 200, 255, 0.15);
         }
 
         .task-actions {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .task-action-btn {
-            background: none;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             color: var(--gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             font-size: 1.2rem;
             cursor: pointer;
-            padding: 5px;
-            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
         }
 
         .task-action-btn:hover {
-            opacity: 1;
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
         }
 
         /* الأزرار العامة */
         .action-btn {
-            background: rgba(255, 215, 0, 0.1);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
             border: 2px solid var(--gold);
             color: var(--gold);
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 15px 30px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         .action-btn:active {
@@ -955,35 +1069,40 @@
 
         /* شريط التقدم */
         .progress-bar {
-            height: 12px;
+            height: 15px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
-            margin: 10px 0;
+            margin: 12px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--gold), var(--accent));
-            border-radius: 6px;
+            border-radius: 8px;
             transition: width 0.5s ease;
+            position: relative;
         }
 
         /* الإشعارات */
         .notification {
             position: fixed;
-            bottom: 80px;
-            right: 20px;
+            bottom: 100px;
+            right: 25px;
             background: linear-gradient(45deg, var(--gold), var(--accent));
             color: #000;
-            padding: 15px 25px;
-            border-radius: 12px;
+            padding: 18px 30px;
+            border-radius: 15px;
             animation: slideIn 0.3s;
             z-index: 1000;
             font-weight: bold;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-width: 300px;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            max-width: 350px;
             text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         @keyframes slideIn {
@@ -999,34 +1118,25 @@
 
         /* خطوط زخرفية */
         .decorative-line {
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 15px 0;
-            border-radius: 1px;
-        }
-
-        /* زر التحديث */
-        .refresh-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 5px;
-            margin-left: 10px;
+            margin: 20px 0;
+            border-radius: 2px;
         }
 
         /* معلومات اليوم */
         .today-date {
             text-align: center;
             color: var(--gold);
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             font-weight: bold;
-            padding: 8px 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
+            padding: 12px 20px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 15px;
             display: inline-block;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         /* صفحة الإعدادات */
@@ -1035,44 +1145,77 @@
         }
 
         .settings-option {
-            background: rgba(255, 215, 0, 0.1);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
             border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
             cursor: pointer;
             transition: var(--transition);
             text-align: right;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .settings-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .settings-option:hover::before {
+            left: 100%;
         }
 
         .settings-option:active {
             transform: scale(0.98);
-            background: rgba(255, 215, 0, 0.2);
         }
 
         .settings-option-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--gold);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .settings-option:hover .settings-option-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .settings-option-content {
+            flex: 1;
         }
 
         .settings-option-title {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            margin: 0;
-            flex: 1;
+            margin: 0 0 8px 0;
             text-align: right;
         }
 
         .settings-option-desc {
             color: var(--text);
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 5px 0 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
             text-align: right;
+            line-height: 1.5;
         }
 
         /* نافذة تغيير الاسم */
@@ -1082,7 +1225,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
@@ -1094,47 +1237,71 @@
         .modal-content {
             background: var(--card-bg);
             border: 2px solid var(--gold);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 400px;
+            border-radius: 25px;
+            padding: 35px;
+            max-width: 450px;
             width: 90%;
             text-align: center;
             backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: modalSlideIn 0.3s;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .modal-title {
             color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: bold;
         }
 
         .modal-input {
             width: 100%;
-            padding: 15px;
-            margin: 20px 0;
+            padding: 18px;
+            margin: 25px 0;
             border: 2px solid var(--gold);
-            border-radius: 15px;
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--text);
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-align: center;
             outline: none;
+            transition: var(--transition);
+        }
+
+        .modal-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .modal-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
 
         .modal-btn {
             flex: 1;
-            padding: 12px 20px;
-            border-radius: 15px;
+            min-width: 120px;
+            padding: 15px 25px;
+            border-radius: 20px;
             border: none;
             font-weight: bold;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .modal-btn:active {
@@ -1152,20 +1319,31 @@
             border: 1px solid var(--gold);
         }
 
+        .modal-btn-danger {
+            background: linear-gradient(45deg, #ff4444, #ff6666);
+            color: white;
+        }
+
+        .modal-btn-success {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
         /* قائمة السمات */
         .theme-menu {
             position: absolute;
-            top: 50px;
+            top: 60px;
             left: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-            padding: 10px;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 15px;
             z-index: 1001;
             display: none;
-            width: 200px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            width: 220px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.2s;
         }
 
         .theme-menu.active {
@@ -1175,136 +1353,294 @@
         .theme-option {
             display: flex;
             align-items: center;
-            padding: 8px 10px;
-            border-radius: 6px;
+            padding: 12px 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: var(--transition);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .theme-option:hover {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateX(-5px);
         }
 
         .theme-preview {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
-            margin-left: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-left: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .theme-name {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         /* صفحة المصادر */
         .sources-list {
             text-align: right;
-            padding: 20px;
+            padding: 25px;
         }
 
         .source-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.1));
             border: 1px solid var(--gold);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
             transition: var(--transition);
         }
 
         .source-item:hover {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateX(-5px);
         }
 
         .source-title {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .source-desc {
             color: var(--text);
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 5px 0;
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 8px 0;
+            line-height: 1.6;
         }
 
         .source-link {
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             display: inline-block;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        /* مواقع أخرى */
+        .other-sites-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .site-card {
+            background: linear-gradient(135deg, rgba(0, 100, 255, 0.1), rgba(0, 150, 255, 0.2));
+            border: 2px solid #4dabf7;
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #4dabf7, transparent);
+        }
+
+        .site-card:active {
+            transform: scale(0.98);
+        }
+
+        .site-title {
+            color: #4dabf7;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .site-desc {
+            color: var(--text);
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 8px 0;
         }
 
         /* إصلاحات للشاشات الصغيرة */
         @media (max-width: 768px) {
             .page-content {
-                padding: 10px;
+                padding: 15px;
+            }
+            
+            .page {
+                top: 60px;
+                height: calc(100% - 140px);
+            }
+            
+            .main-header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .user-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .main-title {
+                font-size: 1.2rem;
+            }
+            
+            .settings-dot {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .bottom-nav {
+                height: 75px;
+            }
+            
+            .nav-item {
+                min-width: 60px;
+                padding: 8px 5px;
+            }
+            
+            .nav-icon {
+                font-size: 1.3rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .login-logo {
+                font-size: 4rem;
+            }
+            
+            .login-title {
+                font-size: 1.8rem;
+            }
+            
+            .login-input {
+                padding: 16px;
+                max-width: 320px;
+            }
+            
+            .level-card {
+                padding: 20px;
+            }
+            
+            .menu-item {
+                padding: 20px;
+            }
+            
+            .menu-icon {
+                font-size: 1.8rem;
+                width: 50px;
+                height: 50px;
             }
             
             .prayer-grid {
                 grid-template-columns: 1fr repeat(3, 1fr);
                 font-size: 0.9rem;
-                gap: 8px;
+                gap: 10px;
+                padding: 15px 0;
             }
             
             .prayer-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
             
             .azkar-text {
-                font-size: 1.1rem;
-                padding: 20px 15px;
-                min-height: 150px;
+                font-size: 1.2rem;
+                padding: 25px 20px;
+                min-height: 180px;
             }
             
             .tasbeeh-circle {
-                width: 130px;
-                height: 130px;
+                width: 150px;
+                height: 150px;
             }
             
             .tasbeeh-count {
-                font-size: 3.5rem;
+                font-size: 4rem;
             }
             
             .notification {
-                right: 10px;
-                left: 10px;
+                right: 15px;
+                left: 15px;
                 max-width: none;
-                bottom: 70px;
+                bottom: 90px;
             }
             
+            .theme-menu {
+                left: -160px;
+                width: 200px;
+            }
+            
+            .add-task-btn {
+                bottom: 95px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-btn {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
             .nav-item {
+                font-size: 0.7rem;
                 min-width: 55px;
-                padding: 6px 3px;
             }
             
             .nav-icon {
                 font-size: 1.2rem;
             }
             
-            .menu-item {
-                padding: 15px;
-            }
-            
-            .menu-icon {
-                font-size: 1.5rem;
-                width: 40px;
-                height: 40px;
-            }
-            
-            .menu-title {
-                font-size: 1.1rem;
+            .wudu-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
             }
             
             .theme-menu {
-                left: -150px;
+                left: -140px;
                 width: 180px;
+            }
+            
+            .surah-card {
+                padding: 12px;
             }
             
             .add-task-btn {
@@ -1312,47 +1648,11 @@
                 left: 15px;
                 width: 55px;
                 height: 55px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-item {
-                font-size: 0.65rem;
-                min-width: 50px;
-            }
-            
-            .nav-icon {
-                font-size: 1.1rem;
-            }
-            
-            .wudu-step {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .theme-menu {
-                left: -130px;
-                width: 160px;
-            }
-            
-            .surah-card {
-                padding: 10px;
-            }
-            
-            .add-task-btn {
-                bottom: 85px;
-                left: 10px;
-                width: 50px;
-                height: 50px;
                 font-size: 1.8rem;
             }
             
             .modal-content {
                 padding: 20px;
-            }
-            
-            .modal-buttons {
-                flex-direction: column;
             }
         }
     </style>
@@ -1371,7 +1671,7 @@
             <div class="login-logo">☪️</div>
             <h1 class="login-title">الموقع الإسلامي الذكي</h1>
             <div class="decorative-line"></div>
-            <p style="margin: 20px 0;">أدخل اسمك لبدء رحلتك الإسلامية</p>
+            <p style="margin: 25px 0; font-size: 1.1rem; opacity: 0.9;">أدخل اسمك لبدء رحلتك الإسلامية</p>
             <input type="text" id="username-input" class="login-input" placeholder="اسم المستخدم" maxlength="20">
             <br><br>
             <button class="login-btn" onclick="login()">بدء الاستخدام</button>
@@ -1398,7 +1698,7 @@
             <!-- التاريخ الهجري -->
             <div class="card">
                 <h2 class="section-title" id="hijri-date">--</h2>
-                <div style="text-align: center; font-size: 0.9rem; opacity: 0.8;">
+                <div style="text-align: center; font-size: 1rem; opacity: 0.9; margin-top: 10px;">
                     <span id="current-time">--:--</span>
                 </div>
             </div>
@@ -1407,11 +1707,11 @@
             <div class="card">
                 <h2 class="section-title">آية اليوم</h2>
                 <div class="decorative-line"></div>
-                <p id="daily-verse" style="font-size: 1.4rem; text-align: center; line-height: 1.8; padding: 20px 0;">
+                <p id="daily-verse" style="font-size: 1.3rem; text-align: center; line-height: 1.8; padding: 20px 0; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                     ﴿ فَاذْكُرُونِي أَذْكُرْكُمْ ﴾
                 </p>
                 <div class="decorative-line"></div>
-                <p id="verse-info" style="text-align: center; opacity: 0.8; margin-top: 10px;">سورة البقرة: الآية ١٥٢</p>
+                <p id="verse-info" style="text-align: center; opacity: 0.9; margin-top: 15px; font-size: 1rem;">سورة البقرة: الآية ١٥٢</p>
             </div>
             
             <!-- مستوى المستخدم -->
@@ -1434,7 +1734,7 @@
                     
                     <div class="level-points">
                         <span id="current-points">0</span> / <span id="needed-points">1000</span> نقطة
-                        <div class="level-points-value" id="points-percentage">0%</div>
+                        <div class="level-points-value" id="points-percentage" style="margin-top: 10px; font-size: 1.2rem;">0%</div>
                     </div>
                 </div>
             </div>
@@ -1443,7 +1743,7 @@
             <div class="card">
                 <h2 class="section-title">نصيحة اليوم</h2>
                 <div class="decorative-line"></div>
-                <p id="daily-tip" style="padding: 15px 0; text-align: center; font-size: 1.1rem;">
+                <p id="daily-tip" style="padding: 20px 0; text-align: center; font-size: 1.2rem; line-height: 1.8; margin: 0;">
                     حافظ على الصلاة في وقتها فهي أول ما يحاسب عليه العبد يوم القيامة
                 </p>
             </div>
@@ -1453,7 +1753,6 @@
     <!-- صفحة الصلاة -->
     <div id="prayer-page" class="page">
         <div class="page-content">
-            <!-- قائمة الخيارات الداخلية للصلاة -->
             <div class="card">
                 <h2 class="section-title">خيارات الصلاة</h2>
                 <div class="decorative-line"></div>
@@ -1492,7 +1791,7 @@
         <div class="page-content">
             <div class="card">
                 <!-- تاريخ اليوم -->
-                <div style="text-align: center; margin-bottom: 20px;">
+                <div style="text-align: center; margin-bottom: 25px;">
                     <div class="today-date" id="today-date">اليوم: --/--/----</div>
                 </div>
                 
@@ -1530,7 +1829,7 @@
                         </div>
                         <button class="prayer-btn" onclick="togglePrayerStar('العصر', 0, 30, 'جماعة')">☆</button>
                         <button class="prayer-btn" onclick="togglePrayerStar('العصر', 1, 20, 'مفرد')">☆</button>
-                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 2, 10, 'نوافل')">☆</button>
+                        <button class="prayer-btn" onclick="togglePrayerStar('العصر', 2, 10, 'nنوافل')">☆</button>
                     </div>
                     <div class="prayer-grid">
                         <div class="prayer-name">
@@ -1553,13 +1852,13 @@
                 </div>
                 
                 <!-- شريط التقدم -->
-                <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 20px; margin: 25px 0;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div style="background: rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 25px; margin: 30px 0; border: 1px solid rgba(212, 175, 55, 0.3);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                         <div>
-                            <div style="font-weight: bold; color: var(--gold);" id="progress-text">إنجاز اليوم: 0%</div>
-                            <div style="font-size: 0.9rem; opacity: 0.8; color: var(--gold);" id="progress-points">النقاط: 0</div>
+                            <div style="font-weight: bold; color: var(--gold); font-size: 1.1rem;" id="progress-text">إنجاز اليوم: 0%</div>
+                            <div style="font-size: 1rem; opacity: 0.9; color: var(--gold); margin-top: 5px;" id="progress-points">النقاط: 0</div>
                         </div>
-                        <div style="font-size: 1.3rem; color: var(--gold); font-weight: bold;" id="progress-percent2">0%</div>
+                        <div style="font-size: 1.4rem; color: var(--gold); font-weight: bold;" id="progress-percent2">0%</div>
                     </div>
                     <div class="progress-bar">
                         <div id="progress-fill" class="progress-fill"></div>
@@ -1567,8 +1866,8 @@
                 </div>
                 
                 <!-- زر تسجيل حضور اليوم -->
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="action-btn" onclick="markDay()" style="padding: 15px 30px; font-size: 1.1rem;">
+                <div style="text-align: center; margin-top: 25px;">
+                    <button class="action-btn" onclick="markDay()" style="padding: 18px 35px; font-size: 1.2rem;">
                         تسجيل حضور اليوم
                     </button>
                 </div>
@@ -1619,9 +1918,9 @@
                         </div>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 20px; color: var(--gold);">
-                        <p>"يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ"</p>
-                        <p style="font-size: 0.9rem; margin-top: 10px;">سورة المائدة - الآية 6</p>
+                    <div style="text-align: center; margin-top: 25px; color: var(--gold); padding: 20px; background: rgba(212, 175, 55, 0.1); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3);">
+                        <p style="font-size: 1.2rem; margin: 0; line-height: 1.8;">"يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ"</p>
+                        <p style="font-size: 1rem; margin-top: 15px; opacity: 0.9;">سورة المائدة - الآية 6</p>
                     </div>
                 </div>
             </div>
@@ -1652,7 +1951,6 @@
     <!-- صفحة الأذكار -->
     <div id="azkar-page" class="page">
         <div class="page-content">
-            <!-- قائمة الخيارات الداخلية للأذكار -->
             <div class="card">
                 <h2 class="section-title">خيارات الأذكار</h2>
                 <div class="decorative-line"></div>
@@ -1725,7 +2023,7 @@
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار الصباح</h2>
                     <div class="decorative-line"></div>
-                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="morning-counter">١ من ٧</div>
+                    <div style="color: var(--gold); margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;" id="morning-counter">١ من ٧</div>
                     
                     <div class="azkar-text" id="morning-text"></div>
                     
@@ -1745,7 +2043,7 @@
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار المساء</h2>
                     <div class="decorative-line"></div>
-                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="evening-counter">١ من ٧</div>
+                    <div style="color: var(--gold); margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;" id="evening-counter">١ من ٧</div>
                     
                     <div class="azkar-text" id="evening-text"></div>
                     
@@ -1770,8 +2068,8 @@
                         بسم الله الواحد القهار، اللهم باسمك أموت وأحيا. اللهم إنك خلقت نفسي وأنت توفاها، لك مماتها ومحياها، إن أحييتها فاحفظها، وإن أمتها فاغفر لها، اللهم إني أسألك العافية.
                     </div>
                     
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="action-btn" onclick="showNextSleepAzkar()" style="padding: 12px 30px;">
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button class="action-btn" onclick="showNextSleepAzkar()" style="padding: 15px 35px; font-size: 1.1rem;">
                             ذكر تالي
                         </button>
                     </div>
@@ -1787,7 +2085,7 @@
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار الاستيقاظ</h2>
                     <div class="decorative-line"></div>
-                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="wakeup-counter">١ من ٦</div>
+                    <div style="color: var(--gold); margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;" id="wakeup-counter">١ من ٦</div>
                     
                     <div class="azkar-text" id="wakeup-text"></div>
                     
@@ -1807,7 +2105,7 @@
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار المسجد</h2>
                     <div class="decorative-line"></div>
-                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="mosque-counter">١ من ٥</div>
+                    <div style="color: var(--gold); margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;" id="mosque-counter">١ من ٥</div>
                     
                     <div class="azkar-text" id="mosque-text"></div>
                     
@@ -1827,7 +2125,7 @@
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار بعد الصلاة</h2>
                     <div class="decorative-line"></div>
-                    <div style="color: var(--gold); margin-bottom: 15px; font-weight: bold;" id="after-prayer-counter">١ من ٦</div>
+                    <div style="color: var(--gold); margin-bottom: 20px; font-weight: bold; font-size: 1.1rem;" id="after-prayer-counter">١ من ٦</div>
                     
                     <div class="azkar-text" id="after-prayer-text"></div>
                     
@@ -1847,7 +2145,7 @@
                 <div class="hadith-container">
                     <h2 class="section-title">أحاديث نبوية</h2>
                     <div class="decorative-line"></div>
-                    <div class="quran-info" id="hadith-info">صحيح البخاري</div>
+                    <div class="quran-info" id="hadith-info" style="color: var(--gold); font-size: 1.1rem; margin-bottom: 20px;">صحيح البخاري</div>
                     
                     <div class="hadith-text" id="hadith-text">
                         قال رسول الله صلى الله عليه وسلم: "من صلى البردين دخل الجنة". والبردان: الفجر والعصر.
@@ -1869,54 +2167,54 @@
                 <div class="quran-container">
                     <h2 class="section-title">القرآن الكريم</h2>
                     <div class="decorative-line"></div>
-                    <p style="text-align: center; color: var(--gold); margin-bottom: 20px;">استمع إلى تلاوات قرآنية بصوت الشيوخ</p>
+                    <p style="text-align: center; color: var(--gold); margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">استمع إلى تلاوات قرآنية بصوت الشيوخ</p>
                     
                     <!-- قائمة أسماء الشيوخ -->
                     <div class="reciters-container" id="reciters-list">
                         <div class="reciter-card" onclick="showSheikhSurahs('yaser-al-dosari')">
                             <div class="reciter-title">الشيخ ياسر الدوسري</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('ahmad-al-nafees')">
                             <div class="reciter-title">الشيخ أحمد النفيس</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('mishari-al-afasy')">
                             <div class="reciter-title">الشيخ مشاري العفاسي</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('wadee-al-yamani')">
                             <div class="reciter-title">الشيخ وديع اليمني</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('al-minshawi')">
                             <div class="reciter-title">الشيخ المنشاوي</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('fares-abbad')">
                             <div class="reciter-title">الشيخ فارس عباد</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('abdulrahman-al-sudais')">
                             <div class="reciter-title">الشيخ عبدالرحمن السديس</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 0.9rem; opacity: 0.8;">اضغط لعرض السور</div>
+                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                     </div>
                     
                     <!-- قائمة السور تظهر عند اختيار الشيخ -->
-                    <div id="surahs-container" style="display: none; margin-top: 30px;">
+                    <div id="surahs-container" style="display: none; margin-top: 35px;">
                         <div class="section-title" id="sheikh-name"></div>
                         <div class="decorative-line"></div>
                         <div class="quran-surahs" id="surahs-list">
                             <!-- السور ستظهر هنا عبر JavaScript -->
                         </div>
-                        <div style="text-align: center; margin-top: 20px;">
+                        <div style="text-align: center; margin-top: 25px;">
                             <button class="action-btn" onclick="showRecitersList()">العودة إلى قائمة الشيوخ</button>
                         </div>
                     </div>
@@ -1925,7 +2223,7 @@
         </div>
     </div>
 
-    <!-- صفحة التسبيح - محدث -->
+    <!-- صفحة التسبيح -->
     <div id="tasbeeh-page" class="page">
         <div class="page-content">
             <div class="card">
@@ -1939,21 +2237,21 @@
                         <div class="tasbeeh-text">اضغط هنا</div>
                     </div>
                     
-                    <div style="margin: 25px 0;">
-                        <button class="action-btn" onclick="resetTasbeeh()" style="margin: 0 5px;">تصفير</button>
+                    <div style="margin: 30px 0; text-align: center;">
+                        <button class="action-btn" onclick="resetTasbeeh()" style="margin: 0 10px; padding: 15px 25px;">تصفير</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- صفحة المهام - محدث -->
+    <!-- صفحة المهام -->
     <div id="tasks-page" class="page">
         <div class="page-content">
             <div class="card">
                 <h2 class="section-title">مهام اليوم</h2>
                 <div class="decorative-line"></div>
-                <p style="text-align: center; color: var(--gold); margin-bottom: 20px;">أكمل المهام لتحصل على نقاط إضافية</p>
+                <p style="text-align: center; color: var(--gold); margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">أكمل المهام لتحصل على نقاط إضافية</p>
                 
                 <div class="tasks-container" id="daily-tasks">
                     <!-- المهام ستُضاف هنا عبر JavaScript -->
@@ -1965,7 +2263,7 @@
         </div>
     </div>
 
-    <!-- صفحة الإعدادات - محدث -->
+    <!-- صفحة الإعدادات -->
     <div id="settings-page" class="page">
         <div class="page-content">
             <div class="card">
@@ -1976,35 +2274,74 @@
                     <!-- خانة تغيير الاسم -->
                     <div class="settings-option" onclick="showChangeNameModal()">
                         <div class="settings-option-icon">👤</div>
-                        <div style="flex: 1;">
+                        <div class="settings-option-content">
                             <h3 class="settings-option-title">تغيير الاسم</h3>
                             <p class="settings-option-desc">تغيير اسم المستخدم الخاص بك</p>
                         </div>
                     </div>
                     
+                    <!-- خانة تغيير السمات -->
                     <div class="settings-option" onclick="showThemesMenu()">
                         <div class="settings-option-icon">🎨</div>
-                        <div style="flex: 1;">
+                        <div class="settings-option-content">
                             <h3 class="settings-option-title">السمات</h3>
                             <p class="settings-option-desc">تغيير مظهر التطبيق</p>
                         </div>
                     </div>
                     
+                    <!-- خانة مواقع أخرى -->
+                    <div class="settings-option" onclick="showPage('other-sites-page')">
+                        <div class="settings-option-icon">🔗</div>
+                        <div class="settings-option-content">
+                            <h3 class="settings-option-title">مواقع أخرى</h3>
+                            <p class="settings-option-desc">مواقع إسلامية مفيدة</p>
+                        </div>
+                    </div>
+                    
+                    <!-- خانة المصادر -->
                     <div class="settings-option" onclick="showPage('sources-page')">
                         <div class="settings-option-icon">📚</div>
-                        <div style="flex: 1;">
+                        <div class="settings-option-content">
                             <h3 class="settings-option-title">المصادر</h3>
                             <p class="settings-option-desc">المصادر الحقيقية للأذكار والآيات</p>
                         </div>
                     </div>
                     
+                    <!-- خانة تصفير البيانات -->
                     <div class="settings-option" onclick="resetUserData()">
                         <div class="settings-option-icon">🔄</div>
-                        <div style="flex: 1;">
+                        <div class="settings-option-content">
                             <h3 class="settings-option-title">تصفير البيانات</h3>
                             <p class="settings-option-desc">إعادة تعيين النقاط والمستوى والبيانات</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة مواقع أخرى -->
+    <div id="other-sites-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <h2 class="section-title">مواقع إسلامية مفيدة</h2>
+                <div class="decorative-line"></div>
+                <p style="text-align: center; color: var(--gold); margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">مواقع إسلامية مفيدة للاستزادة من العلم</p>
+                
+                <div class="other-sites-container">
+                    <div class="site-card" onclick="openSite('https://tajweed.tech/')">
+                        <div class="site-title">Tajweed.tech</div>
+                        <div class="site-desc">موقع لتعليم أحكام التجويد والتلاوة الصحيحة للقرآن الكريم</div>
+                    </div>
+                    
+                    <div class="site-card" onclick="openSite('https://duaa.mocha.app/')">
+                        <div class="site-title">Duaa.mocha.app</div>
+                        <div class="site-desc">موقع للأدعية المأثورة من القرآن والسنة النبوية</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px;">
+                    <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
                 </div>
             </div>
         </div>
@@ -2049,7 +2386,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: 20px;">
+                <div style="text-align: center; margin-top: 25px;">
                     <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
                 </div>
             </div>
@@ -2091,11 +2428,11 @@
             <span class="theme-name">الأخضر الإسلامي</span>
         </div>
         <div class="theme-option" onclick="changeTheme('dark')">
-            <div class="theme-preview" style="background: #111;"></div>
+            <div class="theme-preview" style="background: #0a1929;"></div>
             <span class="theme-name">المظهر المظلم</span>
         </div>
         <div class="theme-option" onclick="changeTheme('gold')">
-            <div class="theme-preview" style="background: #4b3f0b;"></div>
+            <div class="theme-preview" style="background: #3a2c0a;"></div>
             <span class="theme-name">الذهبي</span>
         </div>
         <div class="theme-option" onclick="changeTheme('navy')">
@@ -2161,8 +2498,25 @@
             <input type="hidden" id="edit-task-id">
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-secondary" onclick="closeEditTaskModal()">إلغاء</button>
-                <button class="modal-btn modal-btn-primary" onclick="saveEditedTask()">حفظ التعديلات</button>
-                <button class="modal-btn" onclick="deleteTask()" style="background: rgba(255, 0, 0, 0.2); color: #ff4444; border: 1px solid #ff4444; margin-top: 10px;">حذف المهمة</button>
+                <button class="modal-btn modal-btn-success" onclick="saveEditedTask()">حفظ التعديلات</button>
+                <button class="modal-btn modal-btn-danger" onclick="deleteTask()">حذف المهمة</button>
+                <button class="modal-btn modal-btn-primary" onclick="restoreTaskDefaults()" style="background: linear-gradient(45deg, #2196F3, #0d8bf2); margin-top: 10px;">إرجاع (للمهام النظامية)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة محو مهام الموقع -->
+    <div id="clear-site-tasks-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2 class="modal-title">محو مهام الموقع</h2>
+            <div class="decorative-line"></div>
+            <p style="text-align: center; font-size: 1.1rem; margin: 20px 0; line-height: 1.6; color: var(--text);">
+                هل أنت متأكد من رغبتك في محو جميع مهام الموقع النظامية؟<br>
+                <span style="color: var(--gold); font-weight: bold;">هذا الإجراء سيمحو فقط المهام النظامية وليس مهامك الشخصية.</span>
+            </p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" onclick="closeClearSiteTasksModal()">إلغاء</button>
+                <button class="modal-btn modal-btn-danger" onclick="clearSiteTasks()">محو مهام الموقع</button>
             </div>
         </div>
     </div>
@@ -2194,26 +2548,27 @@
             lastVerseDay: '',
             currentDailyVerse: 0,
             lastTipDay: '',
-            currentDailyTip: 0
+            currentDailyTip: 0,
+            systemTasks: [] // تخزين المهام النظامية
         };
 
-        // آيات يومية متنوعة
+        // آيات يومية متنوعة (تم تقصيرها لسطر واحد)
         const dailyVerses = [
-            { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾", info: "سورة البقرة - الآية ١٥٢" },
-            { text: "﴿ وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ ﴾", info: "سورة البقرة - الآية ٤٣" },
-            { text: "﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾", info: "سورة النساء - الآية ١٠٣" },
-            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾", info: "سورة البقرة - الآية ٤٥" },
-            { text: "﴿ قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ﴾", info: "سورة الأنعام - الآية ١٦٢" },
-            { text: "﴿ الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
-            { text: "﴿ وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ وَاصْطَبِرْ عَلَيْهَا ۖ لَا نَسْأَلُكَ رِزقًا ۖ نَحْنُ نَرْزَقُكَ ۗ وَالْعَاقِبَةُ لِلتَّقْوَى ﴾", info: "سورة طه - الآية ١٣٢" },
-            { text: "﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامُوا الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمَ يَخْشَ إِلَّا اللَّهَ ﴾", info: "سورة التوبة - الآية ١٨" },
-            { text: "﴿ وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهَ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَٰئِكَ لَهُمْ عُقْبَى الدَّارِ ﴾", info: "سورة الرعد - الآية ٢٢" },
-            { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾", info: "سورة المؤمنون - الآية ١-٢" },
-            { text: "﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ ﴾", info: "سورة التوبة - الآية ١١٩" },
-            { text: "﴿ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ﴾", info: "سورة البقرة - الآية ١٥٣" },
-            { text: "﴿ وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ ۚ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبِ ﴾", info: "سورة هود - الآية ٨٨" },
-            { text: "﴿ رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةَ حَسَنَةً وَقِنَا عَذَابَ النَّارِ ﴾", info: "سورة البقرة - الآية ٢٠١" },
-            { text: "﴿ فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾", info: "سورة الشرح - الآية ٥-٦" }
+            { text: "﴿ فَاذْكُرُونِي أَذْكُرْكُمْ ﴾", info: "سورة البقرة - الآية ١٥٢" },
+            { text: "﴿ وَأَقِيمُوا الصَّلَاةَ ﴾", info: "سورة البقرة - الآية ٤٣" },
+            { text: "﴿ إِنَّ الصَّلَاةَ كَانَتْ ﴾", info: "سورة النساء - الآية ١٠٣" },
+            { text: "﴿ وَاسْتَعِينُوا بِالصَّبْرِ ﴾", info: "سورة البقرة - الآية ٤٥" },
+            { text: "﴿ قُلْ إِنَّ صَلَاتِي ﴾", info: "سورة الأنعام - الآية ١٦٢" },
+            { text: "﴿ الَّذِينَ يُقِيمُونَ ﴾", info: "سورة الأنفال - الآية ٣" },
+            { text: "﴿ وَأْمُرْ أَهْلَكَ ﴾", info: "سورة طه - الآية ١٣٢" },
+            { text: "﴿ إِنَّمَا يَعْمُرُ ﴾", info: "سورة التوبة - الآية ١٨" },
+            { text: "﴿ وَالَّذِينَ صَبَرُوا ﴾", info: "سورة الرعد - الآية ٢٢" },
+            { text: "﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ ﴾", info: "سورة المؤمنون - الآية ١" },
+            { text: "﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا ﴾", info: "سورة التوبة - الآية ١١٩" },
+            { text: "﴿ إِنَّ اللَّهَ مَعَ ﴾", info: "سورة البقرة - الآية ١٥٣" },
+            { text: "﴿ وَمَا تَوْفِيقِي إِلَّا ﴾", info: "سورة هود - الآية ٨٨" },
+            { text: "﴿ رَبَّنَا آتِنَا فِي ﴾", info: "سورة البقرة - الآية ٢٠١" },
+            { text: "﴿ فَإِنَّ مَعَ الْعُسْرِ ﴾", info: "سورة الشرح - الآية ٥" }
         ];
 
         // المهام اليومية المحدثة
@@ -2281,7 +2636,7 @@
         const wakeupAzkar = [
             "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور. الحمد لله الذي رد علي روحي وعافاني في جسدي وأذن لي بذكره.",
             "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، سبحان الله والحمد لله ولا إله إلا الله والله أكبر ولا حول ولا قوة إلا بالله العلي العظيم.",
-            "أصبحنا على فطرة الإسلام وكلمة الإخلاص ودين نبينا محمد صلى الله عليه وسلم وملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.",
+            "أصبحنا على فطرة الإسلام وكلمة الإخصاص ودين نبينا محمد صلى الله عليه وسلم وملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.",
             "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك المصير. اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك أنك أنت الله لا إله إلا أنت وأن محمداً عبدك ورسولك.",
             "اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك فلك الحمد ولك الشكر.",
             "رضيت بالله رباً وبالإسلام ديناً وبمحمد صلى الله عليه وسلم نبياً ورسولاً."
@@ -2499,6 +2854,11 @@
                 const savedTheme = localStorage.getItem('islamicApp_theme') || 'green';
                 userData.theme = savedTheme;
                 changeTheme(savedTheme, true);
+                
+                // تحميل المهام النظامية
+                if (!userData.systemTasks || userData.systemTasks.length === 0) {
+                    userData.systemTasks = JSON.parse(JSON.stringify(dailyTasks));
+                }
             } catch (e) {
                 console.log('خطأ في تحميل البيانات:', e);
             }
@@ -2529,6 +2889,9 @@
             
             if (dailyVerseElement) {
                 dailyVerseElement.textContent = dailyVerses[userData.currentDailyVerse].text;
+                dailyVerseElement.style.whiteSpace = 'nowrap';
+                dailyVerseElement.style.overflow = 'hidden';
+                dailyVerseElement.style.textOverflow = 'ellipsis';
             }
             
             if (verseInfoElement) {
@@ -2639,8 +3002,6 @@
         }
 
         function resetPrayerTableForNewDay() {
-            const todayPoints = calculateTodayPrayerPoints();
-            
             userData.todayPrayerStars = {
                 'الفجر': [false, false, false],
                 'الظهر': [false, false, false],
@@ -2688,8 +3049,8 @@
             
             const themeColors = {
                 green: '#0b3d2e',
-                dark: '#111111',
-                gold: '#4b3f0b',
+                dark: '#0a1929',
+                gold: '#3a2c0a',
                 navy: '#001f3f',
                 red: '#3b0000',
                 blue: '#003366',
@@ -2763,6 +3124,7 @@
                 'tasbeeh-page': 'التسبيح',
                 'tasks-page': 'المهام',
                 'settings-page': 'الإعدادات',
+                'other-sites-page': 'مواقع أخرى',
                 'sources-page': 'المصادر'
             };
             
@@ -2816,6 +3178,7 @@
                     document.querySelector('.nav-item[onclick*="tasks-page"]').classList.add('active');
                     break;
                 case 'settings-page':
+                case 'other-sites-page':
                 case 'sources-page':
                     break;
             }
@@ -2877,8 +3240,8 @@
                 const hijriElement = document.getElementById('hijri-date');
                 if (hijriElement) {
                     hijriElement.innerHTML = `
-                        <div style="font-weight: bold;">${hijriDate}</div>
-                        <div style="font-size: 0.9rem; opacity: 0.8;">${gregorianDate}</div>
+                        <div style="font-weight: bold; font-size: 1.2rem;">${hijriDate}</div>
+                        <div style="font-size: 1rem; opacity: 0.9; margin-top: 8px;">${gregorianDate}</div>
                     `;
                 }
             } catch (e) {
@@ -2975,7 +3338,7 @@
             if (progressFillElement) progressFillElement.style.width = percent + '%';
             if (progressPercent2Element) progressPercent2Element.textContent = percent + '%';
             if (progressTextElement) progressTextElement.textContent = `إنجاز اليوم: ${percent}%`;
-            if (progressPointsElement) progressPointsElement.textContent = `النقاط الإجمالية: ${userData.points}`;
+            if (progressPointsElement) progressPointsElement.textContent = `النقاط: ${userData.points}`;
         }
 
         function markDay() {
@@ -3050,6 +3413,14 @@
             }
         }
 
+        // فتح مواقع أخرى
+        function openSite(url) {
+            if (url) {
+                window.open(url, '_blank');
+                showNotification('جاري فتح الموقع');
+            }
+        }
+
         // تحديث عرض المهام
         function updateTasksDisplay() {
             const tasksContainer = document.getElementById('daily-tasks');
@@ -3058,8 +3429,17 @@
             const today = new Date().toDateString();
             let html = '';
             
+            // زر محو مهام الموقع
+            html += `
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <button class="action-btn" onclick="showClearSiteTasksModal()" style="background: linear-gradient(45deg, #ff4444, #ff6666); border-color: #ff4444; padding: 12px 25px; font-size: 1rem;">
+                        محو مهام الموقع
+                    </button>
+                </div>
+            `;
+            
             // عرض المهام النظامية
-            dailyTasks.forEach((task, index) => {
+            userData.systemTasks.forEach((task, index) => {
                 const isCompleted = userData.completedTasks[`${today}_${task.id}`] || false;
                 
                 html += `
@@ -3072,6 +3452,9 @@
                             <div class="task-desc">${task.desc}</div>
                         </div>
                         <div class="task-points">+${task.points}</div>
+                        <div class="task-actions">
+                            <button class="task-action-btn" onclick="editSystemTask(${index})">✏️</button>
+                        </div>
                     </div>
                 `;
             });
@@ -3092,8 +3475,8 @@
                         </div>
                         <div class="task-points">+50</div>
                         <div class="task-actions">
-                            <button class="task-action-btn" onclick="editTask(${index})">✏️</button>
-                            <button class="task-action-btn" onclick="removeTask(${index})">🗑️</button>
+                            <button class="task-action-btn" onclick="editUserTask(${index})">✏️</button>
+                            <button class="task-action-btn" onclick="removeUserTask(${index})">🗑️</button>
                         </div>
                     </div>
                 `;
@@ -3124,7 +3507,7 @@
                 showNotification(`ممتاز! +${points} نقطة لإكمال المهمة`);
                 
                 // حساب المهام المكتملة
-                const completedTasksCount = dailyTasks.filter(task => 
+                const completedTasksCount = userData.systemTasks.filter(task => 
                     userData.completedTasks[`${today}_${task.id}`]
                 ).length;
                 
@@ -3133,7 +3516,7 @@
                 ).length;
                 
                 const totalCompleted = completedTasksCount + completedUserTasksCount;
-                const totalTasks = dailyTasks.length + userData.userTasks.length;
+                const totalTasks = userData.systemTasks.length + userData.userTasks.length;
                 
                 if (totalCompleted === totalTasks && totalTasks > 0) {
                     const bonusPoints = 300;
@@ -3154,7 +3537,7 @@
 
         function checkTaskCompletion(category) {
             const today = new Date().toDateString();
-            const tasksInCategory = dailyTasks.filter(task => task.category === category);
+            const tasksInCategory = userData.systemTasks.filter(task => task.category === category);
             
             tasksInCategory.forEach(task => {
                 const taskKey = `${today}_${task.id}`;
@@ -3227,7 +3610,7 @@
             showNotification(`تم تغيير الاسم إلى ${newName}`);
         }
 
-        // === وظائف التسبيح (محدث) ===
+        // === وظائف التسبيح ===
         function addTasbeeh(count) {
             userData.tasbeehCount += count;
             const tasbeehCountElement = document.getElementById('tasbeeh-count');
@@ -3300,13 +3683,26 @@
             showNotification('تم إضافة المهمة بنجاح!');
         }
 
-        function editTask(index) {
+        // تعديل مهمة نظامية
+        function editSystemTask(index) {
+            if (index >= 0 && index < userData.systemTasks.length) {
+                const task = userData.systemTasks[index];
+                document.getElementById('edit-task-modal').style.display = 'flex';
+                document.getElementById('edit-task-title-input').value = task.title;
+                document.getElementById('edit-task-desc-input').value = task.desc || '';
+                document.getElementById('edit-task-id').value = 'system_' + index;
+                document.getElementById('edit-task-title-input').focus();
+            }
+        }
+
+        // تعديل مهمة مستخدم
+        function editUserTask(index) {
             if (index >= 0 && index < userData.userTasks.length) {
                 const task = userData.userTasks[index];
                 document.getElementById('edit-task-modal').style.display = 'flex';
                 document.getElementById('edit-task-title-input').value = task.title;
                 document.getElementById('edit-task-desc-input').value = task.desc || '';
-                document.getElementById('edit-task-id').value = index;
+                document.getElementById('edit-task-id').value = 'user_' + index;
                 document.getElementById('edit-task-title-input').focus();
             }
         }
@@ -3316,7 +3712,7 @@
         }
 
         function saveEditedTask() {
-            const index = parseInt(document.getElementById('edit-task-id').value);
+            const taskId = document.getElementById('edit-task-id').value;
             const title = document.getElementById('edit-task-title-input').value.trim();
             const desc = document.getElementById('edit-task-desc-input').value.trim();
             
@@ -3325,39 +3721,83 @@
                 return;
             }
             
-            if (index >= 0 && index < userData.userTasks.length) {
-                userData.userTasks[index].title = title;
-                userData.userTasks[index].desc = desc;
-                saveData();
-                updateTasksDisplay();
-                closeEditTaskModal();
-                
-                showNotification('تم تعديل المهمة بنجاح!');
-            }
-        }
-
-        function deleteTask() {
-            const index = parseInt(document.getElementById('edit-task-id').value);
-            
-            if (index >= 0 && index < userData.userTasks.length) {
-                if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
-                    userData.userTasks.splice(index, 1);
-                    
-                    // حذف حالة الإكمال للمهمة المحذوفة
-                    const today = new Date().toDateString();
-                    const taskKey = `user_${index}`;
-                    delete userData.completedTasks[`${today}_${taskKey}`];
-                    
+            if (taskId.startsWith('system_')) {
+                const index = parseInt(taskId.replace('system_', ''));
+                if (index >= 0 && index < userData.systemTasks.length) {
+                    userData.systemTasks[index].title = title;
+                    userData.systemTasks[index].desc = desc;
                     saveData();
                     updateTasksDisplay();
                     closeEditTaskModal();
                     
-                    showNotification('تم حذف المهمة بنجاح!');
+                    showNotification('تم تعديل المهمة النظامية بنجاح!');
+                }
+            } else if (taskId.startsWith('user_')) {
+                const index = parseInt(taskId.replace('user_', ''));
+                if (index >= 0 && index < userData.userTasks.length) {
+                    userData.userTasks[index].title = title;
+                    userData.userTasks[index].desc = desc;
+                    saveData();
+                    updateTasksDisplay();
+                    closeEditTaskModal();
+                    
+                    showNotification('تم تعديل مهمتك بنجاح!');
                 }
             }
         }
 
-        function removeTask(index) {
+        function deleteTask() {
+            const taskId = document.getElementById('edit-task-id').value;
+            
+            if (taskId.startsWith('user_')) {
+                const index = parseInt(taskId.replace('user_', ''));
+                
+                if (index >= 0 && index < userData.userTasks.length) {
+                    if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
+                        userData.userTasks.splice(index, 1);
+                        
+                        // حذف حالة الإكمال للمهمة المحذوفة
+                        const today = new Date().toDateString();
+                        const taskKey = `user_${index}`;
+                        delete userData.completedTasks[`${today}_${taskKey}`];
+                        
+                        saveData();
+                        updateTasksDisplay();
+                        closeEditTaskModal();
+                        
+                        showNotification('تم حذف المهمة بنجاح!');
+                    }
+                }
+            } else {
+                showNotification('لا يمكن حذف المهام النظامية، يمكنك تعديلها أو استخدام زر الإرجاع');
+            }
+        }
+
+        // إرجاع المهام النظامية إلى إعداداتها الأصلية
+        function restoreTaskDefaults() {
+            const taskId = document.getElementById('edit-task-id').value;
+            
+            if (taskId.startsWith('system_')) {
+                const index = parseInt(taskId.replace('system_', ''));
+                
+                if (index >= 0 && index < dailyTasks.length) {
+                    if (confirm('هل تريد إرجاع هذه المهمة إلى إعداداتها الأصلية؟')) {
+                        const originalTask = dailyTasks[index];
+                        userData.systemTasks[index] = JSON.parse(JSON.stringify(originalTask));
+                        
+                        saveData();
+                        updateTasksDisplay();
+                        closeEditTaskModal();
+                        
+                        showNotification('تم إرجاع المهمة إلى إعداداتها الأصلية بنجاح!');
+                    }
+                }
+            } else {
+                showNotification('زر الإرجاع مخصص فقط للمهام النظامية');
+            }
+        }
+
+        function removeUserTask(index) {
             if (index >= 0 && index < userData.userTasks.length) {
                 if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
                     userData.userTasks.splice(index, 1);
@@ -3375,7 +3815,35 @@
             }
         }
 
-        // === وظائف الأذكار والأحاديث (كما هي) ===
+        // نافذة محو مهام الموقع
+        function showClearSiteTasksModal() {
+            document.getElementById('clear-site-tasks-modal').style.display = 'flex';
+        }
+
+        function closeClearSiteTasksModal() {
+            document.getElementById('clear-site-tasks-modal').style.display = 'none';
+        }
+
+        function clearSiteTasks() {
+            if (confirm('هل أنت متأكد من محو جميع مهام الموقع النظامية؟ سيتم إرجاعها إلى الإعدادات الأصلية.')) {
+                // إرجاع المهام النظامية إلى الأصلية
+                userData.systemTasks = JSON.parse(JSON.stringify(dailyTasks));
+                
+                // حذف حالات إكمال المهام النظامية لليوم
+                const today = new Date().toDateString();
+                dailyTasks.forEach(task => {
+                    delete userData.completedTasks[`${today}_${task.id}`];
+                });
+                
+                saveData();
+                updateTasksDisplay();
+                closeClearSiteTasksModal();
+                
+                showNotification('تم محو جميع مهام الموقع النظامية وإرجاعها إلى الإعدادات الأصلية');
+            }
+        }
+
+        // === وظائف الأذكار والأحاديث ===
         function updateMorningAzkar() {
             const morningTextElement = document.getElementById('morning-text');
             const morningCounterElement = document.getElementById('morning-counter');
@@ -3591,6 +4059,7 @@
                 userData.tasbeehCount = 0;
                 userData.completedTasks = {};
                 userData.userTasks = [];
+                userData.systemTasks = JSON.parse(JSON.stringify(dailyTasks));
                 userData.todayPrayerStars = {
                     'الفجر': [false, false, false],
                     'الظهر': [false, false, false],
