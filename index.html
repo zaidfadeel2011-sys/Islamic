@@ -322,6 +322,31 @@
             margin: 0 auto;
         }
 
+        /* زر الرجوع */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            color: #000;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* البطاقات */
         .card {
             background: var(--card-bg);
@@ -333,6 +358,7 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
         }
 
         .card:hover {
@@ -855,26 +881,6 @@
             font-weight: bold;
             position: relative;
             z-index: 1;
-        }
-
-        /* شاشة الأحاديث */
-        .hadith-container {
-            text-align: center;
-        }
-
-        .hadith-text {
-            font-size: 1.3rem;
-            line-height: 2;
-            padding: 30px 25px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
-            margin: 25px 0;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 4px solid var(--gold);
-            box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* شاشة كيفية الوضوء */
@@ -1885,6 +1891,7 @@
     <div id="minbar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <div class="minbar-container">
                     <h2 class="section-title">المنبر الإسلامي</h2>
                     <div class="decorative-line"></div>
@@ -1932,28 +1939,6 @@
                             <div class="sermon-sheikh">الشيخ ياسر الدوسري</div>
                             <div class="sermon-play">▶️ تشغيل الخطبة</div>
                         </div>
-                        
-                        <div class="sermon-card" onclick="openSermon('https://youtu.be/YJ3_i3K8xYo?si=bI8QHGrmBZUk-o3i')">
-                            <div class="sermon-title">فضل متابعة النبي صلى الله عليه وسلم</div>
-                            <div class="sermon-sheikh">الشيخ ياسر الدوسري</div>
-                            <div class="sermon-play">▶️ تشغيل الخطبة</div>
-                        </div>
-                        
-                        <div class="sermon-card" onclick="openSermon('https://youtu.be/4nbTOGAt1Aw?si=kordBnB64VBarWDJ')">
-                            <div class="sermon-title">فضل الصلاة وأسرارها</div>
-                            <div class="sermon-sheikh">الشيخ ياسر الدوسري</div>
-                            <div class="sermon-play">▶️ تشغيل الخطبة</div>
-                        </div>
-                        
-                        <div class="sermon-card" onclick="openSermon('https://youtu.be/ZFxasHPL2Co?si=5Li5sB9ZqVOLUQio')">
-                            <div class="sermon-title">ظلم العباد</div>
-                            <div class="sermon-sheikh">الشيخ عبدالرحمن السديس</div>
-                            <div class="sermon-play">▶️ تشغيل الخطبة</div>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 25px;">
-                        <button class="action-btn" onclick="showPage('home-page')">العودة إلى الرئيسية</button>
                     </div>
                 </div>
             </div>
@@ -1964,6 +1949,7 @@
     <div id="prayer-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <h2 class="section-title">خيارات الصلاة</h2>
                 <div class="decorative-line"></div>
                 
@@ -2000,6 +1986,8 @@
     <div id="prayer-times-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('prayer-page')">←</button>
+                
                 <!-- تاريخ اليوم -->
                 <div style="text-align: center; margin-bottom: 25px;">
                     <div class="today-date" id="today-date">اليوم: --/--/----</div>
@@ -2089,6 +2077,7 @@
     <div id="wudu-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('prayer-page')">←</button>
                 <div class="wudu-container">
                     <h2 class="section-title">كيفية الوضوء الصحيح</h2>
                     <div class="decorative-line"></div>
@@ -2141,11 +2130,12 @@
     <div id="prayer-tips-page" class="page">
         <div class="page-content">
             <div class="card">
-                <div class="hadith-container">
+                <button class="back-btn" onclick="showPage('prayer-page')">←</button>
+                <div class="azkar-container">
                     <h2 class="section-title">نصائح وأحكام الصلاة</h2>
                     <div class="decorative-line"></div>
                     
-                    <div class="hadith-text" id="prayer-tip-text">
+                    <div class="azkar-text" id="prayer-tip-text">
                         حافظ على الصلاة في وقتها، فإنها أول ما يحاسب عليه العبد يوم القيامة
                     </div>
                     
@@ -2162,6 +2152,7 @@
     <div id="azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <h2 class="section-title">خيارات الأذكار</h2>
                 <div class="decorative-line"></div>
                 
@@ -2213,14 +2204,6 @@
                             <p class="menu-desc">أذكار وأذكار بعد الصلوات</p>
                         </div>
                     </div>
-                    
-                    <div class="menu-item" onclick="showPage('hadith-page')">
-                        <div class="menu-icon">📜</div>
-                        <div class="menu-content">
-                            <h3 class="menu-title">أحاديث نبوية</h3>
-                            <p class="menu-desc">أحاديث شريفة مختارة</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2230,6 +2213,7 @@
     <div id="morning-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار الصباح</h2>
                     <div class="decorative-line"></div>
@@ -2250,6 +2234,7 @@
     <div id="evening-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار المساء</h2>
                     <div class="decorative-line"></div>
@@ -2270,6 +2255,7 @@
     <div id="sleep-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار النوم</h2>
                     <div class="decorative-line"></div>
@@ -2290,6 +2276,7 @@
     <div id="wakeup-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار الاستيقاظ</h2>
                     <div class="decorative-line"></div>
@@ -2310,6 +2297,7 @@
     <div id="mosque-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار المسجد</h2>
                     <div class="decorative-line"></div>
@@ -2330,6 +2318,7 @@
     <div id="after-prayer-azkar-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('azkar-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">أذكار بعد الصلاة</h2>
                     <div class="decorative-line"></div>
@@ -2346,32 +2335,11 @@
         </div>
     </div>
 
-    <!-- صفحة الأحاديث -->
-    <div id="hadith-page" class="page">
-        <div class="page-content">
-            <div class="card">
-                <div class="hadith-container">
-                    <h2 class="section-title">أحاديث نبوية</h2>
-                    <div class="decorative-line"></div>
-                    <div class="quran-info" id="hadith-info" style="color: var(--gold); font-size: 1.1rem; margin-bottom: 20px;">صحيح البخاري</div>
-                    
-                    <div class="hadith-text" id="hadith-text">
-                        قال رسول الله صلى الله عليه وسلم: "من صلى البردين دخل الجنة". والبردان: الفجر والعصر.
-                    </div>
-                    
-                    <div class="azkar-controls">
-                        <button class="action-btn" onclick="prevHadith()">السابق</button>
-                        <button class="action-btn" onclick="nextHadith()">التالي</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- صفحة القرآن -->
     <div id="quran-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <div class="quran-container">
                     <h2 class="section-title">القرآن الكريم</h2>
                     <div class="decorative-line"></div>
@@ -2391,26 +2359,6 @@
                         
                         <div class="reciter-card" onclick="showSheikhSurahs('mishari-al-afasy')">
                             <div class="reciter-title">الشيخ مشاري العفاسي</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
-                        </div>
-                        
-                        <div class="reciter-card" onclick="showSheikhSurahs('wadee-al-yamani')">
-                            <div class="reciter-title">الشيخ وديع اليمني</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
-                        </div>
-                        
-                        <div class="reciter-card" onclick="showSheikhSurahs('al-minshawi')">
-                            <div class="reciter-title">الشيخ المنشاوي</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
-                        </div>
-                        
-                        <div class="reciter-card" onclick="showSheikhSurahs('fares-abbad')">
-                            <div class="reciter-title">الشيخ فارس عباد</div>
-                            <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
-                        </div>
-                        
-                        <div class="reciter-card" onclick="showSheikhSurahs('abdulrahman-al-sudais')">
-                            <div class="reciter-title">الشيخ عبدالرحمن السديس</div>
                             <div class="reciter-desc" style="text-align: center; font-size: 1rem; opacity: 0.9;">اضغط لعرض السور</div>
                         </div>
                     </div>
@@ -2435,6 +2383,7 @@
     <div id="tasbeeh-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <div class="azkar-container">
                     <h2 class="section-title">عداد التسبيح</h2>
                     <div class="decorative-line"></div>
@@ -2457,6 +2406,7 @@
     <div id="tasks-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <h2 class="section-title">مهام اليوم</h2>
                 <div class="decorative-line"></div>
                 <p style="text-align: center; color: var(--gold); margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">أكمل المهام لتحصل على نقاط إضافية</p>
@@ -2475,6 +2425,7 @@
     <div id="settings-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('home-page')">←</button>
                 <div class="settings-page-content">
                     <h2 class="section-title">الإعدادات</h2>
                     <div class="decorative-line"></div>
@@ -2532,6 +2483,7 @@
     <div id="other-sites-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('settings-page')">←</button>
                 <h2 class="section-title">مواقع إسلامية مفيدة</h2>
                 <div class="decorative-line"></div>
                 <p style="text-align: center; color: var(--gold); margin-bottom: 25px; font-size: 1.1rem; opacity: 0.9;">مواقع إسلامية مفيدة للاستزادة من العلم</p>
@@ -2547,10 +2499,6 @@
                         <div class="site-desc">موقع للأدعية المأثورة من القرآن والسنة النبوية</div>
                     </div>
                 </div>
-                
-                <div style="text-align: center; margin-top: 25px;">
-                    <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
-                </div>
             </div>
         </div>
     </div>
@@ -2559,6 +2507,7 @@
     <div id="sources-page" class="page">
         <div class="page-content">
             <div class="card">
+                <button class="back-btn" onclick="showPage('settings-page')">←</button>
                 <h2 class="section-title">المصادر</h2>
                 <div class="decorative-line"></div>
                 
@@ -2592,10 +2541,6 @@
                         <div class="source-title">الخطب الإسلامية</div>
                         <div class="source-desc">من القنوات الرسمية للشيوخ والدعاة على يوتيوب</div>
                     </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 25px;">
-                    <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
                 </div>
             </div>
         </div>
@@ -2647,26 +2592,6 @@
             <div class="theme-preview" style="background: #001f3f;"></div>
             <span class="theme-name">الكحلي</span>
         </div>
-        <div class="theme-option" onclick="changeTheme('red')">
-            <div class="theme-preview" style="background: #3b0000;"></div>
-            <span class="theme-name">الأحمر الغامق</span>
-        </div>
-        <div class="theme-option" onclick="changeTheme('blue')">
-            <div class="theme-preview" style="background: #003366;"></div>
-            <span class="theme-name">الأزرق الهادئ</span>
-        </div>
-        <div class="theme-option" onclick="changeTheme('white')">
-            <div class="theme-preview" style="background: #ffffff;"></div>
-            <span class="theme-name">اللون الأبيض</span>
-        </div>
-        <div class="theme-option" onclick="changeTheme('orange')">
-            <div class="theme-preview" style="background: #ff6b00;"></div>
-            <span class="theme-name">البرتقالي</span>
-        </div>
-        <div class="theme-option" onclick="changeTheme('purple')">
-            <div class="theme-preview" style="background: #4b0082;"></div>
-            <span class="theme-name">البنفسجي</span>
-        </div>
     </div>
 
     <!-- نافذة تغيير الاسم -->
@@ -2708,23 +2633,6 @@
                 <button class="modal-btn modal-btn-secondary" onclick="closeEditTaskModal()">إلغاء</button>
                 <button class="modal-btn modal-btn-success" onclick="saveEditedTask()">حفظ التعديلات</button>
                 <button class="modal-btn modal-btn-danger" onclick="deleteTask()">حذف المهمة</button>
-                <button class="modal-btn modal-btn-primary" onclick="restoreTaskDefaults()" style="background: linear-gradient(45deg, #2196F3, #0d8bf2); margin-top: 10px;">إرجاع (للمهام النظامية)</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة محو مهام الموقع -->
-    <div id="clear-site-tasks-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <h2 class="modal-title">محو مهام الموقع</h2>
-            <div class="decorative-line"></div>
-            <p style="text-align: center; font-size: 1.1rem; margin: 20px 0; line-height: 1.6; color: var(--text);">
-                هل أنت متأكد من رغبتك في محو جميع مهام الموقع النظامية؟<br>
-                <span style="color: var(--gold); font-weight: bold;">هذا الإجراء سيمحو فقط المهام النظامية وليس مهامك الشخصية.</span>
-            </p>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-secondary" onclick="closeClearSiteTasksModal()">إلغاء</button>
-                <button class="modal-btn modal-btn-danger" onclick="clearSiteTasks()">محو مهام الموقع</button>
             </div>
         </div>
     </div>
@@ -2747,7 +2655,6 @@
             currentMosqueAzkar: 0,
             currentAfterPrayerAzkar: 0,
             currentPrayerTip: 0,
-            currentHadith: 0,
             currentSleepAzkar: 0,
             completedTasks: {},
             userTasks: [],
@@ -2777,15 +2684,7 @@
             "بر الوالدين من أحب الأعمال إلى الله تعالى بعد الصلاة",
             "الصدقة تطفئ غضب الرب وتدفع البلاء وتزيد في العمر",
             "طلب العلم فريضة على كل مسلم ومسلمة",
-            "الذكر يطرد الشيطان ويرضي الرحمن ويجلب البركة",
-            "حفظ اللسان من الفتن وأعظم أسباب النجاة",
-            "الصبر على البلاء من علامات الإيمان الكامل",
-            "التوكل على الله مع الأخذ بالأسباب من أعظم العبادات",
-            "الرفق بالحيوان من أسباب مغفرة الذنوب",
-            "إماطة الأذى عن الطريق صدقة",
-            "تبسمك في وجه أخيك صدقة",
-            "كلمة طيبة صدقة",
-            "مساعدة المحتاج من أفضل القربات"
+            "الذكر يطرد الشيطان ويرضي الرحمن ويجلب البركة"
         ];
 
         // أذكار الصباح
@@ -2846,21 +2745,7 @@
             "قراءة آية الكرسي: الله لا إله إلا هو الحي القيوم... (مرة واحدة بعد كل صلاة).",
             "بسم الله الرحمن الرحيم: قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد (3 مرات بعد صلاة الفجر والمغرب، مرة واحدة بعد الصلوات الأخرى).",
             "بسم الله الرحمن الرحيم: قل أعوذ برب الفلق، من شر ما خلق، ومن شر غاسق إذا وقب، ومن شر النفاثات في العقد، ومن شر حاسد إذا حسد (3 مرات بعد صلاة الفجر والمغرب، مرة واحدة بعد الصلوات الأخرى).",
-            "بسم الله الرحمن الرحيم: قل أعوذ برب الناس، ملك الناس، إله الناس، من شر الوسواس الخناس، الذي يوسوس في صدور الناس، من الجنة والناس (3 مرات بعد صلاة الفجر والمغرب، مرة واحدة بعد الصلوات الأخرى).",
-            "اللهم أعني على ذكرك وشكرك وحسن عبادتك. اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.",
-            "اللهم اجعلني من التوابين، واجعلني من المتطهرين، واجعلني من عبادك الصالحين.",
-            "اللهم إنك عفو تحب العفو فاعف عني. اللهم إني أعوذ بك من العجز والكسل والجبن والبخل والهرم وعذاب القبر."
-        ];
-
-        // أحاديث نبوية
-        const hadiths = [
-            { text: "قال رسول الله صلى الله عليه وسلم: 'من صلى البردين دخل الجنة'. والبردان: الفجر والعصر.", info: "صحيح البخاري" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'أول ما يحاسب عليه العبد يوم القيامة الصلاة، فإن صلحت صلح سائر عمله، وإن فسدت فسد سائر عمله'.", info: "الطبراني" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'الصلاة نور'.", info: "صحيح مسلم" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'استقيموا ولن تحصوا، واعلموا أن خير أعمالكم الصلاة، ولا يحافظ على الوضوء إلا مؤمن'.", info: "سنن ابن ماجه" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'إن بين الرجل وبين الشرك والكفر ترك الصلاة'.", info: "صحيح مسلم" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'ركعتا الفجر خير من الدنيا وما فيها'.", info: "صحيح مسلم" },
-            { text: "قال رسول الله صلى الله عليه وسلم: 'صلوا كما رأيتموني أصلي'.", info: "صحيح البخاري" }
+            "بسم الله الرحمن الرحيم: قل أعوذ برب الناس، ملك الناس، إله الناس، من شر الوسواس الخناس، الذي يوسوس في صدور الناس، من الجنة والناس (3 مرات بعد صلاة الفجر والمغرب، مرة واحدة بعد الصلوات الأخرى)."
         ];
 
         // نصائح الصلاة
@@ -2883,10 +2768,7 @@
                     { title: 'سورة البقرة', url: 'https://youtu.be/9HW7j9lZZTU?si=AGx5otPHL_rKOFo2' },
                     { title: 'سورة يس', url: 'https://youtu.be/sVL0vdNqPpw?si=UpOWDRTfnFKbA74a' },
                     { title: 'سورة الملك', url: 'https://youtu.be/Byyrubr7eqQ?si=kxxRel7fpYxphIzy' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/WJ6OWeTTqtU?si=t0ugk-JvWmIF2vlA' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/0nKqbDR_ya0?si=qGZEC5UtTYmH4Fda' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/-Rvavu8vyEw?si=3O3C6ca-MNG4MNJD' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/3Tg-FhFeC6E?si=mQpm9DPKNtJfUrDH' }
+                    { title: 'سورة القيامة', url: 'https://youtu.be/WJ6OWeTTqtU?si=t0ugk-JvWmIF2vlA' }
                 ]
             },
             'yaser-al-dosari': {
@@ -2896,10 +2778,7 @@
                     { title: 'سورة البقرة', url: 'https://youtu.be/P0uaLRO6V1U?si=XcetcB863O0eFasd' },
                     { title: 'سورة يس', url: 'https://youtu.be/yEAmNisPOzk?si=vWSHEjCVuYKfIYqM' },
                     { title: 'سورة الملك', url: 'https://youtu.be/Xg3dnwXfsBc?si=azQjnht91DhGOjCV' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/Tj6M-QrsYWQ?si=VEnqhXTf1ox_4AQg' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/zmarpXKqMno?si=hamfIPAh0ZwCKSgZ' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/GYqzkR_AnKE?si=zcF1sltZGbEvA4Tk' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/93sadl36u6s?si=Sg2bPb11-zEuXDzy' }
+                    { title: 'سورة القيامة', url: 'https://youtu.be/Tj6M-QrsYWQ?si=VEnqhXTf1ox_4AQg' }
                 ]
             },
             'mishari-al-afasy': {
@@ -2909,79 +2788,10 @@
                     { title: 'سورة البقرة', url: 'https://youtu.be/Y1M6hJHHrjM?si=nVu4jM1fFuCvINSp' },
                     { title: 'سورة يس', url: 'https://youtu.be/kFn64z09MWA?si=I4w2xXISrlMdYw2I' },
                     { title: 'سورة الملك', url: 'https://youtu.be/IDvV7Tvt8gM?si=_zzEnZ9OJ1z-OmXn' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/PUec_OAAsuw?si=R8dA8s4v5fYqGyWl' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/ZB2Vaea3U6c?si=nbnNy7p-oCX-oc1w' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/fLHVCOLU_WI?si=56GqZZN9qQFJTCB2' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/dZTfXiPSZyE?si=Kavl4kRrhLGiLWPR' }
-                ]
-            },
-            'wadee-al-yamani': {
-                name: 'الشيخ وديع اليمني',
-                surahs: [
-                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/qWzAyszODe4?si=ZdpBZiZpJBcxzqsF' },
-                    { title: 'سورة البقرة', url: 'https://youtu.be/oV8ZuycmnSA?si=sXrAOTDtC0CwzU9m' },
-                    { title: 'سورة يس', url: 'https://youtu.be/O4_q50GxnSU?si=eUQrpz15I21MMZ__' },
-                    { title: 'سورة الملك', url: 'https://youtu.be/ZhRXf6nSbpw?si=7DFLlKM_QMPUTH9F' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/i1_Gbsu9IH8?si=YiOe553HSpG_PNxM' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/EM0pLYUvdbA?si=bp6eP_-Qd0kOytku' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/lQYNKmL0noU?si=hHMKfGYiN2Snh8FH' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/jmEIZdVKVcA?si=t64faP4fptd25WJ-' }
-                ]
-            },
-            'al-minshawi': {
-                name: 'الشيخ المنشاوي',
-                surahs: [
-                    { title: 'سورة الفاتحة', url: 'https://youtube.com/shorts/CvsQN-mlwxo?si=eJFx3jbug2ySAoQm' },
-                    { title: 'سورة البقرة', url: 'https://youtu.be/y-NAlOnFC8Q?si=hpcXljVUK_sE34m7' },
-                    { title: 'سورة يس', url: 'https://youtu.be/0dFMfvdPWWs?si=JB4B55id0FxhIN4F' },
-                    { title: 'سورة الملك', url: 'https://youtu.be/KeEyZIab-ls?si=1jSw5oAl-amllJtP' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/yJA709soIZU?si=z0IXIYVAgJm7hcuC' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/W9iLEttC7JY?si=gGcY03kxU_-7QYu7' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/6MItl7jFRU0?si=8jJ-PDV3HMtwpkYJ' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/qk7__8tEW7k?si=MvCkMubN3I9n6ynm' }
-                ]
-            },
-            'fares-abbad': {
-                name: 'الشيخ فارس عباد',
-                surahs: [
-                    { title: 'سورة الفاتحة', url: 'https://youtu.be/3DCJ56cqXFc?si=OAkEf2KVZCpWmQTC' },
-                    { title: 'سورة البقرة', url: 'https://youtu.be/V9pB_j8thUs?si=HMFP607j3UIzB3g2' },
-                    { title: 'سورة يس', url: 'https://youtu.be/gEXTojT9QZo?si=ct-mWJhEWY8JTYOq' },
-                    { title: 'سورة الملك', url: 'https://youtu.be/Ngr967sqruw?si=lgqKasVohl466Te2' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/04ZbB_JwajQ?si=EZAjk-VP2gbVdm2t' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/53ykFDqvz1Q?si=qbQRNVzNq4vin1DV' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/YemSpFfeIkM?si=SQF9defWx1g-SWcx' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/1CFODKmQKZQ?si=n3fEGZ5XAAx0jBYW' }
-                ]
-            },
-            'abdulrahman-al-sudais': {
-                name: 'الشيخ عبدالرحمن السديس',
-                surahs: [
-                    { title: 'سورة الفاتحة', url: 'https://youtu.be/m3EBoMovUg8?si=aVjobRK0ILolvKAG' },
-                    { title: 'سورة البقرة', url: 'https://youtu.be/MspLXPfFzjg?si=VslU40oUh191AK-1' },
-                    { title: 'سورة يس', url: 'https://youtu.be/YtIwAJn6J7s?si=oz95aMyngu0ANk7T' },
-                    { title: 'سورة الملك', url: 'https://youtu.be/NYti96AJOFc?si=GtSbThmQ2tRa0X2B' },
-                    { title: 'سورة القيامة', url: 'https://youtu.be/PyzTyTv85-M?si=85XZAFAFn8VsNnIM' },
-                    { title: 'سورة الدخان', url: 'https://youtu.be/Ww-L6S4cESM?si=BeBH3GlZns5wfteX' },
-                    { title: 'سورة الكهف', url: 'https://youtu.be/xB4JmhhouFQ?si=_sgz5GyiUht2b9bC' },
-                    { title: 'سورة الرحمن', url: 'https://youtu.be/pdoAaIBv3cY?si=N9XxHGghx-d3xkpL' }
+                    { title: 'سورة القيامة', url: 'https://youtu.be/PUec_OAAsuw?si=R8dA8s4v5fYqGyWl' }
                 ]
             }
         };
-
-        // خطب المنبر الإسلامي
-        const sermons = [
-            { title: "التوبة النصوحة", sheikh: "الشيخ أحمد النفيس", url: "https://youtu.be/TTlnoFztl6E?si=reEnEF3dTax04DS4" },
-            { title: "كيف يغير القرآن نفوسنا", sheikh: "الشيخ أحمد النفيس", url: "https://youtu.be/AH7kbk9Smdk?si=1pGbIEhqhN_gS9DP" },
-            { title: "صفة النار", sheikh: "الشيخ أحمد النفيس", url: "https://youtu.be/BV8JxZJZdIc?si=DONvdLkvKO0BNn7B" },
-            { title: "كيف كانت صلاتهم", sheikh: "الشيخ أحمد النفيس", url: "https://youtu.be/Ceti5Xc_oI0?si=QhKsJNjdD0Hq5nnF" },
-            { title: "متى نصر الله", sheikh: "الشيخ أحمد النفيس", url: "https://youtu.be/m-g98Rae79c?si=rKXLYSaiHTI_FLVW" },
-            { title: '"وقال ربكم ادعوني استجب لكم"', sheikh: "الشيخ ياسر الدوسري", url: "https://youtu.be/FpIE8dmOSbU?si=Ubs5XZZ7jGDoQr3I" },
-            { title: "مكارم الأخلاق", sheikh: "الشيخ ياسر الدوسري", url: "https://youtu.be/rjxrG2qVhYE?si=8Tp059Gnmzgb5T_5" },
-            { title: "فضل متابعة النبي صلى الله عليه وسلم", sheikh: "الشيخ ياسر الدوسري", url: "https://youtu.be/YJ3_i3K8xYo?si=bI8QHGrmBZUk-o3i" },
-            { title: "فضل الصلاة وأسرارها", sheikh: "الشيخ ياسر الدوسري", url: "https://youtu.be/4nbTOGAt1Aw?si=kordBnB64VBarWDJ" },
-            { title: "ظلم العباد", sheikh: "الشيخ عبدالرحمن السديس", url: "https://youtu.be/ZFxasHPL2Co?si=5Li5sB9ZqVOLUQio" }
-        ];
 
         // متغيرات عامة
         let isLoggedIn = false;
@@ -3012,7 +2822,6 @@
                     updateAfterPrayerAzkar();
                     updateSleepAzkar();
                     updatePrayerTip();
-                    updateHadith();
                     updateLevelDisplay();
                     
                     setInterval(updateTime, 60000);
@@ -3300,7 +3109,6 @@
                 'wakeup-azkar-page': 'أذكار الاستيقاظ',
                 'mosque-azkar-page': 'أذكار المسجد',
                 'after-prayer-azkar-page': 'أذكار بعد الصلاة',
-                'hadith-page': 'أحاديث نبوية',
                 'tasbeeh-page': 'التسبيح',
                 'tasks-page': 'المهام',
                 'settings-page': 'الإعدادات',
@@ -3348,7 +3156,6 @@
                 case 'wakeup-azkar-page':
                 case 'mosque-azkar-page':
                 case 'after-prayer-azkar-page':
-                case 'hadith-page':
                     document.querySelector('.nav-item[onclick*="azkar-page"]').classList.add('active');
                     break;
                 case 'tasbeeh-page':
@@ -3619,15 +3426,6 @@
             
             const today = new Date().toDateString();
             let html = '';
-            
-            // زر محو مهام الموقع
-            html += `
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <button class="action-btn" onclick="showClearSiteTasksModal()" style="background: linear-gradient(45deg, #ff4444, #ff6666); border-color: #ff4444; padding: 12px 25px; font-size: 1rem;">
-                        محو مهام الموقع
-                    </button>
-                </div>
-            `;
             
             // عرض المهام النظامية
             userData.systemTasks.forEach((task, index) => {
@@ -3960,31 +3758,7 @@
                     }
                 }
             } else {
-                showNotification('لا يمكن حذف المهام النظامية، يمكنك تعديلها أو استخدام زر الإرجاع');
-            }
-        }
-
-        // إرجاع المهام النظامية إلى إعداداتها الأصلية
-        function restoreTaskDefaults() {
-            const taskId = document.getElementById('edit-task-id').value;
-            
-            if (taskId.startsWith('system_')) {
-                const index = parseInt(taskId.replace('system_', ''));
-                
-                if (index >= 0 && index < dailyTasks.length) {
-                    if (confirm('هل تريد إرجاع هذه المهمة إلى إعداداتها الأصلية؟')) {
-                        const originalTask = dailyTasks[index];
-                        userData.systemTasks[index] = JSON.parse(JSON.stringify(originalTask));
-                        
-                        saveData();
-                        updateTasksDisplay();
-                        closeEditTaskModal();
-                        
-                        showNotification('تم إرجاع المهمة إلى إعداداتها الأصلية بنجاح!');
-                    }
-                }
-            } else {
-                showNotification('زر الإرجاع مخصص فقط للمهام النظامية');
+                showNotification('لا يمكن حذف المهام النظامية، يمكنك تعديلها فقط');
             }
         }
 
@@ -4006,35 +3780,7 @@
             }
         }
 
-        // نافذة محو مهام الموقع
-        function showClearSiteTasksModal() {
-            document.getElementById('clear-site-tasks-modal').style.display = 'flex';
-        }
-
-        function closeClearSiteTasksModal() {
-            document.getElementById('clear-site-tasks-modal').style.display = 'none';
-        }
-
-        function clearSiteTasks() {
-            if (confirm('هل أنت متأكد من محو جميع مهام الموقع النظامية؟ سيتم إرجاعها إلى الإعدادات الأصلية.')) {
-                // إرجاع المهام النظامية إلى الأصلية
-                userData.systemTasks = JSON.parse(JSON.stringify(dailyTasks));
-                
-                // حذف حالات إكمال المهام النظامية لليوم
-                const today = new Date().toDateString();
-                dailyTasks.forEach(task => {
-                    delete userData.completedTasks[`${today}_${task.id}`];
-                });
-                
-                saveData();
-                updateTasksDisplay();
-                closeClearSiteTasksModal();
-                
-                showNotification('تم محو جميع مهام الموقع النظامية وإرجاعها إلى الإعدادات الأصلية');
-            }
-        }
-
-        // === وظائف الأذكار والأحاديث ===
+        // === وظائف الأذكار ===
         function updateMorningAzkar() {
             const morningTextElement = document.getElementById('morning-text');
             const morningCounterElement = document.getElementById('morning-counter');
@@ -4238,27 +3984,6 @@
         function prevPrayerTip() {
             userData.currentPrayerTip = (userData.currentPrayerTip - 1 + prayerTips.length) % prayerTips.length;
             updatePrayerTip();
-        }
-
-        function updateHadith() {
-            const hadithTextElement = document.getElementById('hadith-text');
-            const hadithInfoElement = document.getElementById('hadith-info');
-            
-            if (hadithTextElement) hadithTextElement.textContent = hadiths[userData.currentHadith].text;
-            if (hadithInfoElement) hadithInfoElement.textContent = hadiths[userData.currentHadith].info;
-        }
-
-        function nextHadith() {
-            userData.currentHadith = (userData.currentHadith + 1) % hadiths.length;
-            updateHadith();
-            userData.points += 8;
-            updateLevelDisplay();
-            saveData();
-        }
-
-        function prevHadith() {
-            userData.currentHadith = (userData.currentHadith - 1 + hadiths.length) % hadiths.length;
-            updateHadith();
         }
 
         // تصفير بيانات المستخدم
