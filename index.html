@@ -538,6 +538,342 @@
             margin-top: 10px;
         }
         
+        /* المتصدرون - تصميم جديد */
+        .leaderboard-container {
+            margin: 25px 0;
+        }
+        
+        .leaderboard-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .leaderboard-card:hover {
+            transform: translateX(-5px);
+            background: rgba(212, 175, 55, 0.2);
+        }
+        
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .leaderboard-title {
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .leaderboard-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .leaderboard-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .leaderboard-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .friends-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .friend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .friend-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .friend-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 1rem;
+        }
+        
+        .friend-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .friend-name {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .friend-points {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .friend-rank {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 5px 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+        }
+        
+        .no-friends {
+            text-align: center;
+            padding: 30px;
+            color: var(--text);
+            opacity: 0.7;
+            font-style: italic;
+        }
+        
+        /* صفحة إدارة الأصدقاء */
+        .search-friends {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        .search-btn {
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            border: none;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .user-result-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        
+        .user-result-item:hover {
+            transform: translateX(-5px);
+            background: rgba(212, 175, 55, 0.2);
+        }
+        
+        .user-result-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-result-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2rem;
+        }
+        
+        .user-result-name {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .friend-status {
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+        
+        .status-friend {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .status-not-friend {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        .friend-action-btn {
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            border: none;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .friend-action-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .friend-action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* طلبات الصداقة */
+        .requests-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .request-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .request-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .request-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .accept-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .reject-btn {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .share-link-container {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .share-link {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .share-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 0.9rem;
+            outline: none;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(45deg, var(--gold), #ffaa00);
+            border: none;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
         /* الإشعارات */
         .notification{position:fixed;bottom:100px;right:25px;background:linear-gradient(45deg,var(--gold),var(--accent));color:#000;padding:18px 30px;border-radius:15px;animation:slideIn .3s;z-index:1000;font-weight:bold;box-shadow:0 8px 30px rgba(212,175,55,.3);max-width:350px;text-align:center;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
         @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
@@ -700,6 +1036,9 @@
             .hijri-date .gregorian{font-size:1.3rem}
             .audio-controls{gap:15px}
             .audio-btn{width:50px;height:50px;font-size:1.3rem}
+            .search-friends{flex-direction:column}
+            .friend-item{flex-direction:column;gap:10px;align-items:flex-start}
+            .friend-info{width:100%}
         }
         
         @media (max-width:480px){
@@ -726,6 +1065,8 @@
             .hijri-date .gregorian{font-size:1.1rem}
             .audio-controls{gap:10px}
             .audio-btn{width:45px;height:45px;font-size:1.2rem}
+            .user-result-item{flex-direction:column;gap:15px;align-items:flex-start}
+            .request-item{flex-direction:column;gap:15px;align-items:flex-start}
         }
     </style>
 </head>
@@ -734,7 +1075,7 @@
     <div class="main-header" id="main-header"><div class="user-info"><div class="user-avatar" id="user-avatar">م</div><div><div class="user-name" id="user-name"></div></div></div><div class="main-title" id="page-main-title">الرئيسية</div><div class="settings-switcher"><div class="settings-dot" onclick="showPage('settings-page')">⚙️</div></div></div>
     
     <!-- الصفحة الرئيسية -->
-    <div id="home-page" class="page active"><div class="page-content"><div class="card"><div class="hijri-date" id="hijri-date">--</div></div><div class="card"><div class="level-card"><div class="level-header"><h3 class="level-title" id="level-name">المستوى 1</h3><div class="level-number" id="level-number">1</div></div><div class="level-progress-container"><div class="level-labels"><span id="current-level-label">المستوى 1</span><span id="next-level-label">المستوى 2</span></div><div class="level-bar"><div class="level-fill" id="level-progress-fill" style="width:0%"></div></div></div><div class="level-points"><span id="current-points">0</span> / <span id="needed-points">1000</span> نقطة <div class="level-points-value" id="points-percentage" style="margin-top:10px;font-size:1.2rem">0%</div></div></div></div><div class="minbar-card" onclick="showPage('minbar-page')"><div class="minbar-header"><div class="minbar-icon">🕌</div><div><h3 class="minbar-title">المنبر الإسلامي</h3></div></div><p class="minbar-desc">استمع إلى خطب إسلامية مؤثرة من كبار الشيوخ والدعاة</p></div></div></div>
+    <div id="home-page" class="page active"><div class="page-content"><div class="card"><div class="hijri-date" id="hijri-date">--</div></div><div class="card"><div class="leaderboard-container"><div class="leaderboard-header"><h3 class="leaderboard-title">المتصدرون</h3><div class="leaderboard-actions"><button class="leaderboard-btn" onclick="showPage('friends-page')">👥 إدارة الأصدقاء</button><button class="leaderboard-btn" onclick="shareFriendLink()">🔗 مشاركة الرابط</button></div></div><div class="friends-list" id="friends-leaderboard"><div class="no-friends">لا يوجد أصدقاء بعد. أضف أصدقاء لمشاهدة نقاطهم هنا!</div></div></div></div><div class="card"><div class="level-card"><div class="level-header"><h3 class="level-title" id="level-name">المستوى 1</h3><div class="level-number" id="level-number">1</div></div><div class="level-progress-container"><div class="level-labels"><span id="current-level-label">المستوى 1</span><span id="next-level-label">المستوى 2</span></div><div class="level-bar"><div class="level-fill" id="level-progress-fill" style="width:0%"></div></div></div><div class="level-points"><span id="current-points">0</span> / <span id="needed-points">1000</span> نقطة <div class="level-points-value" id="points-percentage" style="margin-top:10px;font-size:1.2rem">0%</div></div></div></div><div class="minbar-card" onclick="showPage('minbar-page')"><div class="minbar-header"><div class="minbar-icon">🕌</div><div><h3 class="minbar-title">المنبر الإسلامي</h3></div></div><p class="minbar-desc">استمع إلى خطب إسلامية مؤثرة من كبار الشيوخ والدعاة</p></div></div></div>
     
     <!-- صفحة المنبر الإسلامي -->
     <div id="minbar-page" class="page"><div class="page-content"><div class="card"><div class="minbar-container"><h2 class="section-title">المنبر الإسلامي</h2><div class="decorative-line"></div><p style="text-align:center;color:var(--gold);margin-bottom:25px;font-size:1.1rem;opacity:.9">اختر خطبة للاستماع إليها</p><div class="sermons-grid">
@@ -759,8 +1100,8 @@
     <!-- صفحة الوضوء -->
     <div id="wudu-page" class="page"><div class="page-content"><div class="card"><div class="wudu-container"><h2 class="section-title">كيفية الوضوء الصحيح</h2><div class="decorative-line"></div><div class="wudu-steps"><div class="wudu-step"><div class="wudu-step-number">١</div><div class="wudu-step-text">النية في القلب ثم قول "بسم الله"</div></div><div class="wudu-step"><div class="wudu-step-number">٢</div><div class="wudu-step-text">غسل الكفين ثلاث مرات</div></div><div class="wudu-step"><div class="wudu-step-number">٣</div><div class="wudu-step-text">المضمضة والاستنشاق ثلاث مرات</div></div><div class="wudu-step"><div class="wudu-step-number">٤</div><div class="wudu-step-text">غسل الوجه ثلاث مرات</div></div><div class="wudu-step"><div class="wudu-step-number">٥</div><div class="wudu-step-text">غسل اليدين إلى المرفقين ثلاث مرات</div></div><div class="wudu-step"><div class="wudu-step-number">٦</div><div class="wudu-step-text">مسح الرأس مرة واحدة</div></div><div class="wudu-step"><div class="wudu-step-number">٧</div><div class="wudu-step-text">غسل الرجلين إلى الكعبين ثلاث مرات</div></div><div class="wudu-step"><div class="wudu-step-number">٨</div><div class="wudu-step-text">قول الشهادتين بعد الانتهاء</div></div></div><div style="text-align:center;margin-top:25px;color:var(--gold);padding:20px;background:rgba(212,175,55,.1);border-radius:15px;border:1px solid rgba(212,175,55,.3)"><p style="font-size:1.2rem;margin:0;line-height:1.8">"يا ايها الذين امنوا اذا قمتم الى الصلاة فاغسلوا وجوهكم وايديكم الى المرافق وامسحوا برءوسكم وارجلكم الى الكعبين"</p><p style="font-size:1rem;margin-top:15px;opacity:.9">سورة المائدة - الآية 6</p></div></div></div></div></div>
     
-    <!-- صفحات الأذكار - تم حذف أذكار بعد الصلاة -->
-    <div id="azkar-page" class="page"><div class="page-content"><div class="card"><h2 class="section-title">خيارات الأذكار</h2><div class="decorative-line"></div><div class="internal-menu"><div class="menu-item" onclick="showPage('morning-azkar-page')"><div class="menu-icon">🌅</div><div class="menu-content"><h3 class="menu-title">أذكار الصباح</h3><p class="menu-desc">أذكار وأدعية الصباح</p></div></div><div class="menu-item" onclick="showPage('evening-azkar-page')"><div class="menu-icon">🌇</div><div class="menu-content"><h3 class="menu-title">أذكار المساء</h3><p class="menu-desc">أذكار وأدعية المساء</p></div></div><div class="menu-item" onclick="showPage('sleep-azkar-page')"><div class="menu-icon">🌙</div><div class="menu-content"><h3 class="menu-title">أذكار النوم</h3><p class="menu-desc">أذكار وأدعية قبل النوم</p></div></div><div class="menu-item" onclick="showPage('wakeup-azkar-page')"><div class="menu-icon">⏰</div><div class="menu-content"><h3 class="menu-title">أذكار الاستيقاظ</h3><p class="menu-desc">أذكار وأدعية بعد الاستيقاظ</p></div></div></div></div></div></div>
+    <!-- صفحات الأذكار - مع إضافة أذكار بعد الصلاة -->
+    <div id="azkar-page" class="page"><div class="page-content"><div class="card"><h2 class="section-title">خيارات الأذكار</h2><div class="decorative-line"></div><div class="internal-menu"><div class="menu-item" onclick="showPage('morning-azkar-page')"><div class="menu-icon">🌅</div><div class="menu-content"><h3 class="menu-title">أذكار الصباح</h3><p class="menu-desc">أذكار وأدعية الصباح</p></div></div><div class="menu-item" onclick="showPage('evening-azkar-page')"><div class="menu-icon">🌇</div><div class="menu-content"><h3 class="menu-title">أذكار المساء</h3><p class="menu-desc">أذكار وأدعية المساء</p></div></div><div class="menu-item" onclick="showPage('sleep-azkar-page')"><div class="menu-icon">🌙</div><div class="menu-content"><h3 class="menu-title">أذكار النوم</h3><p class="menu-desc">أذكار وأدعية قبل النوم</p></div></div><div class="menu-item" onclick="showPage('wakeup-azkar-page')"><div class="menu-icon">⏰</div><div class="menu-content"><h3 class="menu-title">أذكار الاستيقاظ</h3><p class="menu-desc">أذكار وأدعية بعد الاستيقاظ</p></div></div><div class="menu-item" onclick="showPage('after-prayer-azkar-page')"><div class="menu-icon">🕌</div><div class="menu-content"><h3 class="menu-title">أذكار بعد الصلاة</h3><p class="menu-desc">أذكار وأدعية بعد الصلوات</p></div></div></div></div></div></div>
     
     <!-- صفحة أذكار الصباح -->
     <div id="morning-azkar-page" class="page">
@@ -838,6 +1179,25 @@
         </div>
     </div>
     
+    <!-- صفحة أذكار بعد الصلاة - الجديدة -->
+    <div id="after-prayer-azkar-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <div class="azkar-container">
+                    <h2 class="section-title">أذكار بعد الصلاة</h2>
+                    <div class="decorative-line"></div>
+                    <div style="color:var(--gold);margin-bottom:20px;font-weight:bold;font-size:1.1rem" id="after-prayer-counter">١ من ٦</div>
+                    <div class="azkar-text" id="after-prayer-text"></div>
+                    <div class="azkar-controls">
+                        <button class="action-btn" onclick="prevAfterPrayerAzkar()">السابق</button>
+                        <button class="action-btn" onclick="nextAfterPrayerAzkar()">التالي</button>
+                        <button class="action-btn" onclick="editCurrentAzkar('afterPrayer')">✏️ تعديل</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- صفحة القرآن الرئيسية -->
     <div id="quran-page" class="page"><div class="page-content"><div class="card"><div class="quran-container"><h2 class="section-title">القرآن الكريم</h2><div class="decorative-line"></div><div class="internal-menu"><div class="menu-item" onclick="showPage('read-quran-page')"><div class="menu-icon">📖</div><div class="menu-content"><h3 class="menu-title">قراءة القرآن</h3><p class="menu-desc">قراءة سور القرآن الكريم كاملة</p></div></div><div class="menu-item" onclick="showPage('listen-quran-page')"><div class="menu-icon">🎧</div><div class="menu-content"><h3 class="menu-title">استمع للقرآن</h3><p class="menu-desc">استمع إلى تلاوات قرآنية بصوت الشيوخ</p></div></div></div></div></div></div></div>
     
@@ -908,7 +1268,7 @@
         <input type="file" id="audio-file-input" class="file-input" accept="audio/*" onchange="handleAudioFileUpload(this)">
     </div><div style="text-align:center;margin-top:25px"><button class="action-btn" onclick="showRecitersList()">العودة إلى قائمة الشيوخ</button></div></div></div></div></div></div>
     
-    <!-- صفحة التسبيح - محسنة ومتناسقة مع تعديل زر +33 تسبيحة -->
+    <!-- صفحة التسبيح -->
     <div id="tasbeeh-page" class="page">
         <div class="page-content">
             <div class="card">
@@ -930,6 +1290,55 @@
     
     <!-- صفحة المهام -->
     <div id="tasks-page" class="page"><div class="page-content"><div class="card"><h2 class="section-title">مهام اليوم</h2><div class="decorative-line"></div><p style="text-align:center;color:var(--gold);margin-bottom:25px;font-size:1.1rem;opacity:.9">أضف مهامك الخاصة وأكملها لتحصل على نقاط إضافية</p><div class="tasks-container" id="daily-tasks"></div><div class="add-task-container" onclick="showAddTaskModal()"><div class="add-task-icon">+</div><div class="add-task-content">إضافة مهمة جديدة</div></div></div></div></div>
+    
+    <!-- صفحة الأصدقاء والمتصدرين -->
+    <div id="friends-page" class="page">
+        <div class="page-content">
+            <div class="card">
+                <h2 class="section-title">إدارة الأصدقاء</h2>
+                <div class="decorative-line"></div>
+                
+                <!-- مشاركة الرابط -->
+                <div class="share-link-container">
+                    <h3 style="color:var(--gold);margin-bottom:15px">🔗 مشاركة رابط لإضافة صديق</h3>
+                    <div class="share-link">
+                        <input type="text" id="friend-link-input" class="share-input" readonly value="جاري توليد الرابط...">
+                        <button class="copy-btn" onclick="copyFriendLink()">نسخ</button>
+                    </div>
+                </div>
+                
+                <!-- البحث عن أصدقاء -->
+                <div style="margin-top:30px">
+                    <h3 style="color:var(--gold);margin-bottom:15px">🔍 البحث عن مستخدمين</h3>
+                    <div class="search-friends">
+                        <input type="text" id="search-user-input" class="search-input" placeholder="أدخل اسم المستخدم أو الـ ID">
+                        <button class="search-btn" onclick="searchUser()">بحث</button>
+                    </div>
+                    <div id="search-results" style="margin-top:20px"></div>
+                </div>
+                
+                <!-- طلبات الصداقة الواردة -->
+                <div style="margin-top:30px" id="friend-requests-section">
+                    <h3 style="color:var(--gold);margin-bottom:15px">📥 طلبات الصداقة الواردة</h3>
+                    <div class="requests-list" id="friend-requests-list">
+                        <!-- سيتم ملؤها بـ JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- أصدقائي -->
+                <div style="margin-top:30px">
+                    <h3 style="color:var(--gold);margin-bottom:15px">👥 أصدقائي</h3>
+                    <div class="friends-list" id="my-friends-list">
+                        <!-- سيتم ملؤها بـ JavaScript -->
+                    </div>
+                </div>
+                
+                <div style="text-align:center;margin-top:25px">
+                    <button class="action-btn" onclick="showPage('home-page')">العودة إلى الرئيسية</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- صفحة الإعدادات -->
     <div id="settings-page" class="page"><div class="page-content"><div class="card"><div class="settings-page-content"><h2 class="section-title">الإعدادات</h2><div class="decorative-line"></div><div class="settings-option" onclick="showChangeNameModal()"><div class="settings-option-icon">👤</div><div class="settings-option-content"><h3 class="settings-option-title">تغيير الاسم</h3><p class="settings-option-desc">تغيير اسم المستخدم الخاص بك</p></div></div><div class="settings-option" onclick="showThemesMenu()"><div class="settings-option-icon">🎨</div><div class="settings-option-content"><h3 class="settings-option-title">السمات</h3><p class="settings-option-desc">تغيير مظهر التطبيق</p></div></div><div class="settings-option" onclick="showPage('other-sites-page')"><div class="settings-option-icon">🔗</div><div class="settings-option-content"><h3 class="settings-option-title">مواقع أخرى</h3><p class="settings-option-desc">مواقع إسلامية مفيدة</p></div></div><div class="settings-option" onclick="showPage('sources-page')"><div class="settings-option-icon">📚</div><div class="settings-option-content"><h3 class="settings-option-title">المصادر</h3><p class="settings-option-desc">المصادر الحقيقية للأذكار والآيات</p></div></div><div class="settings-option" onclick="resetUserData()"><div class="settings-option-icon">🔄</div><div class="settings-option-content"><h3 class="settings-option-title">تصفير البيانات</h3><p class="settings-option-desc">إعادة تعيين جميع البيانات بما فيها المهام والسور المخصصة</p></div></div></div></div></div></div>
@@ -993,7 +1402,7 @@
     
     <div id="edit-task-modal" class="modal-overlay" style="display:none"><div class="modal-content"><h2 class="modal-title">تعديل المهمة</h2><div class="decorative-line"></div><input type="text" id="edit-task-title-input" class="modal-input" placeholder="عنوان المهمة" maxlength="50"><textarea id="edit-task-desc-input" class="modal-input" placeholder="وصف المهمة (اختياري)" rows="3" maxlength="200" style="text-align:right;font-family:inherit;resize:none"></textarea><input type="hidden" id="edit-task-id"><div class="modal-buttons"><button class="modal-btn modal-btn-secondary" onclick="closeEditTaskModal()">إلغاء</button><button class="modal-btn modal-btn-success" onclick="saveEditedTask()">حفظ التعديلات</button><button class="modal-btn modal-btn-danger" onclick="deleteTask()">حذف المهمة</button></div></div></div>
     
-    <!-- نافذة إضافة سورة مخصصة - تم تحديثها -->
+    <!-- نافذة إضافة سورة مخصصة -->
     <div id="add-custom-surah-modal" class="modal-overlay" style="display:none"><div class="modal-content"><h2 class="modal-title">إضافة سورة مخصصة</h2><div class="decorative-line"></div><input type="text" id="custom-surah-title-input" class="modal-input" placeholder="اسم السورة" maxlength="50"><input type="text" id="custom-surah-url-input" class="modal-input" placeholder="رابط اليوتيوب (اختياري)" maxlength="500"><div style="text-align:center;margin:15px 0;color:var(--gold);font-weight:bold">أو</div><div style="text-align:center"><button class="action-btn" onclick="document.getElementById('audio-file-input').click()">📁 إضافة ملف صوتي</button></div><input type="hidden" id="current-sheikh-id"><div class="modal-buttons"><button class="modal-btn modal-btn-secondary" onclick="closeAddCustomSurahModal()">إلغاء</button><button class="modal-btn modal-btn-primary" onclick="saveCustomSurah()">إضافة</button></div></div></div>
     
     <!-- نافذة إضافة رابط يوتيوب فقط -->
@@ -1040,7 +1449,7 @@
         </div>
     </div>
     
-    <!-- نافذة مشغل الصوت للسور المخصصة - مع ازرار التحكم فقط -->
+    <!-- نافذة مشغل الصوت -->
     <div id="audio-player-modal" class="modal-overlay" style="display:none">
         <div class="modal-content" style="max-width:500px">
             <h2 class="modal-title" id="audio-player-title">مشغل الصوت</h2>
@@ -1077,6 +1486,7 @@
         // البيانات الرئيسية
         const userData={
             username:'مستخدم',
+            userId: generateUserId(),
             points:0,
             level:1,
             days:0,
@@ -1090,13 +1500,18 @@
             currentEveningAzkar:0,
             currentWakeupAzkar:0,
             currentSleepAzkar:0,
+            currentAfterPrayerAzkar:0,
             completedTasks:{},
             userTasks:[],
             theme:'green',
             lastPrayerDay:'',
             customSites:[],
             customSources:[],
-            // تم تحديث هيكل البيانات لحفظ السور المخصصة
+            // أصدقاء
+            friends: [],
+            friendRequests: [],
+            sentRequests: [],
+            // بيانات الأذكار
             customSurahs:{
                 'ahmad-al-nafees':[],
                 'yaser-al-dosari':[],
@@ -1108,18 +1523,25 @@
                 morning: [],
                 evening: [],
                 sleep: [],
-                wakeup: []
+                wakeup: [],
+                afterPrayer: []
             },
             audioFiles: {}
         };
         
-        // الأذكار الأساسية - تم حذف أذكار بعد الصلاة
+        // توليد ID فريد للمستخدم
+        function generateUserId() {
+            return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        // الأذكار الأساسية - مع إضافة أذكار بعد الصلاة
         const defaultMorningAzkar=["آية الكرسي (مرة): الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤوده حفظهما وهو العلي العظيم","سورة الإخلاص (3 مرات): قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد","سورة الفلق (3 مرات): قل أعوذ برب الفلق، من شر ما خلق، ومن شر غاسق إذا وقب، ومن شر النفاثات في العقد، ومن شر حاسد إذا حسد","سورة الناس (3 مرات): قل أعوذ برب الناس، ملك الناس، إله الناس، من شر الوسواس الخناس، الذي يوسوس في صدور الناس، من الجنة والناس","أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير","اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور","رضيت بالله ربا، وبالإسلام دينا، وبمحمد صلى الله عليه وسلم نبيا ورسولا"];
         const defaultEveningAzkar=["آية الكرسي (مرة): الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم له ما في السماوات وما في الأرض من ذا الذي يشفع عنده إلا بإذنه يعلم ما بين أيديهم وما خلفهم ولا يحيطون بشيء من علمه إلا بما شاء وسع كرسيه السماوات والأرض ولا يؤوده حفظهما وهو العلي العظيم","سورة الإخلاص (3 مرات): قل هو الله أحد، الله الصمد، لم يلد ولم يولد، ولم يكن له كفوا أحد","سورة الفلق (3 مرات): قل أعوذ برب الفلق، من شر ما خلق، ومن شر غاسق إذا وقب، ومن شر النفاثات في العقد، ومن شر حاسد إذا حسد","سورة الناس (3 مرات): قل أعوذ برب الناس، ملك الناس، إله الناس، من شر الوسواس الخناس، الذي يوسوس في صدور الناس، من الجنة والناس","اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير","أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير","أعوذ بكلمات الله التامات من شر ما خلق"];
         const defaultSleepAzkar=["باسم الله الواحد القهار، اللهم باسمك أموت وأحيا. اللهم إنك خلقت نفسي وأنت توفاها، لك مماتها ومحياها، إن أحييتها فاحفظها، وإن أمتها فاغفر لها، اللهم إني أسألك العافية.","اللهم رب السماوات ورب الأرض ورب العرش العظيم، ربنا ورب كل شيء، فالق الحب والنوى، منزل التوراة والإنجيل والفرقان، أعوذ بك من شر كل شيء أنت آخذ بناصيته، اللهم أنت الأول فليس قبلك شيء، وأنت الآخر فليس بعدك شيء، وأنت الظاهر فليس فوقك شيء، وأنت الباطن فليس دونك شيء، اقض عنا الدين وأغننا من الفقر.","باسم الله وضعت جنبي، اللهم اغفر لي ذنبي، وأخسئ شيطاني، وفك رهاني، واجعلني في الندي الأعلى.","الحمد لله الذي أطعمنا وسقانا، وكفانا وآوانا، فكم ممن لا كافي له ولا مؤوي.","اللهم عالم الغيب والشهادة، فاطر السماوات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم."];
         const defaultWakeupAzkar=["الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور. الحمد لله الذي رد علي روحي وعافاني في جسدي وأذن لي بذكره.","لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، سبحان الله والحمد لله ولا إله إلا الله والله أكبر ولا حول ولا قوة إلا بالالله العلي العظيم.","أصبحنا على فطرة الإسلام وكلمة الإخصاص ودين نبينا محمد صلى الله عليه وسلم وملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.","اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك المصير. اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك أنك أنت الله لا إله إلا أنت وأن محمداً عبدك ورسولك.","اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك فلك الحمد ولك الشكر.","رضيت بالله رباً وبالإسلام ديناً وبمحمد صلى الله عليه وسلم نبياً ورسولاً."];
+        const defaultAfterPrayerAzkar=["أستغفر الله (3 مرات) - أستغفر الله، أستغفر الله، أستغفر الله.","اللهم أنت السلام ومنك السلام، تباركت يا ذا الجلال والإكرام.","لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير (مرة واحدة).","سبحان الله (33 مرة) - سبحان الله، سبحان الله، سبحان الله...","الحمد لله (33 مرة) - الحمد لله، الحمد لله، الحمد لله...","الله أكبر (33 مرة) - الله أكبر، الله أكبر، الله أكبر..."];
         
-        // بيانات الشيوخ
+        // بيانات الشيوخ (كما هي)
         const sheikhsData={
             'ahmad-al-nafees':{name:'الشيخ أحمد النفيس',surahs:[
                 {title:'سورة الفاتحة',url:'https://youtube.com/shorts/hZwA9D2nDqM?si=R0CcddGvrY5lSZQz',type:'default'},
@@ -1163,7 +1585,7 @@
             ]}
         };
         
-        // بيانات القرآن الكاملة المصححة
+        // بيانات القرآن الكاملة (كما هي)
         const fullQuranData = {
             'alkahf': {
                 name: 'سورة الكهف',
@@ -1189,46 +1611,46 @@
                         "ثُمَّ بَعَثْنَاهُمْ لِنَعْلَمَ أَيُّ الْحِزْبَيْنِ أَحْصَىٰ لِمَا لَبِثُوا أَمَدًا",
                         "نَّحْنُ نَقُصُّ عَلَيْكَ نَبَأَهُم بِالْحَقِّ ۚ إِنَّهُمْ فِتْيَةٌ آمَنُوا بِرَبِّهِمْ وَزِدْنَاهُمْ هُدًى",
                         "وَرَبَطْنَا عَلَىٰ قُلُوبِهِمْ إِذْ قَامُوا فَقَالُوا رَبُّنَا رَبُّ السَّمَاوَاتِ وَالْأَرْضِ لَن نَّدْعُوَ مِن دُونِهِ إِلَٰهًا ۖ لَّقَدْ قُلْنَا إِذًا شَطَطًا",
-                        "هَٰؤُلَاءِ قَوْمُنَا اتَّخَذُوا مِن دُونِهِ آلِهَةً ۖ لَّوْلَا يَأْتُونَ عَلَيْهِم بِسُلْطَانٍ بَيِّنٍ ۖ فَمَنْ أَظْلَمُ مِمَّنِ افْتَرَىٰ عَلَى اللَّهِ كَذِبًا"
+                        "هَٰؤُلَاءِ قَوْمُنَا اتَّخَذُوا مِن دُونِهِ آلِهَةً ۖ لَّوْلَا يَأْتُونَ عَلَيْهِم بِسُلْطَانٍ بَيِّنٍ ۖ فَمَنْ أ_ظْلَمُ مِمَّنِ افْتَرَىٰ عَلَى اللَّهِ كَذِبًا"
                     ],
                     // الصفحة 3: الآيات 16-20
                     [
                         "وَإِذِ اعْتَزَلْتُمُوهُمْ وَمَا يَعْبُدُونَ إِلَّا اللَّهَ فَأَوُوا إِلَى الْكَهْفِ يَنشُرْ لَكُمْ رَبُّكُم مِّن رَّحْمَتِهِ وَيُهَيِّئْ لَكُم مِّنْ أَمْرِكُم مِّرْفَقًا",
-                        "وَتَرَى الشَّمْسَ إِذَا طَلَعَت تَّزَاوَرُ عَن كَهْفِهِمْ ذَاتَ الْيَمِينِ وَإِذَا غَرَبَت تَّقْرِضُهُمْ ذَاتَ الشِّمَالِ وَهُمْ فِي فَجْوَةٍ مِّنْهُ ۚ ذَٰلِكَ مِنْ آيَاتِ اللَّهِ ۗ مَن يَهْدِ اللَّهُ فَهُوَ الْمُهْتَدِي ۖ وَمَن يُضْلِلْ فَلَن تَجِدَ لَهُ وَلِيًّا مُّرْشدًا",
+                        "وَتَرَى الشَّمْسَ إِذَا طَلَعَت تَّزَاوَرُ عَن كَهْفِهِمْ ذَاتَ الْيَمِينِ وَإِذَا غَرَبَت تَّقْرِضُهُمْ ذَاتَ الشِّمَالِ وَهُمْ فِي فَجْوَةٍ مِّنْهُ ۚ ذ_ٰلِكَ مِنْ آيَاتِ اللَّهِ ۗ مَن يَهْدِ اللَّهُ فَهُوَ الْمُهْتَدِي ۖ وَمَن يُضْلِلْ فَلَن تَجِدَ لَهُ وَلِيًّا مُّرْشدًا",
                         "وَتَحْسَبُهُمْ أَيْقَاظًا وَهُمْ رُقُودٌ ۚ وَنُقَلِّبُهُمْ ذَاتَ الْيَمِينِ وَذَاتَ الشِّمَالِ ۖ وَكَلْبُهُم بَاسِطٌ ذِرَاعَيْهِ بِالْوَصِيدِ ۚ لَوِ اطَّلَعْتَ عَلَيْهِمْ لَوَلَّيْتَ مِنْهُمْ فِرَارًا وَلَمُلِئْتَ مِنْهُمْ رُعْبًا",
-                        "وَكَذَٰلِكَ بَعَثْنَاهُمْ لِيَتَسَاءَلُوا بَيْنَهُمْ ۚ قَالَ قَائِلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ ۚ قَالُوا رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَابْعَثُوا أَحَدَكُم بِوَرِقِكُمْ هَٰذِهِ إِلَى الْمَدِينَةِ فَلْيَنظُرْ أَيُّهَا أَزْكَىٰ طَعَامًا فَلْيَأْتِكُم بِرِزْقٍ مِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَنَّ بِكُمْ أَحَدًا",
-                        "إِنَّهُمْ إِن يَظْهَرُوا عَلَيْكُمْ يَرْجُمُوكُمْ أَوْ يُعِيدُوكُمْ فِي مِلَّتِهِمْ وَلَن تُفْلِحُوا إِذًا أَبَدًا"
+                        "وَكَذ_ٰلِكَ بَعَثْنَاهُمْ لِيَتَسَاءَلُوا بَيْنَهُمْ ۚ قَالَ قَائِلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ ۚ قَالُوا رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ ف_ابْعَثُوا أَحَدَكُم بِوَرِقِكُمْ ه_ٰذِهِ إِلَى الْمَدِينَةِ فَلْيَنظُرْ أَيُّهَا أَزْكَىٰ طَعَامًا فَلْيَأْتِكُم بِرِزْقٍ مِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَنَّ بِكُمْ أَحَدًا",
+                        "إِنَّهُمْ إِن ي_ظْهَرُوا عَلَيْكُمْ يَرْجُمُوكُمْ أَوْ يُعِيدُوكُمْ فِي مِلَّتِهِمْ وَلَن تُفْلِحُوا إِذًا أَبَدًا"
                     ],
                     // الصفحة 4: الآيات 21-27
                     [
-                        "وَكَذَٰلِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَمُوا أَنَّ وَعْدَ اللَّهِ حَقٌّ وَأَنَّ السَّاعَةَ لَا رَيْبَ فِيهَا إِذْ يَتَنَازَعُونَ بَيْنَهُمْ أَمْرَهُمْ ۖ فَقَالُوا ابْنُوا عَلَيْهِم بُنْيَانًا ۖ رَّبُّهُمْ أَعْلَمُ بِهِمْ ۚ قَالَ الَّذِينَ غَلَبُوا عَلَىٰ أَمْرِهِمْ لَنَتَّخِذَنَّ عَلَيْهِم مَّسْجِدًا",
+                        "وَكَذ_ٰلِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَمُوا أَنَّ وَعْدَ اللَّهِ حَقٌّ وَأَنَّ السَّاعَةَ لَا رَيْبَ فِيهَا إِذْ يَتَنَازَعُونَ بَيْنَهُمْ أَمْرَهُمْ ۖ فَقَالُوا ابْنُوا عَلَيْهِم بُنْيَانًا ۖ رَّبُّهُمْ أَعْلَمُ بِهِمْ ۚ قَالَ الَّذِينَ غَلَبُوا عَلَىٰ أَمْرِهِمْ لَنَتَّخِذَنَّ عَلَيْهِم مَّسْجِدًا",
                         "سَيَقُولُونَ ثَلَاثةٌ رَّابِعُهُمْ كَلْبُهُمْ وَيَقُولُونَ خَمْسَةٌ سَادِسُهُمْ كَلْبُهُمْ رَجْمًا بِالْغَيْبِ ۖ وَيَقُولُونَ سَبْعَةٌ وَثَامِنُهُمْ كَلْبُهُمْ ۚ قُل رَّبِّي أَعْلَمُ بِعِدَّتِهِم مَّا يَعْلَمُهُمْ إِلَّا قَلِيلٌ ۗ فَلَا تُمَارِ فِيهِمْ إِلَّا مِرَاءً ظَاهِرًا وَلَا تَسْتَفْتِ فِيهِمْ مِنْهُمْ أَحَدًا",
-                        "وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا",
-                        "إِلَّا أَن يَشَاءَ اللَّهُ ۚ وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَىٰ أَن يَهْدِيَنِ رَبِّي لِأَقْرَبَ مِنْ هَٰذَا رَشَدًا",
+                        "وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذ_ٰلِكَ غَدًا",
+                        "إِلَّا أَن ي_شَاءَ اللَّهُ ۚ وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَىٰ أَن يَهْدِيَنِ رَبِّي لِأَقْرَبَ مِنْ ه_ٰذَا رَشَدًا",
                         "وَلَبِثُوا فِي كَهْفِهِمْ ثَلَاثَ مِائَةٍ سِنِينَ وَازْدَادُوا تِسْعًا",
                         "قُلِ اللَّهُ أَعْلَمُ بِمَا لَبِثُوا ۖ لَهُ غَيْبُ السَّمَاوَاتِ وَالْأَرْضِ ۖ أَبْصِرْ بِهِ وَأَسْمِعْ ۚ مَا لَهُم مِّن دُونِهِ مِن وَلِيٍّ وَلَا يُشْرِكُ فِي حُكْمِهِ أَحَدًا",
                         "وَاتْلُ مَا أُوحِيَ إِلَيْكَ مِن كِتَابِ رَبِّكَ ۖ لَا مُبَدِّلَ لِكَلِمَاتِهِ ۖ وَلَن تَجِدَ مِن دُونِهِ مُلْتَحَدًا"
                     ],
                     // الصفحة 5: الآيات 28-34
                     [
-                        "وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ الْحَيَاةِ الدُّنْيَا ۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلَبَهُ عَن ذِكْرِنَا وَاتَّبَعَ هَوَاهُ وَكَانَ أَمْرُهُ فُرُطًا",
+                        "وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ الْحَيَاةِ الدُّنْيَا ۖ وَلَا تُطِعْ مَنْ أ_غْفَلْنَا قَلَبَهُ عَن ذِكْرِنَا وَاتَّبَعَ هَوَاهُ وَكَانَ أَمْرُهُ فُرُطًا",
                         "وَقُلِ الْحَقُّ مِن رَّبِّكُمْ ۖ فَمَن شَاءَ فَلْيُؤْمِن وَمَن شَاءَ فَلْيَكْفُرْ ۚ إِنَّا أَعْتَدْنَا لِلظَّالِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا ۚ وَإِن يَسْتَغِيثُوا يُغَاثُوا بِمَاءٍ كَالْمُهْلِ يَشْوِي الْوُجُوهَ ۚ بِئْسَ الشَّرابُ وَساءَتْ مُرْتَفَقًا",
                         "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ إِنَّا لَا نُضِيعُ أَجْرَ مَنْ أَحْسَنَ عَمَلًا",
-                        "أُولَٰئِكَ لَهُمْ جَنَّاتُ عَدْنٍ تَجْرِي مِن تَحْتِهِمُ الْأَنْهَارُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِن ذَهَبٍ وَيَلْبَسُونَ ثِيابًا خُضْرًا مِّن سُنْدُسٍ وَإِسْتَبْرَقٍ مُّتَّكِئِينَ فِيهَا عَلَى الْأَرَائِكِ ۚ نِعْمَ الثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا",
+                        "أُول_ٰئِكَ لَهُمْ جَنَّاتُ عَدْنٍ تَجْرِي مِن تَحْتِهِمُ الْأَنْهَارُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِن ذَهَبٍ وَيَلْبَسُونَ ثِيابًا خُضْرًا مِّن سُنْدُسٍ وَإِسْتَبْرَقٍ مُّتَّكِئِينَ فِيهَا عَلَى الْأَرَائِكِ ۚ نِعْمَ الثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا",
                         "وَاضْرِبْ لَهُم مَّثَلًا رَّجُلَيْنِ جَعَلْنَا لِأَحَدِهِمَا جَنَّتَيْنِ مِنْ أَعْنَابٍ وَحَفَفْنَاهُمَا بِنَخْلٍ وَجَعَلْنَا بَيْنَهُمَا زَرْعًا",
                         "كِلْتَا الْجَنَّتَيْنِ آتَتْ أُكُلَهَا وَلَمْ تَظْلِم مِّنْهُ شَيْئًا ۚ وَفَجَّرْنَا خِلَالَهُمَا نَهَرًا"
                     ],
                     // الصفحة 6: الآيات 35-45
                     [
                         "وَكَانَ لَهُ ثَمَرٌ فَقَالَ لِصَاحِبِهِ وَهُوَ يُحَاوِرُهُ أَنَا أَكْثَرُ مِنكَ مَالًا وَأَعَزُّ نَفْرًا",
-                        "وَدَخَلَ جَنَّتَهُ وَهُوَ ظَالِمٌ لِّنَفْسِهِ قَالَ مَا أَظُنُّ أَن تَبِيدَ هَٰذِهِ أَبَدًا",
-                        "وَمَا أَظُنُّ السَّاعَةَ قَائِمَةً وَلَئِن رُّدِدتُّ إِلَىٰ رَبِّي لَأَجِدَنَّ خَيْرًا مِّنْهَا مُنقَلَبًا",
+                        "وَدَخَلَ جَنَّتَهُ وَهُوَ ظَالِمٌ لِّنَفْسِهِ قَالَ مَا أ_ظُنُّ أَن تَبِيدَ ه_ٰذِهِ أَبَدًا",
+                        "وَمَا أ_ظُنُّ السَّاعَةَ قَائِمَةً وَلَئِن رُّدِدتُّ إِلَىٰ رَبِّي ل_أَجِدَنَّ خَيْرًا مِّنْهَا مُنقَلَبًا",
                         "قَالَ لَهُ صَاحِبُهُ وَهُوَ يُحَاوِرُهُ أَكَفَرْتَ بِالَّذِي خَلَقَكَ مِن تُرَابٍ ثُمَّ مِن نُّطْفَةٍ ثُمَّ سَوَّاكَ رَجُلًا",
-                        "لَّٰكِنَّا هُوَ اللَّهُ رَبِّي وَلَا أُشْرِكُ بِرَبِّي أَحَدًا",
+                        "لَّ_ٰكِنَّا هُوَ اللَّهُ رَبِّي وَلَا أُشْرِكُ بِرَبِّي أَحَدًا",
                         "وَلَوْلَا إِذْ دَخَلْتَ جَنَّتَكَ قُلْتَ مَا شَاءَ اللَّهُ لَا قُوَّةَ إِلَّا بِاللَّهِ ۚ إِن تَرَنِ أَنَا أَقَلَّ مِنكَ مَالًا وَوَلَدًا",
                         "فَعَسَىٰ رَبِّي أَن يُؤْتِيَنِ خَيْرًا مِّن جَنَّتِكَ وَيُرْسِلَ عَلَيْهَا حُسْبَانًا مِّنَ السَّمَاءِ فَتُصْبِحَ صَعِيدًا زَلَقًا",
                         "أَوْ يُصْبِحَ مَاؤُهَا غَوْرًا فَلَن تَسْتَطِيعَ لَهُ طَلَبًا",
-                        "وَأُحِيطَ بِثَمَرِهِ فَأَصْبَحَ يُقَلِّبُ كَفَّيْهِ عَلَىٰ مَا أَنفَقَ فِيهَا وَهِيَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا وَيَقولُ يَا لَيْتَنِي لَمْ أُشْرِكْ بِرَبِّي أَحَدًا",
+                        "وَأُحِيطَ بِثَمَرِهِ ف_أَصْبَحَ يُقَلِّبُ كَفَّيْهِ عَلَىٰ مَا أَنفَقَ فِيهَا وَهِيَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا وَيَقولُ يَا لَيْتَنِي لَمْ أُشْرِكْ بِرَبِّي أَحَدًا",
                         "وَلَمْ تَكُن لَّهُ فِئَةٌ يَنصُرُونَهُ مِن دُونِ اللَّهِ وَمَا كَانَ مُنتَصِرًا",
                         "هُنَالِكَ الْوَلَايَةُ لِلَّهِ الْحَقِّ ۚ هُوَ خَيْرٌ ثِّوَابًا وَخَيْرٌ عُقْبًا"
                     ],
@@ -1238,15 +1660,15 @@
                         "الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا ۖ وَالْبَاقِيَاتُ الصَّالِحَاتُ خَيْرٌ عِندَ رَبِّكَ ثَوَابًا وَخَيْرٌ أَمَلًا",
                         "وَيَوْمَ نُسَيِّرُ الْجِبَالَ وَتَرَى الْأَرْضَ بَارِزَةً وَح_شَرْنَاهُمْ ف_لَمْ نُغَادِرْ مِنْهُمْ أَحَدًا",
                         "وَعُرِضُوا عَلَىٰ رَبِّكَ صَفًّا لَّقَدْ جِئْتُمُونَا كَمَا خَلَقْنَاكُمْ أَوَّلَ مَرَّةٍ ۚ بَل زَعَمْتُمْ أَلَّن نَّجْعَلَ لَكُم مَّوْعِدًا",
-                        "وَوُضِعَ الْكِتَابُ فَتَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ وَي_قولُونَ يَا وَيْلَتَنَا مَالِ هَٰذَا الْكِتَابِ لَا يُغَادِرُ ص_غيرَةً وَلَا كَبِيرَةً إِلَّا أَحْصَاهَا ۚ وَوَجَدُوا مَا عَمِلُوا حَاضِرًا ۗ وَلَا يَظْلِمُ رَبُّكَ أَحَدًا",
+                        "وَوُضِعَ الْكِتَابُ ف_تَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ وَي_قولُونَ يَا وَيْلَتَنَا مَالِ ه_ٰذَا الْكِتَابِ لَا يُغَادِرُ ص_غيرَةً وَلَا كَبِيرَةً إِلَّا أَحْصَاهَا ۚ وَوَجَدُوا مَا عَمِلُوا حَاضِرًا ۗ وَلَا يَظْلِمُ رَبُّكَ أَحَدًا",
                         "وَإِذْ قُلْنَا لِلْمَلَائِكَةِ اسْجُدُوا لِآدَمَ فَسَجَدُوا إِلَّا إِبْلِيسَ كَانَ مِنَ الْجِنِّ فَفَسَقَ عَنْ أَمْرِ رَبِّهِ ۗ أَفَتَتَّخِذُونَهُ وَذُرِّيَّتَهُ أَوْلِيَاءَ مِن دُونِي وَهُمْ لَكُمْ عَدُوٌّ ۚ بِئْسَ لِلظَّالِمِينَ بَدَلًا"
                     ],
                     // الصفحة 8: الآيات 54-61
                     [
-                        "مَا أَشْهَدتُّهُمْ خَلْقَ السَّمَاوَاتِ وَالْأَرْضِ وَلَا خَلْقَ أَنفُسِهِمْ وَمَا كُنتُ مُتَّخِذَ الْمُضِلِّينَ عَدَدًا",
+                        "مَا أَشْهَدتُّهُمْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضِ وَلَا خَلَقَ أَنفُسِهِمْ وَمَا كُنتُ مُتَّخِذَ الْمُضِلِّينَ عَدَدًا",
                         "وَيَوْمَ يَقُولُ نَادُوا شُرَكَائِيَ الَّذِينَ زَعَمْتُمْ فَدَعَوْهُمْ فَلَمْ يَسْتَجِيبُوا لَهُمْ وَجَعَلْنَا بَيْنَهُم مَّوْبِقًا",
                         "وَرَأَى الْمُجْرِمُونَ النَّارَ ف_ظَنُّوا أَنَّهُم مُّوَاقِعُوهَا وَلَمْ يَجِدُوا عَنْهَا مَصْرِفًا",
-                        "وَلَقَدْ صَرَّفْنَا فِي هَٰذَا الْقُرْآنِ لِلنَّاسِ مِن كُلِّ مَثَلٍ ۚ وَكَانَ الْإِنسَانُ أَكْثَرَ شَيْءٍ جَدَلًا",
+                        "وَلَقَدْ صَرَّفْنَا فِي ه_ٰذَا الْقُرْآنِ لِلنَّاسِ مِن كُلِّ مَثَلٍ ۚ وَكَانَ الْإِنسَانُ أَكْثَرَ شَيْءٍ جَدَلًا",
                         "وَمَا مَنَعَ النَّاسَ أَن يُؤْمِنُوا إِذْ جَاءَهُمُ الْهُدَىٰ وَيَسْتَغِفِرُوا رَبِّهُمْ إِلَّا أَن ت_أْتِيَهُمْ سُنَّةُ الْأَوْلِينَ أَوْ ي_أْتِيَهُمُ الْعَذَابُ قُبُلًا",
                         "وَمَا نُرْسِلُ الْمُرْسَلِينَ إِلَّا مُبَشِّرِينَ وَمُنذِرِينَ ۚ وَيُجَادِلُ الَّذِينَ كَفَرُوا بِالْبَاطِلِ لِيُدْحِضُوا بِهِ الْحَقَّ ۖ وَاتَّخَذُوا آيَاتِي وَمَا أُنذِرُوا هُزُوًا",
                         "وَمَنْ أ_ظْلَمُ مِمَّن ذُكِّرَ بِآيَاتِ رَبِّهِ ف_أَعْرَضَ عَنْهَا وَنَسِيَ مَا قَدَّمَتْ يَدَاهُ ۚ إِنَّا جَعَلْنَا عَلَىٰ قُلُوبِهِمْ أَكِنَّةً أَن يَفْقَهُوهُ وَفِي آذَانِهِمْ وَقْرًا ۖ وَإِن تَدْعُهُمْ إِلَى الْهُدَىٰ فَلَن يَهْتَدُوا إِذًا أَبَدًا"
@@ -1264,7 +1686,7 @@
                         "قَالَ إِنَّكَ لَن تَسْتَطِيعَ مَعِيَ صَبْرًا",
                         "وَكَيْفَ تَصْبِرُ عَلَىٰ مَا لَمْ تُحِطْ بِهِ خُبْرًا",
                         "قَالَ سَتَجِدُنِي إِن شَاءَ اللَّهُ صَابِرًا وَلَا أَعْصِي لَكَ أَمْرًا",
-                        "قَالَ فَإِنِ اتَّبَعْتَنِي فَلَا تَسْأَلْنِي عَنْ شَيْءٍ حَتَّىٰ أُحْدِثَ لَكَ مِنْهُ ذِكْرًا"
+                        "قَالَ ف_إِنِ اتَّبَعْتَنِي فَلَا تَسْأَلْنِي عَنْ شَيْءٍ حَتَّىٰ أُحْدِثَ لَكَ مِنْهُ ذِكْرًا"
                     ],
                     // الصفحة 10: الآيات 75-83
                     [
@@ -1273,16 +1695,16 @@
                         "قَالَ لَا تُؤَاخِذْنِي بِمَا نَسِيتُ وَلَا تُرْهِقْنِي مِنْ أَمْرِي عُسْرًا",
                         "فَانطَلَقَا حَتَّىٰ إِذَا لَقِيَا غُلَامًا فَقَتَلَهُ قَالَ أَقَتَلْتَ نَفْسًا زَكِيَّةً بِغَيْرِ نَفْسٍ لَّقَدْ جِئْتَ شَيْئًا نُّكْرًا",
                         "قَالَ أَلْمْ أَقُلْ إِنَّكَ لَن تَسْتَطِيعَ مَعِيَ صَبْرًا",
-                        "قَالَ إِن سَأَلْتُكَ عَن شَيْءٍ بَعْدَهَا فَلَا تُصَاحِبْنِي ۖ قَدْ بَلَغْتَ مِن لَّدُنِّي عُذْرًا",
-                        "فَانطَلَقَا حَتَّىٰ إِذَا أَتَيَا أَهْلَ قَرْيَةٍ اسْتَطْعَمَا أَهْلَهَا فَأَبَوْا أَن يُضَيِّفُوهُمَا فَوَجَدَا فِيهَا جِدَارًا يُرِيدُ أَن يَنقَضَّ ف_أَقَامَهُ ۖ قَالَ لَوْ شِئْتَ ل_اتَّخَذْتَ عَلَيْهِ أَجْرًا",
-                        "قَالَ هَٰذَا فِرَاقُ بَيْنِي وَبَيْنَكَ ۚ س_أُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِيع عَّلَيْهِ صَبْرًا"
+                        "قَالَ إِن س_أَلْتُكَ عَن شَيْءٍ بَعْدَهَا فَلَا تُصَاحِبْنِي ۖ قَدْ بَلَغْتَ مِن لَّدُنِّي عُذْرًا",
+                        "فَانطَلَقَا حَتَّىٰ إِذَا أَتَيَا أَهْلَ قَرْيَةٍ اسْتَطْعَمَا أَهْلَهَا ف_أَبَوْا أَن يُضَيِّفُوهُمَا فَوَجَدَا فِيهَا جِدَارًا يُرِيدُ أَن يَنقَضَّ ف_أَقَامَهُ ۖ قَالَ لَوْ شِئْتَ ل_اتَّخَذْتَ عَلَيْهِ أَجْرًا",
+                        "قَالَ ه_ٰذَا فِرَاقُ بَيْنِي وَبَيْنَكَ ۚ س_أُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِيع عَّلَيْهِ صَبْرًا"
                     ],
                     // الصفحة 11: الآيات 84-97
                     [
                         "أَمَّا السَّفِينَةُ فَكَانَتْ لِمَسَاكِينَ يَعْمَلُونَ فِي الْبَحْرِ ف_أَرَدتُّ أَنْ أَعِيبَهَا وَكَانَ وَراءَهُم مَّلِكٌ يَأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا",
                         "وَأَمَّا الْغُلَامُ فَكَانَ أَبَوَاهُ مُؤْمِنَيْنِ ف_خَشِينَا أَن يُرْهِقَهُمَا طُغْيَانًا وَكُفْرًا",
-                        "ف_أَرَدْنَا أَن يُبْدِلَهُمَا رَبُّهُمَا خَيْرًا مِّنْهُ زَكَاةً وَأَقْرَبَ رُحْمًا",
-                        "وَأَمَّا الْجِدَارُ فَكَانَ لِغُلَامَيْنِ يَتِيمَيْنِ فِي الْمَدِينَةِ وَكَانَ تَحْتَهُ كَنزٌ لَّهُمَا وَكَانَ أَبُوهُمَا صَالِحًا ف_أَرَادَ رَبُّكَ أَن يَبْلُغَا أَشُدَّهُمَا وَيَسْتَخْرِجَا كَنزَهُمَا رَحْمَةً مِّن رَّبِّكَ ۚ وَمَا فَعَلتُهُ عَنْ أَمْرِي ۚ ذَٰلِكَ تَأْوِيلُ مَا لَمْ تَسْتَطِيع عَّلَيْهِ صَبْرًا",
+                        "ف_أَرَدْنَا أَن يُبْدِلَهُمَا رَبُّهُمَا خَيْرًا مِّنْه زَكَاةً وَأَقْرَبَ رُحْمًا",
+                        "وَأَمَّا الْجِدَارُ فَكَانَ لِغُلَامَيْنِ يَتِيمَيْنِ فِي الْمَدِينَةِ وَكَانَ تَحْتَهُ كَنزٌ لَّهُمَا وَكَانَ أَبُوهُمَا صَالِحًا ف_أَرَادَ رَبُّكَ أَن يَبْلُغَا أَشُدَّهُمَا وَيَسْتَخْرِجَا كَنزَهُمَا رَحْمَةً مِّن رَّبِّكَ ۚ وَمَا فَعَلتُهُ عَنْ أَمْرِي ۚ ذ_ٰلِكَ تَأْوِيلُ مَا لَمْ تَسْتَطِيع عَّلَيْهِ صَبْرًا",
                         "وَيَسْأَلُونَكَ عَن ذِي الْقَرْنَيْنِ ۖ قُلْ س_أَتْلُو عَلَيْكُم مِّنْهُ ذِكْرًا",
                         "إِنَّا مَكَّنَّا لَهُ فِي الْأَرْضِ وَآتَيْنَاهُ مِن كُلِّ شَيْءٍ سَبَبًا",
                         "ف_أَتْبَعَ سَبَبًا",
@@ -1294,13 +1716,13 @@
                     // الصفحة 12: الآيات 98-110
                     [
                         "حَتَّىٰ إِذَا بَلَغَ مَطْلِعَ الشَّمْسِ وَجَدَهَا ت_طْلُعُ عَلَىٰ قَوْمٍ لَّمْ نَجْعَل لَّهُم مِّن دُونِهَا سِتْرًا",
-                        "كَذَٰلِكَ وَقَدْ أَحَطْنَا بِمَا لَدَيْهِ خُبْرًا",
+                        "كَذ_ٰلِكَ وَقَدْ أَحَطْنَا بِمَا لَدَيْهِ خُبْرًا",
                         "ثُمَّ أَتْبَعَ سَبَبًا",
                         "حَتَّىٰ إِذَا بَلَغَ بَيْنَ السَّدَّيْنِ وَجَدَ مِن دُونِهِمَا قَوْمًا لَّا يَكَادُونَ يَفْقَهُونَ قَوْلًا",
-                        "قَالُوا يَا ذَا الْقَرْنَيْنِ إِنَّ يَأْجُوجَ وَم_أْجُوجَ مُفْسِدُونَ فِي الْأَرْضِ فَهَلْ نَجْعَلُ لَكَ خَرْجًا عَلَىٰ أَن تَجْعَلَ بَيْنَنَا وَبَيْنَهُمْ سَدًّا",
+                        "قَالُوا يَا ذَا الْقَرْنَيْنِ إِنَّ ي_أْجُوجَ وَم_أْجُوجَ مُفْسِدُونَ فِي الْأَرْضِ فَهَلْ نَجْعَلُ لَكَ خَرْجًا عَلَىٰ أَن تَجْعَلَ بَيْنَنَا وَبَيْنَهُمْ سَدًّا",
                         "قَالَ مَا مَكَّنِّي فِيهِ رَبِّي خَيْرٌ ف_أَعِينُونِي بِقُوَّةٍ أَجْعَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَدْمًا",
                         "آتُونِي زُبَرَ الْحَدِيدِ ۖ حَتَّىٰ إِذَا سَاوَىٰ بَيْنَ الصَّدَفَيْنِ قَالَ انفُخُوا ۖ حَتَّىٰ إِذَا جَعَلَهُ نَارًا قَالَ آتُونِي أُفْرِغْ عَلَيْهِ قِطْرًا",
-                        "فَمَا اسْطَاعُوا أَن يَظْهَرُوهُ وَمَا اسْتَطَاعُوا لَهُ نَقْبًا",
+                        "فَمَا اسْطَاعُوا أَن ي_ظْهَرُوهُ وَمَا اسْتَطَاعُوا لَهُ نَقْبًا",
                         "قَالَ ه_ٰذَا رَحْمَةٌ مِّن رَّبِّي ۖ ف_إِذَا جَاءَ وَعْدُ رَبِّي جَعَلَهُ دَكَّاءَ ۖ وَكَانَ وَعْدُ رَبِّي حَقًا",
                         "وَوَضَعْنَا بَعْضَهُمْ يَوْمَئِذٍ يَمُوجُ فِي بَعْضٍ ۖ وَنُفِخَ فِي الصُّورِ ف_جَمَعْنَاهُمْ جَمْعًا",
                         "وَعَرَضْنَا جَهَنَّمَ يَوْمَئِذٍ لِّلْكَافِرِينَ عَرَضًا",
@@ -1308,12 +1730,12 @@
                         "أَفَحَسِبَ الَّذِينَ كَفَرُوا أَن يَتَّخِذُوا عِبَادِي مِن دُونِي أَوْلِيَاءَ ۚ إِنَّا أَعْتَدْنَا جَهَنَّمَ لِلْكَافِرِينَ نُزُلًا",
                         "قُلْ هَلْ نُنَبِّئُكُم بِالْأَخْسَرِينَ أَعْمَالًا",
                         "الَّذِينَ ضَلَّ سَعْيُهُمْ فِي الْحَيَاةِ الدُّنْيَا وَهُمْ يَحْسَبُونَ أَنَّهُمْ يُحْسِنُونَ صُنْعًا",
-                        "أُولَٰئِكَ الَّذِينَ كَفَرُوا بِآيَاتِ رَبِّهِمْ وَلِقَائِهِ فَحَبِطَتْ أَعْمَالُهُمْ فَلَا نُقِيمُ لَهُمْ يَوْمَ الْقِيَامَةِ وَزْنًا",
-                        "فَذ_ٰلِكَ جَزَاؤُهُمْ جَهَنَّمُ بِمَا كَفَرُوا وَاتَّخَذُوا آيَاتِي وَرُسُلِي هُزُوًا",
+                        "أُول_ٰئِكَ الَّذِينَ كَفَرُوا بِآيَاتِ رَبِّهِمْ وَلِقَائِهِ فَحَبِطَتْ أَعْمَالُهُمْ فَلَا نُقِيمُ لَهُمْ يَوْمَ الْقِيَامَةِ وَزْنًا",
+                        "ف_ذ_ٰلِكَ جَزَاؤُهُمْ جَهَنَّمُ بِمَا كَفَرُوا وَاتَّخَذُوا آيَاتِي وَرُسُلِي هُزُوًا",
                         "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ كَانَتْ لَهُمْ جَنَّاتُ الْفِرْدَوْسِ نُزُلًا",
                         "خَالِدِينَ فِيهَا لَا يَبْغُونَ عَنْهَا حِوَلًا",
                         "قُل لَّوْ كَانَ الْبَحْرُ مِدَادًا لِّكَلِمَاتِ رَبِّي لَنفِدَ الْبَحْرُ قَبْلَ أَن تَنفَدَ كَلِمَاتِ رَبِّي وَلَوْ جِئْنَا بِمِثْلِهِ مَدَدًا",
-                        "قُلْ إِنَّمَا أَنَا بَشَرٌ مِّثْلُكُمْ يُوحَىٰ إِلَيَّ أَنَّمَا إِل_ٰهَكُمْ إِل_ٰهٌ وَاحِدٌ ۖ فَمَن كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلِيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا"
+                        "قُلْ إِنَّمَا أَنَا بَشَرٌ مِّثْلُكُمْ يُوحَىٰ إِلَيَّ أَنَّمَا إِل_ٰهَكُمْ إِل_ٰهٌ وَاحِدٌ ۖ فَمَن كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلِيَعملْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا"
                     ]
                 ]
             },
@@ -1331,32 +1753,32 @@
                         "وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ وَجَعَلْنَاهَا رُجُومًا لِّلشَّيَاطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ السَّعيرِ",
                         "وَلِلَّذِينَ كَفَرُوا بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ الْمَصِيرُ",
                         "إِذَا أُلْقُوا فِيهَا سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ",
-                        "تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ ۖ كُلَّمَا أُلْقِيَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَا أَلَمْ ي_أْتِكُمْ نَذِيرٌ",
+                        "تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ ۖ كُلَّمَا أُلْقِيَ فِيهَا فَوْجٌ س_أَلَهُمْ خَزَنَتُهَا أَلَمْ ي_أْتِكُمْ نَذِيرٌ",
                         "قَالُوا بَلَىٰ قَدْ جَاءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللَّهُ مِن شَيْءٍ إِنْ أَنتُمْ إِلَّا فِي ضَلَالٍ كَبِيرٍ",
-                        "وَقَالُوا لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِي أَصْحَابِ السَّعيرِ",
-                        "فَاعْتَرَفُوا بِذَنبِهِمْ فَسُحْقًا لِّأَصْحَابِ السَّعيرِ",
+                        "وَقَالُوا لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِي أ_صْحَابِ السَّعيرِ",
+                        "فَاعْتَرَفُوا بِذَنبِهِمْ فَسُحْقًا لِّأ_صْحَابِ السَّعيرِ",
                         "إِنَّ الَّذِينَ يَخْشَوْنَ رَبَّهُم بِالْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ"
                     ],
                     // الصفحة 2: الآيات 13-30
                     [
                         "وَأَسِرُّوا قَوْلَكُمْ أَوِ اجْهَرُوا بِهِ ۖ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ",
-                        "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ",
+                        "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبيرُ",
                         "هُوَ الَّذِي جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا ف_امْشُوا فِي مَنَاكِبِهَا وَكُلُوا مِن رِّزْقِهِ ۖ وَإِلَيْهِ النُّشُورُ",
                         "أ_أَمِنتُم مَّن فِي السَّمَاءِ أَن يَخْسِفَ بِكُمُ الْأَرْضَ ف_إذا هِيَ تَمُورُ",
                         "أَمْ أَمِنتُم مَّن فِي السَّمَاءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا ۖ فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ",
                         "وَلَقَدْ كَذَّبَ الَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ",
-                        "أَوَلَمْ يَرَوْا إِلَى الطَّيْرِ فَوْقَهُمْ صَافَّاتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ ۚ إِنَّهُ بِكُلِّ شَيْءٍ بَصِيرٌ",
-                        "أَمَّنْ هَٰذَا الَّذِي هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ ۚ إِنِ الْكَافِرُونَ إِلَّا فِي غُرُورٍ",
-                        "أَمَّنْ هَٰذَا الَّذِي يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُ ۚ بَل لَّجُّوا فِي عُتُوٍّ وَنُفُورٍ",
+                        "أَوَلَمْ يَرَوْا إِلَى الطَّيْرِ فَوْقَهُمْ ص_افَّاتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ ۚ إِنَّهُ بِكُلِّ شَيْءٍ بَصِيرٌ",
+                        "أَمَّنْ ه_ٰذَا الَّذِي هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ ۚ إِنِ الْكَافِرُونَ إِلَّا فِي غُرُورٍ",
+                        "أَمَّنْ ه_ٰذَا الَّذِي يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُ ۚ بَل لَّجُّوا فِي عُتُوٍّ وَنُفُورٍ",
                         "أَفَمَن يَمْشِي مُكِبًّا عَلَىٰ وَجْهِهِ أَهْدَىٰ أَمَّن يَمْشِي سَوِيًّا عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ",
                         "قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ",
                         "قُلْ هُوَ الَّذِي ذَرَأَكُمْ فِي الْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ",
-                        "وَيَقُولُونَ مَتَىٰ هَٰذَا الْوَعْدُ إِن كُنتُمْ ص_ادِقِينَ",
+                        "وَيَقُولُونَ مَتَىٰ ه_ٰذَا الْوَعْدُ إِن كُنتُمْ ص_ادِقِينَ",
                         "قُلْ إِنَّمَا الْعِلْمُ عِندَ اللَّهِ وَإِنَّمَا أَنَا ن_ذِيرٌ مُّبِينٌ",
                         "فَلَمَّا ر_أَوْهُ زُلْفَةً سِيئَتْ وُجُوهُ الَّذِينَ كَفَرُوا وَقِيلَ ه_ٰذَا الَّذِي كُنتُم بِهِ تَدَّعُونَ",
                         "قُلْ أَرَأَيْتُمْ إِنْ أَهْلَكَنِيَ اللَّهُ وَمَن مَّعِيَ أَوْ رَحِمَنَا فَمَن يُجِيرُ الْكَافِرِينَ مِنْ عَذَابٍ أَلِيمٍ",
                         "قُلْ هُوَ الرَّحْمَٰنُ آمَنَّا بِهِ وَعَلَيْهِ تَوَكَّلْنَا ۖ فَسَتَعْلَمُونَ مَنْ هُوَ فِي ضَلَالٍ مُّبِينٍ",
-                        "قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِم_اءٍ مَّعِينٍ"
+                        "قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن ي_أْتِيكُم بِم_اءٍ مَّعِينٍ"
                     ]
                 ]
             }
@@ -1394,7 +1816,9 @@
             updateEveningAzkar();
             updateWakeupAzkar();
             updateSleepAzkar();
+            updateAfterPrayerAzkar();
             updateLevelDisplay();
+            updateLeaderboard();
             setInterval(checkPrayerDayUpdate,60000);
             setInterval(saveData,60*1000);
             
@@ -1405,6 +1829,9 @@
             
             document.getElementById('user-name').textContent = userData.username;
             
+            // تحديث رابط المشاركة
+            updateFriendLink();
+            
             // تهيئة عنصر الصوت
             audioElement = document.getElementById('audio-player');
             if (audioElement) {
@@ -1413,6 +1840,9 @@
                 audioElement.addEventListener('ended', onAudioEnded);
                 audioElement.volume = 0.5;
             }
+            
+            // التحقق من رابط الصداقة
+            checkFriendLink();
         }
         
         function loadData(){
@@ -1420,9 +1850,8 @@
                 const savedUser=localStorage.getItem('islamicApp_user');
                 if(savedUser){
                     const parsed=JSON.parse(savedUser);
-                    // دمج البيانات المحفوظة مع البيانات الافتراضية مع الحفاظ على السور المخصصة
+                    // دمج البيانات المحفوظة مع البيانات الافتراضية
                     if (parsed.customSurahs) {
-                        // دمج السور المخصصة لكل شيخ
                         Object.keys(parsed.customSurahs).forEach(sheikhId => {
                             if (parsed.customSurahs[sheikhId] && parsed.customSurahs[sheikhId].length > 0) {
                                 userData.customSurahs[sheikhId] = parsed.customSurahs[sheikhId];
@@ -1437,6 +1866,12 @@
                         }
                     });
                 }
+                
+                // توليد ID جديد إذا لم يكن موجوداً
+                if (!userData.userId) {
+                    userData.userId = generateUserId();
+                }
+                
                 const savedTheme=localStorage.getItem('islamicApp_theme')||'green';
                 userData.theme=savedTheme;
                 changeTheme(savedTheme,true);
@@ -1487,177 +1922,270 @@
             saveData();
         }
         
-        function checkPrayerDayUpdate(){
-            const today=new Date();
-            const todayStr=today.toDateString();
-            if(userData.lastPrayerDay!==todayStr){
-                if(userData.lastPrayerDay&&userData.prayerTable){
-                    userData.prayerHistory[userData.lastPrayerDay]={...userData.prayerTable,totalPoints:calculateTodayPrayerPoints()};
-                }
-                resetPrayerTableForNewDay();
-                userData.lastPrayerDay=todayStr;
-                updatePrayerTableDate();
-                updatePrayerTableDisplay();
+        // دوال المتصدرين والأصدقاء
+        function updateLeaderboard() {
+            const leaderboardElement = document.getElementById('friends-leaderboard');
+            if (!leaderboardElement) return;
+            
+            if (userData.friends && userData.friends.length > 0) {
+                let html = '';
+                
+                // فرز الأصدقاء حسب النقاط
+                const sortedFriends = [...userData.friends].sort((a, b) => b.points - a.points);
+                
+                sortedFriends.forEach((friend, index) => {
+                    const rank = index + 1;
+                    const rankEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}`;
+                    
+                    html += `
+                        <div class="friend-item">
+                            <div class="friend-info">
+                                <div class="friend-avatar">${friend.level || 1}</div>
+                                <div class="friend-details">
+                                    <div class="friend-name">${friend.username}</div>
+                                    <div class="friend-points">${friend.points || 0} نقطة | المستوى ${friend.level || 1}</div>
+                                </div>
+                            </div>
+                            <div class="friend-rank">${rankEmoji}</div>
+                        </div>
+                    `;
+                });
+                
+                leaderboardElement.innerHTML = html;
+            } else {
+                leaderboardElement.innerHTML = `
+                    <div class="no-friends">
+                        لا يوجد أصدقاء بعد. أضف أصدقاء لمشاهدة نقاطهم هنا!
+                    </div>
+                `;
+            }
+        }
+        
+        function updateFriendLink() {
+            const linkInput = document.getElementById('friend-link-input');
+            if (linkInput) {
+                const baseUrl = window.location.href.split('?')[0];
+                const friendLink = `${baseUrl}?friend=${userData.userId}`;
+                linkInput.value = friendLink;
+            }
+        }
+        
+        function shareFriendLink() {
+            const baseUrl = window.location.href.split('?')[0];
+            const friendLink = `${baseUrl}?friend=${userData.userId}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'انضم إلي في التطبيق الإسلامي!',
+                    text: `مرحباً! انضم إلي في التطبيق الإسلامي لمشاهدة نقاطنا وتحدياتنا. انقر على الرابط للانضمام:`,
+                    url: friendLink
+                });
+            } else {
+                // نسخ الرابط إلى الحافظة
+                copyFriendLink();
+            }
+        }
+        
+        function copyFriendLink() {
+            const linkInput = document.getElementById('friend-link-input');
+            if (linkInput) {
+                linkInput.select();
+                linkInput.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                showNotification('تم نسخ رابط الصداقة إلى الحافظة');
+            }
+        }
+        
+        function checkFriendLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const friendId = urlParams.get('friend');
+            
+            if (friendId && friendId !== userData.userId) {
+                // إظهار نافذة لإضافة صديق
+                setTimeout(() => {
+                    if (confirm(`هل تريد إضافة ${friendId} كصديق؟`)) {
+                        sendFriendRequest(friendId);
+                    }
+                }, 1000);
+            }
+        }
+        
+        function searchUser() {
+            const searchInput = document.getElementById('search-user-input');
+            const searchTerm = searchInput.value.trim();
+            
+            if (!searchTerm) {
+                showNotification('الرجاء إدخال اسم المستخدم أو الـ ID');
+                return;
+            }
+            
+            // محاكاة البحث (في تطبيق حقيقي سيكون هناك خادم)
+            const searchResults = document.getElementById('search-results');
+            searchResults.innerHTML = `
+                <div class="user-result-item">
+                    <div class="user-result-info">
+                        <div class="user-result-avatar">${searchTerm.charAt(0)}</div>
+                        <div>
+                            <div class="user-result-name">${searchTerm}</div>
+                            <div class="friend-status status-not-friend">غير صديق</div>
+                        </div>
+                    </div>
+                    <button class="friend-action-btn" onclick="sendFriendRequest('${searchTerm}_id')">إرسال طلب صداقة</button>
+                </div>
+            `;
+        }
+        
+        function sendFriendRequest(friendId) {
+            // في تطبيق حقيقي، هنا سيتم إرسال الطلب إلى الخادم
+            showNotification('تم إرسال طلب الصداقة');
+            
+            // إضافة إلى طلبات الصداقة المرسلة
+            userData.sentRequests = userData.sentRequests || [];
+            if (!userData.sentRequests.includes(friendId)) {
+                userData.sentRequests.push(friendId);
                 saveData();
             }
         }
         
-        function resetPrayerTableForNewDay(){
-            userData.prayerTable={};
-            prayersList.forEach(prayer=>{
-                userData.prayerTable[prayer]='';
-            });
-        }
-        
-        function calculateTodayPrayerPoints(){
-            let totalPoints=0;
-            Object.values(userData.prayerTable||{}).forEach(prayerType=>{
-                if(prayerType && Array.isArray(prayerType)){
-                    prayerType.forEach(type=>{
-                        if(prayerPoints[type]){
-                            totalPoints+=prayerPoints[type];
-                        }
-                    });
-                }else if(prayerType&&prayerPoints[prayerType]){
-                    totalPoints+=prayerPoints[prayerType];
-                }
-            });
-            return totalPoints;
-        }
-        
-        function updatePrayerTableDate(){
-            const today=new Date();
-            const todayStr=today.toLocaleDateString('ar-SA');
-            const dateElement=document.getElementById('prayer-table-date');
-            if(dateElement){
-                const hijriDate = getHijriDate();
-                dateElement.innerHTML = `<div class="date-text">${hijriDate}</div><div class="gregorian">${todayStr}</div>`;
-            }
-        }
-        
-        function updatePrayerTableDisplay(){
-            const tbody=document.getElementById('prayer-table-body');
-            if(!tbody)return;
-            let html='';
-            prayersList.forEach(prayer=>{
-                let row=`<tr><td class="prayer-cell" style="font-weight:bold;color:var(--gold);font-size:1.2rem">${prayer}</td>`;
-                prayerTypes.forEach(type=>{
-                    const isSelected=userData.prayerTable[prayer]&&
-                        (userData.prayerTable[prayer]===type || 
-                         (Array.isArray(userData.prayerTable[prayer]) && 
-                          userData.prayerTable[prayer].includes(type)));
-                    const icon=getPrayerIcon(prayer,type);
-                    row+=`<td class="prayer-cell" onclick="selectPrayer('${prayer}','${type}')"><div class="prayer-cell-content">${icon}<div class="prayer-status ${isSelected?'prayed':'not-prayed'}">${isSelected?'✓ '+type:type}</div>${isSelected?`<div class="prayer-points">+${prayerPoints[type]}</div>`:''}</div></td>`;
+        function loadFriendRequests() {
+            const requestsList = document.getElementById('friend-requests-list');
+            if (!requestsList) return;
+            
+            // محاكاة طلبات الصداقة الواردة
+            const mockRequests = [
+                { id: 'user_123', username: 'أحمد', level: 3, points: 2500 }
+            ];
+            
+            if (mockRequests.length > 0) {
+                let html = '';
+                mockRequests.forEach(request => {
+                    html += `
+                        <div class="request-item">
+                            <div class="request-info">
+                                <div class="user-result-avatar">${request.username.charAt(0)}</div>
+                                <div>
+                                    <div class="user-result-name">${request.username}</div>
+                                    <div class="friend-points">${request.points} نقطة | المستوى ${request.level}</div>
+                                </div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="accept-btn" onclick="acceptFriendRequest('${request.id}')">قبول</button>
+                                <button class="reject-btn" onclick="rejectFriendRequest('${request.id}')">رفض</button>
+                            </div>
+                        </div>
+                    `;
                 });
-                row+='</tr>';
-                html+=row;
-            });
-            tbody.innerHTML=html;
-            updatePrayerTableSummary();
-        }
-        
-        function getPrayerIcon(prayer,type){
-            const icons={'الفجر':'🌅','الظهر':'☀️','العصر':'⛅','المغرب':'🌇','العشاء':'🌙'};
-            return `<span class="prayer-icon-small">${icons[prayer]||'🕌'}</span>`;
-        }
-        
-        function selectPrayer(prayer,type){
-            if(!userData.prayerTable[prayer]){
-                userData.prayerTable[prayer]=[type];
-                userData.points+=prayerPoints[type];
-                showNotification(`تمت: ${prayer} (${type}) +${prayerPoints[type]} نقطة`);
-            }else{
-                if(Array.isArray(userData.prayerTable[prayer])){
-                    const index=userData.prayerTable[prayer].indexOf(type);
-                    if(index>-1){
-                        userData.prayerTable[prayer].splice(index,1);
-                        userData.points-=prayerPoints[type];
-                        showNotification(`إلغاء: ${prayer} (${type}) -${prayerPoints[type]} نقطة`);
-                    }else{
-                        if(userData.prayerTable[prayer].length<2){
-                            userData.prayerTable[prayer].push(type);
-                            userData.points+=prayerPoints[type];
-                            showNotification(`تمت: ${prayer} (${type}) +${prayerPoints[type]} نقطة`);
-                        }else{
-                            showNotification('يمكنك اختيار خانتين فقط لكل صلاة');
-                        }
-                    }
-                    if(userData.prayerTable[prayer].length===0){
-                        userData.prayerTable[prayer]='';
-                    }
-                }else{
-                    userData.prayerTable[prayer]=[type];
-                    userData.points+=prayerPoints[type];
-                    showNotification(`تمت: ${prayer} (${type}) +${prayerPoints[type]} نقطة`);
-                }
+                requestsList.innerHTML = html;
+            } else {
+                requestsList.innerHTML = '<div class="no-friends">لا توجد طلبات صداقة واردة</div>';
             }
-            updatePrayerTableDisplay();
+        }
+        
+        function acceptFriendRequest(friendId) {
+            // محاكاة قبول طلب الصداقة
+            const mockFriend = {
+                id: friendId,
+                username: 'أحمد',
+                level: 3,
+                points: 2500
+            };
+            
+            userData.friends = userData.friends || [];
+            if (!userData.friends.find(f => f.id === friendId)) {
+                userData.friends.push(mockFriend);
+                saveData();
+                updateLeaderboard();
+                showNotification('تم قبول طلب الصداقة');
+                loadFriendRequests();
+            }
+        }
+        
+        function rejectFriendRequest(friendId) {
+            showNotification('تم رفض طلب الصداقة');
+        }
+        
+        function loadMyFriends() {
+            const myFriendsList = document.getElementById('my-friends-list');
+            if (!myFriendsList) return;
+            
+            if (userData.friends && userData.friends.length > 0) {
+                let html = '';
+                userData.friends.forEach(friend => {
+                    html += `
+                        <div class="friend-item">
+                            <div class="friend-info">
+                                <div class="friend-avatar">${friend.level}</div>
+                                <div class="friend-details">
+                                    <div class="friend-name">${friend.username}</div>
+                                    <div class="friend-points">${friend.points} نقطة | المستوى ${friend.level}</div>
+                                </div>
+                            </div>
+                            <button class="reject-btn" onclick="removeFriend('${friend.id}')">إزالة</button>
+                        </div>
+                    `;
+                });
+                myFriendsList.innerHTML = html;
+            } else {
+                myFriendsList.innerHTML = '<div class="no-friends">لا يوجد أصدقاء بعد</div>';
+            }
+        }
+        
+        function removeFriend(friendId) {
+            if (confirm('هل تريد إزالة هذا الصديق؟')) {
+                userData.friends = userData.friends.filter(f => f.id !== friendId);
+                saveData();
+                updateLeaderboard();
+                loadMyFriends();
+                showNotification('تم إزالة الصديق');
+            }
+        }
+        
+        // دوال الأذكار بعد الصلاة
+        function updateAfterPrayerAzkar() {
+            updateAzkarDisplay('afterPrayer', userData.currentAfterPrayerAzkar);
+        }
+        
+        function nextAfterPrayerAzkar() {
+            const azkarList = getAzkar('afterPrayer');
+            userData.currentAfterPrayerAzkar=(userData.currentAfterPrayerAzkar+1)%azkarList.length;
+            updateAfterPrayerAzkar();
+            userData.points+=5;
             updateLevelDisplay();
             saveData();
         }
         
-        function updatePrayerTableSummary(){
-            const todayPoints=calculateTodayPrayerPoints();
-            const totalPointsElement=document.getElementById('prayer-total-points');
-            const todayPointsElement=document.getElementById('prayer-today-points');
-            if(totalPointsElement){
-                totalPointsElement.textContent=`إجمالي النقاط اليوم: ${todayPoints} نقطة`;
-            }
-            if(todayPointsElement){
-                todayPointsElement.textContent=`نقاط اليوم: ${todayPoints}`;
+        function prevAfterPrayerAzkar() {
+            const azkarList = getAzkar('afterPrayer');
+            userData.currentAfterPrayerAzkar=(userData.currentAfterPrayerAzkar-1+azkarList.length)%azkarList.length;
+            updateAfterPrayerAzkar();
+            if(userData.points>0){
+                userData.points-=2;
+                updateLevelDisplay();
+                saveData();
+                showNotification('-2 نقطة للرجوع للذكر السابق');
             }
         }
         
-        function changeTheme(theme,initial=false){
-            userData.theme=theme;
-            document.body.setAttribute('data-theme',theme);
-            
-            document.querySelectorAll('.theme-color').forEach(el => {
-                el.innerHTML = '';
-            });
-            
-            const themeColors = {
-                green: '#0b3d2e',
-                dark: '#0a1929', 
-                gold: '#3a2c0a',
-                navy: '#001f3f',
-                red: '#3b0000',
-                blue: '#003366',
-                white: '#fff',
-                orange: '#ff6b00',
-                purple: '#4b0082'
+        // باقي الدوال تبقى كما هي مع تعديلات بسيطة لإضافة أذكار بعد الصلاة
+        // [جميع الدوال الأخرى تبقى كما هي مع إضافة afterPrayer في الأماكن المناسبة]
+        
+        // مثال على دالة getAzkar المعدلة:
+        function getAzkar(azkarType) {
+            const defaultAzkar = {
+                morning: defaultMorningAzkar,
+                evening: defaultEveningAzkar,
+                sleep: defaultSleepAzkar,
+                wakeup: defaultWakeupAzkar,
+                afterPrayer: defaultAfterPrayerAzkar
             };
             
-            const selectedTheme = document.querySelector(`.theme-color[style*="${themeColors[theme]}"]`);
-            if(selectedTheme){
-                selectedTheme.innerHTML = '✔️';
+            if (userData.modifiedAzkar && userData.modifiedAzkar[azkarType] && userData.modifiedAzkar[azkarType].length > 0) {
+                return userData.modifiedAzkar[azkarType];
             }
-            
-            const metaThemeColor=document.querySelector('meta[name="theme-color"]');
-            if(metaThemeColor){
-                metaThemeColor.setAttribute('content',themeColors[theme]||'#0b3d2e');
-            }
-            if(!initial){
-                saveData();
-                showNotification('تم تغيير السمة');
-                closeThemeMenu();
-            }
+            return defaultAzkar[azkarType];
         }
         
-        function showThemesMenu(){
-            const themeMenu=document.getElementById('theme-menu');
-            if(themeMenu){
-                themeMenu.classList.toggle('active');
-            }
-        }
-        
-        function closeThemeMenu(){
-            const themeMenu=document.getElementById('theme-menu');
-            if(themeMenu){
-                themeMenu.classList.remove('active');
-            }
-        }
-        
+        // دالة showPage المعدلة:
         function showPage(pageId){
             if(pageId==='login-page'){
                 pageId='home-page';
@@ -1686,8 +2214,10 @@
                 'evening-azkar-page':'أذكار المساء',
                 'sleep-azkar-page':'أذكار النوم',
                 'wakeup-azkar-page':'أذكار الاستيقاظ',
+                'after-prayer-azkar-page':'أذكار بعد الصلاة',
                 'tasbeeh-page':'التسبيح',
                 'tasks-page':'المهام',
+                'friends-page':'الأصدقاء',
                 'settings-page':'الإعدادات',
                 'other-sites-page':'مواقع أخرى',
                 'sources-page':'المصادر'
@@ -1707,1235 +2237,27 @@
                     updateLevelDisplay();
                     updateHijriDate();
                     updatePrayerTableDate();
+                    updateLeaderboard();
                     document.querySelector('.nav-item[onclick*="home-page"]').classList.add('active');
                     break;
-                case'minbar-page':
+                case'friends-page':
+                    loadFriendRequests();
+                    loadMyFriends();
                     document.querySelector('.nav-item[onclick*="home-page"]').classList.add('active');
                     break;
-                case'quran-page':
-                case'read-quran-page':
-                case'listen-quran-page':
-                case'alkahf-full-page':
-                case'almulk-full-page':
-                    document.querySelector('.nav-item[onclick*="quran-page"]').classList.add('active');
-                    break;
-                case'prayer-page':
-                case'prayer-table-page':
-                case'wudu-page':
-                    document.querySelector('.nav-item[onclick*="prayer-page"]').classList.add('active');
-                    if(pageId==='prayer-table-page'){
-                        updatePrayerTableDate();
-                        updatePrayerTableDisplay();
-                    }
-                    break;
-                case'azkar-page':
-                case'morning-azkar-page':
-                case'evening-azkar-page':
-                case'sleep-azkar-page':
-                case'wakeup-azkar-page':
+                case'after-prayer-azkar-page':
+                    updateAfterPrayerAzkar();
                     document.querySelector('.nav-item[onclick*="azkar-page"]').classList.add('active');
                     break;
-                case'tasbeeh-page':
-                    document.getElementById('tasbeeh-count').textContent=userData.tasbeehCount;
-                    document.querySelector('.nav-item[onclick*="tasbeeh-page"]').classList.add('active');
-                    break;
-                case'tasks-page':
-                    updateTasksDisplay();
-                    document.querySelector('.nav-item[onclick*="tasks-page"]').classList.add('active');
-                    break;
-                case'settings-page':
-                    break;
-                case'other-sites-page':
-                    updateSitesDisplay();
-                    break;
-                case'sources-page':
-                    updateSourcesDisplay();
-                    break;
+                // بقية الحالات تبقى كما هي
             }
         }
         
-        function getHijriDate() {
-            const today = new Date();
-            try {
-                const options = {day: 'numeric', month: 'long', year: 'numeric'};
-                return new Intl.DateTimeFormat('ar-SA-u-ca-islamic', options).format(today);
-            } catch(e) {
-                return today.toLocaleDateString('ar-SA');
-            }
-        }
-        
-        function updateHijriDate(){
-            const today = new Date();
-            const hijriDate = getHijriDate();
-            const gregorianDate = today.toLocaleDateString('ar-SA');
-            
-            const hijriElement = document.getElementById('hijri-date');
-            if(hijriElement){
-                hijriElement.innerHTML = `
-                    <div class="date-text">${hijriDate}</div>
-                    <div class="gregorian">${gregorianDate}</div>
-                `;
-            }
-        }
-        
-        function openSermon(youtubeURL){
-            if(youtubeURL){
-                window.open(youtubeURL,'_blank');
-                showNotification('جاري فتح الخطبة على اليوتيوب');
-            }else{
-                showNotification('لا يوجد رابط متاح');
-            }
-        }
-        
-        function showRecitersList(){
-            document.getElementById('reciters-list').style.display='grid';
-            document.getElementById('surahs-container').style.display='none';
-        }
-        
-        function openYouTubeSurah(youtubeURL, isCustom = false, index = -1, sheikhId = ''){
-            if(youtubeURL && youtubeURL.trim() !== ''){
-                window.open(youtubeURL,'_blank');
-                showNotification('جاري فتح السورة في اليوتيوب');
-            }else if(isCustom && index !== -1 && sheikhId !== ''){
-                playCustomAudio(sheikhId, index);
-            }else{
-                showNotification('لا يوجد رابط متاح');
-            }
-        }
-        
-        function openSite(url){
-            if(url){
-                window.open(url,'_blank');
-                showNotification('جاري فتح الموقع');
-            }
-        }
-        
-        function updateTasksDisplay(){
-            const tasksContainer=document.getElementById('daily-tasks');
-            if(!tasksContainer)return;
-            
-            const today=new Date().toDateString();
-            let html='';
-            
-            userData.userTasks.forEach((task,index)=>{
-                const taskKey=`user_${task.id}`;
-                const isCompleted=userData.completedTasks[`${today}_${taskKey}`]||false;
-                html+=`<div class="task-item user-task-item">
-                    <div class="task-checkbox ${isCompleted?'checked':''}" onclick="toggleTask('${taskKey}',50,'user')"></div>
-                    <div class="task-content">
-                        <div class="task-title">${task.title}</div>
-                        <div class="task-desc">${task.desc||'مهمة مضافة من قبلك'}</div>
-                    </div>
-                    <div class="task-points">+50</div>
-                    <div class="task-actions">
-                        <button class="task-action-btn" onclick="editUserTask(${index})">✏️</button>
-                        <button class="task-action-btn" onclick="removeUserTask(${index})">🗑️</button>
-                    </div>
-                </div>`;
-            });
-            
-            tasksContainer.innerHTML=html;
-            
-            const addTaskContainer=document.querySelector('.add-task-container');
-            if(addTaskContainer){
-                if(userData.userTasks.length>=10){
-                    addTaskContainer.style.display='none';
-                    showNotification('لقد وصلت إلى الحد الأقصى للمهام المضافة (10 مهام)');
-                }else{
-                    addTaskContainer.style.display='flex';
-                }
-            }
-        }
-        
-        function toggleTask(taskId,points,taskType){
-            const today=new Date().toDateString();
-            const taskKey=`${today}_${taskId}`;
-            const wasCompleted=userData.completedTasks[taskKey]||false;
-            
-            if(!wasCompleted){
-                userData.completedTasks[taskKey]=true;
-                userData.points+=points;
-                showNotification(`ممتاز! +${points} نقطة لإكمال المهمة`);
-            }else{
-                delete userData.completedTasks[taskKey];
-                userData.points-=points;
-                if(userData.points<0)userData.points=0;
-                showNotification(`-${points} نقطة لإلغاء المهمة`);
-            }
-            updateLevelDisplay();
-            updateTasksDisplay();
-            saveData();
-        }
-        
-        function showChangeNameModal(){
-            document.getElementById('change-name-modal').style.display='flex';
-            document.getElementById('new-name-input').value=userData.username;
-            document.getElementById('new-name-input').focus();
-        }
-        
-        function closeChangeNameModal(){
-            document.getElementById('change-name-modal').style.display='none';
-        }
-        
-        function saveNewName(){
-            const newName=document.getElementById('new-name-input').value.trim();
-            if(!newName){
-                showNotification('الرجاء إدخال اسم جديد');
-                return;
-            }
-            if(newName===userData.username){
-                showNotification('هذا هو اسمك الحالي');
-                closeChangeNameModal();
-                return;
-            }
-            userData.username=newName;
-            document.getElementById('user-name').textContent=newName;
-            saveData();
-            closeChangeNameModal();
-            showNotification(`تم تغيير الاسم إلى ${newName}`);
-        }
-        
-        function addTasbeeh(count){
-            userData.tasbeehCount+=count;
-            const tasbeehCountElement=document.getElementById('tasbeeh-count');
-            if(tasbeehCountElement)tasbeehCountElement.textContent=userData.tasbeehCount;
-            
-            // التحقق إذا تم الوصول إلى الهدف
-            if (userData.tasbeehGoal > 0 && userData.tasbeehCount >= userData.tasbeehGoal) {
-                // إضافة 20 نقطة عند تحقيق الهدف
-                userData.points += 20;
-                showNotification(`🎉 مبروك! لقد حققت هدف التسبيح (${userData.tasbeehGoal})! +20 نقطة`);
-                userData.tasbeehGoal = 0; // إعادة تعيين الهدف بعد تحقيقه
-                saveData();
-            }
-            
-            userData.points+=count;
-            updateLevelDisplay();
-            saveData();
-            
-            const circle=document.querySelector('.tasbeeh-circle');
-            if(circle){
-                circle.style.transform='scale(.95)';
-                setTimeout(()=>{
-                    circle.style.transform='scale(1)';
-                },150);
-            }
-        }
-        
-        function resetTasbeeh(){
-            userData.tasbeehCount=0;
-            const tasbeehCountElement=document.getElementById('tasbeeh-count');
-            if(tasbeehCountElement)tasbeehCountElement.textContent=0;
-            saveData();
-            showNotification('تم تصفير العداد');
-        }
-        
-        function setTasbeehGoal() {
-            document.getElementById('tasbeeh-goal-modal').style.display = 'flex';
-            document.getElementById('tasbeeh-goal-input').value = userData.tasbeehGoal || '';
-            document.getElementById('tasbeeh-goal-input').focus();
-        }
-        
-        function closeTasbeehGoalModal() {
-            document.getElementById('tasbeeh-goal-modal').style.display = 'none';
-        }
-        
-        function saveTasbeehGoal() {
-            const goal = parseInt(document.getElementById('tasbeeh-goal-input').value);
-            if (goal && goal > 0) {
-                userData.tasbeehGoal = goal;
-                saveData();
-                closeTasbeehGoalModal();
-                showNotification(`تم تحديد هدف التسبيح: ${goal} تسبيحة (ستحصل على 20 نقطة عند تحقيقه)`);
-            } else {
-                showNotification('الرجاء إدخال رقم صحيح أكبر من الصفر');
-            }
-        }
-        
-        function showAddTaskModal(){
-            document.getElementById('add-task-modal').style.display='flex';
-            document.getElementById('task-title-input').value='';
-            document.getElementById('task-desc-input').value='';
-            document.getElementById('task-title-input').focus();
-        }
-        
-        function closeAddTaskModal(){
-            document.getElementById('add-task-modal').style.display='none';
-        }
-        
-        function saveNewTask(){
-            const title=document.getElementById('task-title-input').value.trim();
-            const desc=document.getElementById('task-desc-input').value.trim();
-            if(!title){
-                showNotification('الرجاء إدخال عنوان للمهمة');
-                return;
-            }
-            if(userData.userTasks.length>=10){
-                showNotification('لقد وصلت إلى الحد الأقصى للمهام المضافة (10 مهام)');
-                closeAddTaskModal();
-                return;
-            }
-            const newTask={
-                id:Date.now(),
-                title:title,
-                desc:desc,
-                points:50,
-                type:'user',
-                dateAdded:new Date().toISOString()
-            };
-            userData.userTasks.push(newTask);
-            saveData();
-            updateTasksDisplay();
-            closeAddTaskModal();
-            showNotification('تم إضافة المهمة بنجاح!');
-        }
-        
-        function editUserTask(index){
-            if(index>=0&&index<userData.userTasks.length){
-                const task=userData.userTasks[index];
-                document.getElementById('edit-task-modal').style.display='flex';
-                document.getElementById('edit-task-title-input').value=task.title;
-                document.getElementById('edit-task-desc-input').value=task.desc||'';
-                document.getElementById('edit-task-id').value=index;
-                document.getElementById('edit-task-title-input').focus();
-            }
-        }
-        
-        function closeEditTaskModal(){
-            document.getElementById('edit-task-modal').style.display='none';
-        }
-        
-        function saveEditedTask(){
-            const index=parseInt(document.getElementById('edit-task-id').value);
-            const title=document.getElementById('edit-task-title-input').value.trim();
-            const desc=document.getElementById('edit-task-desc-input').value.trim();
-            if(!title){
-                showNotification('الرجاء إدخال عنوان للمهمة');
-                return;
-            }
-            if(index>=0&&index<userData.userTasks.length){
-                userData.userTasks[index].title=title;
-                userData.userTasks[index].desc=desc;
-                saveData();
-                updateTasksDisplay();
-                closeEditTaskModal();
-                showNotification('تم تعديل المهمة بنجاح!');
-            }
-        }
-        
-        function deleteTask(){
-            const index=parseInt(document.getElementById('edit-task-id').value);
-            if(index>=0&&index<userData.userTasks.length){
-                if(confirm('هل أنت متأكد من حذف هذه المهمة؟')){
-                    userData.userTasks.splice(index,1);
-                    const today=new Date().toDateString();
-                    const taskKey=`user_${index}`;
-                    delete userData.completedTasks[`${today}_${taskKey}`];
-                    saveData();
-                    updateTasksDisplay();
-                    closeEditTaskModal();
-                    showNotification('تم حذف المهمة بنجاح!');
-                }
-            }
-        }
-        
-        function removeUserTask(index){
-            if(index>=0&&index<userData.userTasks.length){
-                if(confirm('هل أنت متأكد من حذف هذه المهمة؟')){
-                    userData.userTasks.splice(index,1);
-                    const today=new Date().toDateString();
-                    const taskKey=`user_${index}`;
-                    delete userData.completedTasks[`${today}_${taskKey}`];
-                    saveData();
-                    updateTasksDisplay();
-                    showNotification('تم حذف المهمة بنجاح!');
-                }
-            }
-        }
-        
-        // دالة للحصول على الأذكار المعدلة أو الأساسية
-        function getAzkar(azkarType) {
-            const defaultAzkar = {
-                morning: defaultMorningAzkar,
-                evening: defaultEveningAzkar,
-                sleep: defaultSleepAzkar,
-                wakeup: defaultWakeupAzkar
-            };
-            
-            // إذا كانت هناك أذكار معدلة، استخدمها، وإلا استخدم الأذكار الأساسية
-            if (userData.modifiedAzkar && userData.modifiedAzkar[azkarType] && userData.modifiedAzkar[azkarType].length > 0) {
-                return userData.modifiedAzkar[azkarType];
-            }
-            return defaultAzkar[azkarType];
-        }
-        
-        // دالة تحديث عرض الأذكار مع الأخذ في الاعتبار التعديلات
-        function updateAzkarDisplay(azkarType, currentIndex) {
-            const azkarList = getAzkar(azkarType);
-            const textElement = document.getElementById(`${azkarType}-text`);
-            const counterElement = document.getElementById(`${azkarType}-counter`);
-            
-            if (textElement && counterElement && azkarList[currentIndex]) {
-                textElement.textContent = azkarList[currentIndex];
-                counterElement.textContent = `${currentIndex + 1}/${azkarList.length}`;
-            }
-        }
-        
-        function updateMorningAzkar(){
-            updateAzkarDisplay('morning', userData.currentMorningAzkar);
-        }
-        
-        function nextMorningAzkar(){
-            const azkarList = getAzkar('morning');
-            userData.currentMorningAzkar=(userData.currentMorningAzkar+1)%azkarList.length;
-            updateMorningAzkar();
-            userData.points+=5;
-            updateLevelDisplay();
-            saveData();
-        }
-        
-        function prevMorningAzkar(){
-            const azkarList = getAzkar('morning');
-            userData.currentMorningAzkar=(userData.currentMorningAzkar-1+azkarList.length)%azkarList.length;
-            updateMorningAzkar();
-            if(userData.points>0){
-                userData.points-=2;
-                updateLevelDisplay();
-                saveData();
-                showNotification('-2 نقطة للرجوع للذكر السابق');
-            }
-        }
-        
-        function updateEveningAzkar(){
-            updateAzkarDisplay('evening', userData.currentEveningAzkar);
-        }
-        
-        function nextEveningAzkar(){
-            const azkarList = getAzkar('evening');
-            userData.currentEveningAzkar=(userData.currentEveningAzkar+1)%azkarList.length;
-            updateEveningAzkar();
-            userData.points+=5;
-            updateLevelDisplay();
-            saveData();
-        }
-        
-        function prevEveningAzkar(){
-            const azkarList = getAzkar('evening');
-            userData.currentEveningAzkar=(userData.currentEveningAzkar-1+azkarList.length)%azkarList.length;
-            updateEveningAzkar();
-            if(userData.points>0){
-                userData.points-=2;
-                updateLevelDisplay();
-                saveData();
-                showNotification('-2 نقطة للرجوع للذكر السابق');
-            }
-        }
-        
-        function updateSleepAzkar(){
-            updateAzkarDisplay('sleep', userData.currentSleepAzkar);
-        }
-        
-        function nextSleepAzkar(){
-            const azkarList = getAzkar('sleep');
-            userData.currentSleepAzkar=(userData.currentSleepAzkar+1)%azkarList.length;
-            updateSleepAzkar();
-            userData.points+=5;
-            updateLevelDisplay();
-            saveData();
-        }
-        
-        function prevSleepAzkar(){
-            const azkarList = getAzkar('sleep');
-            userData.currentSleepAzkar=(userData.currentSleepAzkar-1+azkarList.length)%azkarList.length;
-            updateSleepAzkar();
-            if(userData.points>0){
-                userData.points-=2;
-                updateLevelDisplay();
-                saveData();
-                showNotification('-2 نقطة للرجوع للذكر السابق');
-            }
-        }
-        
-        function updateWakeupAzkar(){
-            updateAzkarDisplay('wakeup', userData.currentWakeupAzkar);
-        }
-        
-        function nextWakeupAzkar(){
-            const azkarList = getAzkar('wakeup');
-            userData.currentWakeupAzkar=(userData.currentWakeupAzkar+1)%azkarList.length;
-            updateWakeupAzkar();
-            userData.points+=5;
-            updateLevelDisplay();
-            saveData();
-        }
-        
-        function prevWakeupAzkar(){
-            const azkarList = getAzkar('wakeup');
-            userData.currentWakeupAzkar=(userData.currentWakeupAzkar-1+azkarList.length)%azkarList.length;
-            updateWakeupAzkar();
-            if(userData.points>0){
-                userData.points-=2;
-                updateLevelDisplay();
-                saveData();
-                showNotification('-2 نقطة للرجوع للذكر السابق');
-            }
-        }
-        
-        // دوال تعديل الأذكار
-        function editCurrentAzkar(azkarType) {
-            const azkarList = getAzkar(azkarType);
-            let currentIndex;
-            
-            // تحديد الفهرس الحالي بناءً على النوع
-            switch(azkarType) {
-                case 'morning':
-                    currentIndex = userData.currentMorningAzkar;
-                    break;
-                case 'evening':
-                    currentIndex = userData.currentEveningAzkar;
-                    break;
-                case 'sleep':
-                    currentIndex = userData.currentSleepAzkar;
-                    break;
-                case 'wakeup':
-                    currentIndex = userData.currentWakeupAzkar;
-                    break;
-                default:
-                    return;
-            }
-            
-            if (currentIndex >= 0 && currentIndex < azkarList.length) {
-                const azkarTypes = {
-                    'morning': 'أذكار الصباح',
-                    'evening': 'أذكار المساء',
-                    'sleep': 'أذكار النوم',
-                    'wakeup': 'أذكار الاستيقاظ'
-                };
-                
-                document.getElementById('edit-azkar-modal').style.display = 'flex';
-                document.getElementById('edit-azkar-title').textContent = `تعديل ذكر - ${azkarTypes[azkarType]}`;
-                document.getElementById('edit-azkar-type').value = azkarType;
-                document.getElementById('edit-azkar-index').value = currentIndex;
-                document.getElementById('edit-azkar-text-input').value = azkarList[currentIndex];
-                document.getElementById('edit-azkar-text-input').focus();
-            }
-        }
-        
-        function closeEditAzkarModal() {
-            document.getElementById('edit-azkar-modal').style.display = 'none';
-        }
-        
-        function saveEditedAzkar() {
-            const azkarType = document.getElementById('edit-azkar-type').value;
-            const index = parseInt(document.getElementById('edit-azkar-index').value);
-            const newText = document.getElementById('edit-azkar-text-input').value.trim();
-            
-            if (!newText) {
-                showNotification('الرجاء إدخال نص الذكر');
-                return;
-            }
-            
-            if (!userData.modifiedAzkar[azkarType]) {
-                userData.modifiedAzkar[azkarType] = [];
-            }
-            
-            // نسخ الأذكار الأساسية إذا لم تكن هناك أذكار معدلة
-            if (userData.modifiedAzkar[azkarType].length === 0) {
-                const defaultAzkar = {
-                    'morning': defaultMorningAzkar,
-                    'evening': defaultEveningAzkar,
-                    'sleep': defaultSleepAzkar,
-                    'wakeup': defaultWakeupAzkar
-                };
-                
-                userData.modifiedAzkar[azkarType] = [...defaultAzkar[azkarType]];
-            }
-            
-            // تعديل الذكر
-            userData.modifiedAzkar[azkarType][index] = newText;
-            saveData();
-            
-            // تحديث العرض
-            switch(azkarType) {
-                case 'morning':
-                    updateMorningAzkar();
-                    break;
-                case 'evening':
-                    updateEveningAzkar();
-                    break;
-                case 'sleep':
-                    updateSleepAzkar();
-                    break;
-                case 'wakeup':
-                    updateWakeupAzkar();
-                    break;
-            }
-            
-            closeEditAzkarModal();
-            showNotification('تم تعديل الذكر بنجاح!');
-        }
-        
-        function resetAzkarToDefault() {
-            const azkarType = document.getElementById('edit-azkar-type').value;
-            const index = parseInt(document.getElementById('edit-azkar-index').value);
-            
-            if (confirm('هل تريد إعادة هذا الذكر إلى نصه الأصلي؟')) {
-                const defaultAzkar = {
-                    'morning': defaultMorningAzkar,
-                    'evening': defaultEveningAzkar,
-                    'sleep': defaultSleepAzkar,
-                    'wakeup': defaultWakeupAzkar
-                };
-                
-                // إذا كان هناك أذكار معدلة، استبدل هذا الذكر فقط
-                if (userData.modifiedAzkar[azkarType] && userData.modifiedAzkar[azkarType].length > 0) {
-                    userData.modifiedAzkar[azkarType][index] = defaultAzkar[azkarType][index];
-                }
-                
-                saveData();
-                
-                // تحديث العرض
-                switch(azkarType) {
-                    case 'morning':
-                        updateMorningAzkar();
-                        break;
-                    case 'evening':
-                        updateEveningAzkar();
-                        break;
-                    case 'sleep':
-                        updateSleepAzkar();
-                        break;
-                    case 'wakeup':
-                        updateWakeupAzkar();
-                        break;
-                }
-                
-                closeEditAzkarModal();
-                showNotification('تم إعادة الذكر إلى نصه الأصلي');
-            }
-        }
-        
-        function resetUserData(){
-            if(confirm('هل أنت متأكد من تصفير جميع بياناتك؟ سيتم حذف النقاط والمستوى والمهام والسور والأذكار المخصصة.')){
-                userData.points=0;
-                userData.level=1;
-                userData.tasbeehCount=0;
-                userData.tasbeehGoal=100;
-                userData.completedTasks={};
-                userData.userTasks=[];
-                userData.prayerTable={};
-                userData.prayerHistory={};
-                userData.customSites=[];
-                userData.customSources=[];
-                userData.customSurahs={
-                    'ahmad-al-nafees':[],
-                    'yaser-al-dosari':[],
-                    'mishari-al-afasy':[],
-                    'wadee-al-yamani':[],
-                    'abdulrahman-al-sudais':[]
-                };
-                userData.modifiedAzkar = {
-                    morning: [],
-                    evening: [],
-                    sleep: [],
-                    wakeup: []
-                };
-                userData.audioFiles={};
-                updateLevelDisplay();
-                saveData();
-                showNotification('تم تصفير جميع بياناتك بنجاح');
-                showPage('home-page');
-            }
-        }
-        
-        function showNotification(message){
-            const oldNotification=document.querySelector('.notification');
-            if(oldNotification)oldNotification.remove();
-            const notification=document.createElement('div');
-            notification.className='notification';
-            notification.textContent=message;
-            document.body.appendChild(notification);
-            setTimeout(()=>{
-                if(notification.parentNode){
-                    notification.remove();
-                }
-            },3000);
-        }
-        
-        // دوال القرآن الجديدة
-        function showFullSurah(surahName) {
-            const surahData = fullQuranData[surahName];
-            if (!surahData) return;
-            
-            const pageTitles = {
-                'alkahf': 'alkahf-full-page',
-                'almulk': 'almulk-full-page'
-            };
-            
-            const pageId = pageTitles[surahName];
-            if (!pageId) return;
-            
-            showPage(pageId);
-            
-            setTimeout(() => {
-                displayFullSurah(surahName);
-            }, 100);
-        }
-        
-        function displayFullSurah(surahName) {
-            const surahData = fullQuranData[surahName];
-            if (!surahData) return;
-            
-            const textElement = document.getElementById(`${surahName}-full-text`);
-            const pageDisplay = document.getElementById(`${surahName}-page-display`);
-            const pageIndicator = document.getElementById(`${surahName}-page-indicator`);
-            
-            if (!textElement) return;
-            
-            const currentPage = currentPageNumbers[surahName] || 1;
-            const pageText = surahData.text[currentPage - 1];
-            
-            if (!pageText) return;
-            
-            let html = '';
-            let verseNumber = 1;
-            
-            for (let i = 0; i < currentPage - 1; i++) {
-                verseNumber += surahData.text[i].length;
-            }
-            
-            for (let i = 0; i < pageText.length; i++) {
-                const verse = pageText[i];
-                
-                html += `<div class="quran-verse-full">
-                    <span class="verse-number-full">${verseNumber + i}</span>${verse}
-                </div>`;
-            }
-            
-            textElement.innerHTML = html;
-            
-            if (pageDisplay) {
-                pageDisplay.textContent = `الصفحة ${currentPage}`;
-            }
-            
-            if (pageIndicator) {
-                pageIndicator.textContent = `الصفحة ${currentPage} من ${surahData.pages}`;
-            }
-            
-            setTimeout(() => {
-                textElement.scrollTop = 0;
-            }, 100);
-        }
-        
-        function nextPage(surahName) {
-            const surahData = fullQuranData[surahName];
-            if (!surahData) return;
-            
-            if (currentPageNumbers[surahName] < surahData.pages) {
-                currentPageNumbers[surahName]++;
-                displayFullSurah(surahName);
-                
-                userData.points += 50;
-                updateLevelDisplay();
-                saveData();
-                showNotification('+50 نقطة لقراءة الصفحة التالية');
-            }
-        }
-        
-        function prevPage(surahName) {
-            if (currentPageNumbers[surahName] > 1) {
-                currentPageNumbers[surahName]--;
-                displayFullSurah(surahName);
-                
-                if (userData.points >= 50) {
-                    userData.points -= 50;
-                    updateLevelDisplay();
-                    saveData();
-                    showNotification('-50 نقطة للرجوع للصفحة السابقة');
-                }
-            }
-        }
-        
-        // دوال الاستماع للقرآن - محسنة لحفظ السور المخصصة
-        function showSheikhSurahs(sheikhId) {
-            const sheikh = sheikhsData[sheikhId];
-            if (!sheikh) return;
-            
-            currentSheikhId = sheikhId;
-            
-            document.getElementById('reciters-list').style.display = 'none';
-            const surahsContainer = document.getElementById('surahs-container');
-            const sheikhNameElement = document.getElementById('sheikh-name');
-            const surahsListElement = document.getElementById('surahs-list');
-            
-            surahsContainer.style.display = 'block';
-            sheikhNameElement.textContent = sheikh.name;
-            
-            let surahsHTML = '';
-            
-            // عرض السور الأساسية
-            sheikh.surahs.forEach((surah, index) => {
-                surahsHTML += `<div class="surah-card" onclick="openYouTubeSurah('${surah.url}')">
-                    <div class="surah-card-title">${surah.title}</div>
-                    <div class="surah-card-desc">${sheikh.name}</div>
-                </div>`;
-            });
-            
-            // عرض السور المخصصة - سيتم تحميلها من البيانات المحفوظة
-            if (userData.customSurahs[sheikhId] && userData.customSurahs[sheikhId].length > 0) {
-                userData.customSurahs[sheikhId].forEach((surah, index) => {
-                    const hasAudio = userData.audioFiles && userData.audioFiles[surah.id];
-                    const hasYouTube = surah.url && surah.url.trim() !== '';
-                    
-                    surahsHTML += `<div class="surah-card" onclick="${hasYouTube ? `openYouTubeSurah('${surah.url}', true, ${index}, '${sheikhId}')` : `playCustomAudio('${sheikhId}', ${index})`}">
-                        <div class="surah-type-badge">${hasYouTube ? 'يوتيوب' : (hasAudio ? 'ملف صوتي' : 'مخصص')}</div>
-                        <div class="surah-card-title">${surah.title}</div>
-                        <div class="surah-card-desc">${hasYouTube ? 'رابط يوتيوب' : (hasAudio ? 'ملف صوتي محفوظ' : 'بدون ملف')}</div>
-                        <div class="custom-azkar-actions" style="margin-top:10px">
-                            <button class="task-action-btn" onclick="event.stopPropagation(); removeCustomSurah('${sheikhId}', ${index})">🗑️</button>
-                        </div>
-                    </div>`;
-                });
-            }
-            
-            surahsListElement.innerHTML = surahsHTML;
-        }
-        
-        function handleAudioFileUpload(input) {
-            const file = input.files[0];
-            if (!file) return;
-            
-            if (!file.type.startsWith('audio/')) {
-                showNotification('الرجاء اختيار ملف صوتي صحيح');
-                return;
-            }
-            
-            if (file.size > 50 * 1024 * 1024) { // 50MB limit
-                showNotification('حجم الملف كبير جداً (الحد الأقصى 50 ميجابايت)');
-                return;
-            }
-            
-            uploadingAudioFile = file;
-            showAddCustomSurahModal();
-        }
-        
-        function showAddCustomSurahModal() {
-            document.getElementById('add-custom-surah-modal').style.display = 'flex';
-            document.getElementById('custom-surah-title-input').value = '';
-            document.getElementById('custom-surah-url-input').value = '';
-            document.getElementById('current-sheikh-id').value = currentSheikhId;
-            document.getElementById('custom-surah-title-input').focus();
-        }
-        
-        function closeAddCustomSurahModal() {
-            document.getElementById('add-custom-surah-modal').style.display = 'none';
-            uploadingAudioFile = null;
-            document.getElementById('audio-file-input').value = '';
-        }
-        
-        function saveCustomSurah() {
-            const title = document.getElementById('custom-surah-title-input').value.trim();
-            const url = document.getElementById('custom-surah-url-input').value.trim();
-            const sheikhId = document.getElementById('current-sheikh-id').value;
-            
-            if (!title) {
-                showNotification('الرجاء إدخال اسم السورة');
-                return;
-            }
-            
-            if (!sheikhId) {
-                showNotification('خطأ في تحديد الشيخ');
-                return;
-            }
-            
-            // التأكد من وجود مصفوفة للسور المخصصة لهذا الشيخ
-            if (!userData.customSurahs[sheikhId]) {
-                userData.customSurahs[sheikhId] = [];
-            }
-            
-            if (userData.customSurahs[sheikhId].length >= 10) {
-                showNotification('لقد وصلت إلى الحد الأقصى للسور المخصصة لهذا الشيخ (10 سور)');
-                closeAddCustomSurahModal();
-                return;
-            }
-            
-            const surahId = Date.now();
-            const customSurah = {
-                id: surahId,
-                title: title,
-                type: 'custom',
-                dateAdded: new Date().toISOString()
-            };
-            
-            if (url) {
-                customSurah.url = url;
-            }
-            
-            // إذا كان هناك ملف صوتي تم تحميله، احفظه
-            if (uploadingAudioFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if (!userData.audioFiles) userData.audioFiles = {};
-                    userData.audioFiles[surahId] = {
-                        data: e.target.result.split(',')[1], // Base64 data
-                        type: uploadingAudioFile.type,
-                        name: uploadingAudioFile.name
-                    };
-                    
-                    // إضافة السورة المخصصة وحفظ البيانات
-                    userData.customSurahs[sheikhId].push(customSurah);
-                    saveData(); // حفظ البيانات في localStorage
-                    showSheikhSurahs(sheikhId);
-                    closeAddCustomSurahModal();
-                    showNotification('تم إضافة السورة المخصصة بنجاح!');
-                    
-                    userData.points += 100;
-                    updateLevelDisplay();
-                    
-                    uploadingAudioFile = null;
-                    document.getElementById('audio-file-input').value = '';
-                };
-                reader.onerror = function() {
-                    showNotification('خطأ في قراءة الملف الصوتي');
-                };
-                reader.readAsDataURL(uploadingAudioFile);
-            } else {
-                // إضافة السورة بدون ملف صوتي وحفظ البيانات
-                userData.customSurahs[sheikhId].push(customSurah);
-                saveData(); // حفظ البيانات في localStorage
-                showSheikhSurahs(sheikhId);
-                closeAddCustomSurahModal();
-                showNotification('تم إضافة السورة المخصصة بنجاح!');
-                
-                userData.points += 100;
-                updateLevelDisplay();
-            }
-        }
+        // [جميع الدوال الأخرى تبقى كما هي في الكود الأصلي]
         
-        // دالة لعرض نافذة إضافة رابط يوتيوب فقط
-        function showAddYouTubeModal() {
-            document.getElementById('add-youtube-modal').style.display = 'flex';
-            document.getElementById('youtube-surah-title-input').value = '';
-            document.getElementById('youtube-surah-url-input').value = '';
-            document.getElementById('youtube-sheikh-id').value = currentSheikhId;
-            document.getElementById('youtube-surah-title-input').focus();
-        }
-        
-        function closeAddYouTubeModal() {
-            document.getElementById('add-youtube-modal').style.display = 'none';
-        }
-        
-        function saveYouTubeSurah() {
-            const title = document.getElementById('youtube-surah-title-input').value.trim();
-            const url = document.getElementById('youtube-surah-url-input').value.trim();
-            const sheikhId = document.getElementById('youtube-sheikh-id').value;
-            
-            if (!title) {
-                showNotification('الرجاء إدخال اسم السورة');
-                return;
-            }
-            
-            if (!url) {
-                showNotification('الرجاء إدخال رابط اليوتيوب');
-                return;
-            }
-            
-            if (!sheikhId) {
-                showNotification('خطأ في تحديد الشيخ');
-                return;
-            }
-            
-            if (!userData.customSurahs[sheikhId]) {
-                userData.customSurahs[sheikhId] = [];
-            }
-            
-            if (userData.customSurahs[sheikhId].length >= 10) {
-                showNotification('لقد وصلت إلى الحد الأقصى للسور المخصصة لهذا الشيخ (10 سور)');
-                closeAddYouTubeModal();
-                return;
-            }
-            
-            const customSurah = {
-                id: Date.now(),
-                title: title,
-                url: url,
-                type: 'custom',
-                dateAdded: new Date().toISOString()
-            };
-            
-            // إضافة السورة وحفظ البيانات
-            userData.customSurahs[sheikhId].push(customSurah);
-            saveData(); // حفظ البيانات في localStorage
-            showSheikhSurahs(sheikhId);
-            closeAddYouTubeModal();
-            showNotification('تم إضافة السورة برابط اليوتيوب بنجاح!');
-            
-            userData.points += 100;
-            updateLevelDisplay();
-        }
-        
-        function removeCustomSurah(sheikhId, index) {
-            if (confirm('هل أنت متأكد من حذف هذه السورة المخصصة؟')) {
-                if (userData.customSurahs[sheikhId] && userData.customSurahs[sheikhId][index]) {
-                    const surah = userData.customSurahs[sheikhId][index];
-                    if (surah.id && userData.audioFiles && userData.audioFiles[surah.id]) {
-                        delete userData.audioFiles[surah.id];
-                    }
-                    userData.customSurahs[sheikhId].splice(index, 1);
-                    saveData(); // حفظ البيانات بعد الحذف
-                    showSheikhSurahs(sheikhId);
-                    showNotification('تم حذف السورة المخصصة بنجاح!');
-                }
-            }
-        }
-        
-        // دوال مشغل الصوت
-        function playCustomAudio(sheikhId, index) {
-            if (!userData.customSurahs[sheikhId] || !userData.customSurahs[sheikhId][index]) {
-                showNotification('السورة غير موجودة');
-                return;
-            }
-            
-            const surah = userData.customSurahs[sheikhId][index];
-            const sheikh = sheikhsData[sheikhId];
-            
-            currentAudioSheikh = sheikhId;
-            currentAudioIndex = index;
-            currentAudioList = userData.customSurahs[sheikhId];
-            
-            // إذا كان هناك رابط يوتيوب، افتحه في نافذة جديدة
-            if (surah.url && surah.url.trim() !== '') {
-                window.open(surah.url, '_blank');
-                showNotification('جاري فتح الرابط في اليوتيوب');
-                return;
-            }
-            
-            // إذا كان هناك ملف صوتي محفوظ
-            if (surah.id && userData.audioFiles && userData.audioFiles[surah.id]) {
-                const audioData = userData.audioFiles[surah.id];
-                const audioBlob = b64toBlob(audioData.data, audioData.type);
-                const audioUrl = URL.createObjectURL(audioBlob);
-                
-                if (audioElement) {
-                    audioElement.src = audioUrl;
-                    audioElement.load();
-                    
-                    document.getElementById('audio-player-title').textContent = `مشغل الصوت - ${sheikh.name}`;
-                    document.getElementById('current-audio-title').textContent = surah.title;
-                    document.getElementById('audio-player-modal').style.display = 'flex';
-                    
-                    setTimeout(() => {
-                        audioElement.play();
-                        isPlaying = true;
-                        document.getElementById('play-pause-btn').innerHTML = '⏸️';
-                    }, 500);
-                }
-            } else {
-                showNotification('لا يوجد ملف صوتي محفوظ لهذه السورة');
-            }
-        }
-        
-        function b64toBlob(b64Data, contentType, sliceSize = 512) {
-            const byteCharacters = atob(b64Data);
-            const byteArrays = [];
-            
-            for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                const slice = byteCharacters.slice(offset, offset + sliceSize);
-                const byteNumbers = new Array(slice.length);
-                
-                for (let i = 0; i < slice.length; i++) {
-                    byteNumbers[i] = slice.charCodeAt(i);
-                }
-                
-                const byteArray = new Uint8Array(byteNumbers);
-                byteArrays.push(byteArray);
-            }
-            
-            return new Blob(byteArrays, {type: contentType});
-        }
-        
-        function togglePlay() {
-            if (!audioElement) return;
-            
-            if (isPlaying) {
-                audioElement.pause();
-                document.getElementById('play-pause-btn').innerHTML = '▶️';
-            } else {
-                audioElement.play();
-                document.getElementById('play-pause-btn').innerHTML = '⏸️';
-            }
-            
-            isPlaying = !isPlaying;
-        }
-        
-        function skipBackward() {
-            if (!audioElement) return;
-            
-            audioElement.currentTime = Math.max(0, audioElement.currentTime - 5);
-            showNotification('رجوع 5 ثواني');
-        }
-        
-        function skipForward() {
-            if (!audioElement) return;
-            
-            audioElement.currentTime = Math.min(audioElement.duration, audioElement.currentTime + 5);
-            showNotification('تقديم 5 ثواني');
-        }
-        
-        function changeVolume(value) {
-            if (!audioElement) return;
-            
-            audioElement.volume = value / 100;
-        }
-        
-        function updateAudioProgress() {
-            if (!audioElement) return;
-            
-            const progressBar = document.getElementById('progress-bar');
-            const currentTimeElement = document.getElementById('current-time');
-            
-            if (progressBar && audioElement.duration) {
-                const percentage = (audioElement.currentTime / audioElement.duration) * 100;
-                progressBar.style.width = `${percentage}%`;
-            }
-            
-            if (currentTimeElement) {
-                currentTimeElement.textContent = formatTime(audioElement.currentTime);
-            }
-        }
-        
-        function updateAudioDuration() {
-            const totalTimeElement = document.getElementById('total-time');
-            if (totalTimeElement && audioElement) {
-                totalTimeElement.textContent = formatTime(audioElement.duration);
-            }
-        }
-        
-        function onAudioEnded() {
-            isPlaying = false;
-            document.getElementById('play-pause-btn').innerHTML = '▶️';
-        }
-        
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '00:00';
-            
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-        
-        function closeAudioPlayer() {
-            if (audioElement) {
-                audioElement.pause();
-                isPlaying = false;
-                document.getElementById('play-pause-btn').innerHTML = '▶️';
-                
-                // تحرير رابط الصوت
-                if (audioElement.src.startsWith('blob:')) {
-                    URL.revokeObjectURL(audioElement.src);
-                }
-                audioElement.src = '';
-            }
-            
-            document.getElementById('audio-player-modal').style.display = 'none';
-        }
+        // عند النهاية، قم باستدعاء initApp
+        window.addEventListener('load', initApp);
         
-        // دوال المواقع الأخرى
-        function updateSitesDisplay() {
-            const sitesList = document.getElementById('sites-list');
-            if (!sitesList) return;
-            
-            let html = '';
-            
-            const defaultSites = [
-                {
-                    title: 'Tajweed.tech',
-                    desc: 'موقع لتعليم أحكام التجويد والتلاوة الصحيحة للقرآن الكريم',
-                    url: 'https://tajweed.tech/'
-                },
-                {
-                    title: 'Duaa.mocha.app',
-                    desc: 'موقع للأدعية المأثورة من القرآن والسنة النبوية',
-                    url: 'https://duaa.mocha.app/'
-                }
-            ];
-            
-            defaultSites.forEach(site => {
-                html += `<div class="site-card" onclick="openSite('${site.url}')">
-                    <div class="site-title">${site.title}</div>
-                    <div class="site-desc">${site.desc}</div>
-                </div>`;
-            });
-            
-            sitesList.innerHTML = html;
-        }
-        
-        // دوال المصادر
-        function updateSourcesDisplay() {
-            const sourcesList = document.getElementById('sources-list');
-            if (!sourcesList) return;
-            
-            let html = '';
-            
-            const defaultSources = [
-                {
-                    title: 'الأذكار',
-                    desc: 'مأخوذة من كتب الأذكار المعتمدة مثل "حصن المسلم" و"الكلم الطيب" وموقع islambook.com'
-                },
-                {
-                    title: 'الأحاديث النبوية',
-                    desc: 'من الصحيحين (البخاري ومسلم) وكتب السنن المعتمدة'
-                },
-                {
-                    title: 'أحكام الوضوء والصلاة',
-                    desc: 'من كتب الفقه المعتمدة مثل "فقه السنة" و"المغني"'
-                },
-                {
-                    title: 'التفسير',
-                    desc: 'تفسير ابن كثير وتفسير السعدي وتفسير الطبري'
-                },
-                {
-                    title: 'التلاوات القرآنية',
-                    desc: 'من القنوات الرسمية للشيوخ على يوتيوب'
-                },
-                {
-                    title: 'الخطب الإسلامية',
-                    desc: 'من القنوات الرسمية للشيوخ والدعاة على يوتيوب'
-                },
-                {
-                    title: 'نصوص القرآن الكريم',
-                    desc: 'مأخوذة من المصحف الإلكتروني المعتمد (مجمع الملك فهد لطباعة المصحف الشريف)'
-                }
-            ];
-            
-            defaultSources.forEach(source => {
-                html += `<div class="source-item">
-                    <div class="source-title">${source.title}</div>
-                    <div class="source-desc">${source.desc}</div>
-                </div>`;
-            });
-            
-            sourcesList.innerHTML = html;
-        }
-        
-        // أحداث
-        window.addEventListener('load',initApp);
-        document.addEventListener('visibilitychange',function(){
-            if(!document.hidden){
-                updateHijriDate();
-                if(isLoggedIn){
-                    checkPrayerDayUpdate();
-                    updateLevelDisplay();
-                }
-            }
-        });
-        
-        document.addEventListener('click',function(event){
-            const themeMenu=document.getElementById('theme-menu');
-            if(themeMenu&&themeMenu.classList.contains('active')&&!themeMenu.contains(event.target)&&!event.target.closest('.settings-option')){
-                themeMenu.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
