@@ -605,6 +605,41 @@
             width: 120px;
         }
         
+        /* خاص بمنبه أذكار بعد الصلاة */
+        .prayer-alarms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .prayer-alarm-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .prayer-alarm-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .prayer-alarm-name {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .prayer-alarm-time {
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
         /* أذكار بعد الصلاة - جديدة */
         .after-prayer-azkar {
             display: flex;
@@ -773,6 +808,23 @@
             cursor: pointer;
         }
         
+        /* مشغل اليوتيوب داخل التطبيق */
+        .youtube-player-container {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .youtube-player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
         /* التصميم المتجاوب */
         @media (max-width:768px){
             .page-content{padding:15px}
@@ -808,6 +860,7 @@
             .audio-btn{width:50px;height:50px;font-size:1.3rem}
             .rewards-input{width:90%;font-size:1.2rem}
             .alarm-item{padding:20px}
+            .youtube-player-container{height:300px}
         }
         
         @media (max-width:480px){
@@ -836,8 +889,12 @@
             .audio-btn{width:45px;height:45px;font-size:1.2rem}
             .rewards-input{width:95%;font-size:1.1rem;padding:15px}
             .alarm-item{padding:15px}
+            .youtube-player-container{height:250px}
+            .prayer-alarms-grid{grid-template-columns:1fr}
         }
     </style>
+    <!-- إضافة مكتبة youtube iframe api -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
     <!-- الهيدر الرئيسي -->
@@ -1463,7 +1520,7 @@
                     <div class="rewards-info">
                         أدخل الكود السري للحصول على نقاط مجانية
                     </div>
-                    <input type="text" class="rewards-input" id="reward-code-input" placeholder="أدخل الكود السري هنا..." maxlength="10" autocomplete="off">
+                    <input type="text" class="rewards-input" id="reward-code-input" placeholder="أدخل الكود السري هنا..." maxlength="50" autocomplete="off">
                     <button class="action-btn" onclick="checkRewardCode()">تفعيل الكود</button>
                     <div style="text-align:center;margin-top:25px">
                         <button class="action-btn" onclick="showPage('settings-page')">العودة إلى الإعدادات</button>
@@ -1512,14 +1569,13 @@
                             <span id="wakeup-alarm-time">--:--</span>
                         </div>
                     </div>
-                    <div class="alarm-item" onclick="showAlarmTimeModal('after-prayer')">
-                        <div class="alarm-title">تذكير أذكار بعد الصلاة</div>
-                        <div class="alarm-desc">اضغط لتعيين وقت تذكير لأذكار بعد الصلاة</div>
-                        <div class="alarm-time">
-                            <span>الوقت المحدد:</span>
-                            <span id="after-prayer-alarm-time">--:--</span>
-                        </div>
+                    
+                    <!-- قسم خاص بأذكار بعد الصلاة -->
+                    <div id="after-prayer-alarms-section">
+                        <div class="section-title" style="margin-top:30px;margin-bottom:15px;font-size:1.3rem;">تذكير أذكار بعد الصلاة</div>
+                        <div class="prayer-alarms-grid" id="prayer-alarms-grid"></div>
                     </div>
+                    
                     <div class="alarm-item" onclick="toggleAlarmStatus()">
                         <div class="alarm-title">حالة المنبه</div>
                         <div class="alarm-desc">تشغيل/إيقاف جميع تنبيهات الأذكار</div>
@@ -1708,6 +1764,7 @@
             <div class="decorative-line"></div>
             <input type="time" id="alarm-time-input" class="modal-input">
             <input type="hidden" id="alarm-type-input">
+            <input type="hidden" id="alarm-prayer-input">
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-secondary" onclick="closeAlarmTimeModal()">إلغاء</button>
                 <button class="modal-btn modal-btn-primary" onclick="saveAlarmTime()">حفظ الوقت</button>
@@ -1745,6 +1802,18 @@
         </div>
     </div>
     
+    <!-- نافذة مشغل اليوتيوب -->
+    <div id="youtube-player-modal" class="modal-overlay" style="display:none">
+        <div class="modal-content" style="max-width:800px;width:95%;padding:15px">
+            <h2 class="modal-title" id="youtube-modal-title">مشغل اليوتيوب</h2>
+            <div class="decorative-line"></div>
+            <div class="youtube-player-container" id="youtube-player"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" onclick="closeYouTubePlayer()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- مخفي لعنصر الصوت -->
     <audio id="audio-player" style="display:none"></audio>
     
@@ -1778,7 +1847,13 @@
                 evening:'',
                 sleep:'',
                 wakeup:'',
-                'after-prayer':'',
+                'after-prayer':{
+                    'الفجر':'',
+                    'الظهر':'',
+                    'العصر':'',
+                    'المغرب':'',
+                    'العشاء':''
+                },
                 enabled:false
             },
             // إحصائيات النقاط حسب النشاط
@@ -1797,7 +1872,9 @@
                 'wadee-al-yamani':[],
                 'abdulrahman-al-sudais':[]
             },
-            audioFiles: {}
+            audioFiles: {},
+            // أكواد تم استخدامها (لكل كود يستخدم مرة واحدة)
+            usedRewardCodes: {}
         };
         
         // الأذكار الأساسية
@@ -1852,44 +1929,44 @@
         // بيانات الشيوخ
         const sheikhsData={
             'ahmad-al-nafees':{name:'الشيخ أحمد النفيس',surahs:[
-                {title:'سورة الفاتحة',url:'https://youtube.com/shorts/hZwA9D2nDqM?si=R0CcddGvrY5lSZQz',type:'default'},
-                {title:'سورة البقرة',url:'https://youtu.be/9HW7j9lZZTU?si=AGx5otPHL_rKOFo2',type:'default'},
-                {title:'سورة الكهف',url:'https://youtu.be/-Rvavu8vyEw?si=3O3C6ca-MNG4MNJD',type:'default'},
-                {title:'سورة الدخان',url:'https://youtu.be/0nKqbDR_ya0?si=qGZEC5UtTYmH4Fda',type:'default'},
-                {title:'سورة القيامة',url:'https://youtu.be/WJ6OWeTTqtU?si=t0ugk-JvWmIF2vlA',type:'default'},
-                {title:'سورة الملك',url:'https://youtu.be/Byyrubr7eqQ?si=kxxRel7fpYxphIzy',type:'default'}
+                {title:'سورة الفاتحة',url:'https://www.youtube.com/embed/hZwA9D2nDqM',type:'youtube'},
+                {title:'سورة البقرة',url:'https://www.youtube.com/embed/9HW7j9lZZTU',type:'youtube'},
+                {title:'سورة الكهف',url:'https://www.youtube.com/embed/-Rvavu8vyEw',type:'youtube'},
+                {title:'سورة الدخان',url:'https://www.youtube.com/embed/0nKqbDR_ya0',type:'youtube'},
+                {title:'سورة القيامة',url:'https://www.youtube.com/embed/WJ6OWeTTqtU',type:'youtube'},
+                {title:'سورة الملك',url:'https://www.youtube.com/embed/Byyrubr7eqQ',type:'youtube'}
             ]},
             'yaser-al-dosari':{name:'الشيخ ياسر الدوسري',surahs:[
-                {title:'سورة الفاتحة',url:'https://youtube.com/shorts/MePQ7B0dNek?si=5vaWolGfhC2xrKk7',type:'default'},
-                {title:'سورة البقرة',url:'https://youtu.be/P0uaLRO6V1U?si=XcetcB863O0eFasd',type:'default'},
-                {title:'سورة الكهف',url:'https://youtu.be/GYqzkR_AnKE?si=zcF1sltZGbEvA4Tk',type:'default'},
-                {title:'سورة الدخان',url:'https://youtu.be/zmarpXKqMno?si=hamfIPAh0ZwCKSgZ',type:'default'},
-                {title:'سورة القيامة',url:'https://youtu.be/Tj6M-QrsYWQ?si=VEnqhXTf1ox_4AQg',type:'default'},
-                {title:'سورة الملك',url:'https://youtu.be/Xg3dnwXfsBc?si=azQjnht91DhGOjCV',type:'default'}
+                {title:'سورة الفاتحة',url:'https://www.youtube.com/embed/MePQ7B0dNek',type:'youtube'},
+                {title:'سورة البقرة',url:'https://www.youtube.com/embed/P0uaLRO6V1U',type:'youtube'},
+                {title:'سورة الكهف',url:'https://www.youtube.com/embed/GYqzkR_AnKE',type:'youtube'},
+                {title:'سورة الدخان',url:'https://www.youtube.com/embed/zmarpXKqMno',type:'youtube'},
+                {title:'سورة القيامة',url:'https://www.youtube.com/embed/Tj6M-QrsYWQ',type:'youtube'},
+                {title:'سورة الملك',url:'https://www.youtube.com/embed/Xg3dnwXfsBc',type:'youtube'}
             ]},
             'mishari-al-afasy':{name:'الشيخ مشاري العفاسي',surahs:[
-                {title:'سورة الفاتحة',url:'https://youtu.be/pUb9EW770d0?si=oRaxURYbJWdZDeDl',type:'default'},
-                {title:'سورة البقرة',url:'https://youtu.be/Y1M6hJHHrjM?si=nVu4jM1fFuCvINSp',type:'default'},
-                {title:'سورة الكهف',url:'https://youtu.be/fLHVCOLU_WI?si=56GqZZN9qQFJTCB2',type:'default'},
-                {title:'سورة الدخان',url:'https://youtu.be/ZB2Vaea3U6c?si=nbnNy7p-oCX-oc1w',type:'default'},
-                {title:'سورة القيامة',url:'https://youtu.be/PUec_OAAsuw?si=R8dA8s4v5fYqGyWl',type:'default'},
-                {title:'سورة الملك',url:'https://youtu.be/IDvV7Tvt8gM?si=_zzEnZ9OJ1z-OmXn',type:'default'}
+                {title:'سورة الفاتحة',url:'https://www.youtube.com/embed/pUb9EW770d0',type:'youtube'},
+                {title:'سورة البقرة',url:'https://www.youtube.com/embed/Y1M6hJHHrjM',type:'youtube'},
+                {title:'سورة الكهف',url:'https://www.youtube.com/embed/fLHVCOLU_WI',type:'youtube'},
+                {title:'سورة الدخان',url:'https://www.youtube.com/embed/ZB2Vaea3U6c',type:'youtube'},
+                {title:'سورة القيامة',url:'https://www.youtube.com/embed/PUec_OAAsuw',type:'youtube'},
+                {title:'سورة الملك',url:'https://www.youtube.com/embed/IDvV7Tvt8gM',type:'youtube'}
             ]},
             'wadee-al-yamani':{name:'الشيخ وديع اليمني',surahs:[
-                {title:'سورة الفاتحة',url:'https://youtube.com/shorts/qWzAyszODe4?si=ZdpBZiZpJBcxzqsF',type:'default'},
-                {title:'سورة البقرة',url:'https://youtu.be/oV8ZuycmnSA?si=sXrAOTDtC0CwzU9m',type:'default'},
-                {title:'سورة الكهف',url:'https://youtu.be/lQYNKmL0noU?si=hHMKfGYiN2Snh8FH',type:'default'},
-                {title:'سورة الدخان',url:'https://youtu.be/EM0pLYUvdbA?si=bp6eP_-Qd0kOytku',type:'default'},
-                {title:'سورة القيامة',url:'https://youtu.be/i1_Gbsu9IH8?si=YiOe553HSpG_PNxM',type:'default'},
-                {title:'سورة الملك',url:'https://youtu.be/ZhRXf6nSbpw?si=7DFLlKM_QMPUTH9F',type:'default'}
+                {title:'سورة الفاتحة',url:'https://www.youtube.com/embed/qWzAyszODe4',type:'youtube'},
+                {title:'سورة البقرة',url:'https://www.youtube.com/embed/oV8ZuycmnSA',type:'youtube'},
+                {title:'سورة الكهف',url:'https://www.youtube.com/embed/lQYNKmL0noU',type:'youtube'},
+                {title:'سورة الدخان',url:'https://www.youtube.com/embed/EM0pLYUvdbA',type:'youtube'},
+                {title:'سورة القيامة',url:'https://www.youtube.com/embed/i1_Gbsu9IH8',type:'youtube'},
+                {title:'سورة الملك',url:'https://www.youtube.com/embed/ZhRXf6nSbpw',type:'youtube'}
             ]},
             'abdulrahman-al-sudais':{name:'الشيخ عبدالرحمن السديس',surahs:[
-                {title:'سورة الفاتحة',url:'https://youtu.be/m3EBoMovUg8?si=aVjobRK0ILolvKAG',type:'default'},
-                {title:'سورة البقرة',url:'https://youtu.be/MspLXPfFzjg?si=VslU40oUh191AK-1',type:'default'},
-                {title:'سورة الكهف',url:'https://youtu.be/xB4JmhhouFQ?si=_sgz5GyiUht2b9bC',type:'default'},
-                {title:'سورة الدخان',url:'https://youtu.be/Ww-L6S4cESM?si=BeBH3GlZns5wfteX',type:'default'},
-                {title:'سورة القيامة',url:'https://youtu.be/PyzTyTv85-M?si=85XZAFAFn8VsNnIM',type:'default'},
-                {title:'سورة الملك',url:'https://youtu.be/NYti96AJOFc?si=GtSbThmQ2tRa0X2B',type:'default'}
+                {title:'سورة الفاتحة',url:'https://www.youtube.com/embed/m3EBoMovUg8',type:'youtube'},
+                {title:'سورة البقرة',url:'https://www.youtube.com/embed/MspLXPfFzjg',type:'youtube'},
+                {title:'سورة الكهف',url:'https://www.youtube.com/embed/xB4JmhhouFQ',type:'youtube'},
+                {title:'سورة الدخان',url:'https://www.youtube.com/embed/Ww-L6S4cESM',type:'youtube'},
+                {title:'سورة القيامة',url:'https://www.youtube.com/embed/PyzTyTv85-M',type:'youtube'},
+                {title:'سورة الملك',url:'https://www.youtube.com/embed/NYti96AJOFc',type:'youtube'}
             ]}
         };
         
@@ -1926,13 +2003,13 @@
                         "وَإِذِ اعْتَزَلْتُمُوهُمْ وَمَا يَعْبُدُونَ إِلَّا اللَّهَ فَأَوُوا إِلَى الْكَهْفِ يَنشُرْ لَكُمْ رَبُّكُم مِّن رَّحْمَتِهِ وَيُهَيِّئْ لَكُم مِّنْ أَمْرِكُم مِّرْفَقًا",
                         "وَتَرَى الشَّمْسَ إِذَا طَلَعَت تَّزَاوَرُ عَن كَهْفِهِمْ ذَاتَ الْيَمِينِ وَإِذَا غَرَبَت تَّقْرِضُهُمْ ذَاتَ الشِّمَالِ وَهُمْ فِي فَجْوَةٍ مِّنْهُ ۚ ذَٰلِكَ مِنْ آيَاتِ اللَّهِ ۗ مَن يَهْدِ اللَّهُ فَهُوَ الْمُهْتَدِي ۖ وَمَن يُضْلِلْ فَلَن تَجِدَ لَهُ وَلِيًّا مُّرْشِدًا",
                         "وَتَحْسَبُهُمْ أَيْقَاظًا وَهُمْ رُقُودٌ ۚ وَنُقَلِّبُهُمْ ذَاتَ الْيَمِينِ وَذَاتَ الشِّمَالِ ۖ وَكَلْبُهُم بَاسِطٌ ذِرَاعَيْهِ بِالْوَصِيدِ ۚ لَوِ اطَّلَعْتَ عَلَيْهِمْ لَوَلَّيْتَ مِنْهُمْ فِرَارًا وَلَمُلِئْتَ مِنْهُمْ رُعْبًا",
-                        "وَكَذَٰلِكَ بَعَثْنَاهُمْ لِيَتَسَاءَلُوا بَيْنَهُمْ ۚ قَالَ قَائِلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ ۚ قَالُوا رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَابْعَثُوا أَحَدَكُم بِوَرِقِكُمْ هَٰذِهِ إِلَى الْمَدِينَةِ فَلْيَنظُرْ أَيُّهَا أَزْكَىٰ طَعَامًا فَلْيَأْتِكُم بِرِزْقٍ مِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَنَّ بِكُمْ أَحَدًا",
+                        "وَكَذَٰلِكَ بَعَثْنَاهُمْ لِيَتَسَاءَلُوا بَيْنَهُمْ ۚ قَالَ قَائِلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا لَبِثْنَا يَوْمًا أَوْ بَعضَ يَوْمٍ ۚ قَالُوا رَبُّكُمْ أَعْلَمُ بِمَا لَبِثْتُمْ فَابْعَثُوا أَحَدَكُم بِوَرِقِكُمْ هَٰذِهِ إِلَى الْمَدِينَةِ فَلْيَنظُرْ أَيُّهَا أَزْكَىٰ طَعَامًا فَلْيَأْتِكُم بِرِزْقٍ مِّنْهُ وَلْيَتَلَطَّفْ وَلَا يُشْعِرَنَّ بِكُمْ أَحَدًا",
                         "إِنَّهُمْ إِن يَظْهَرُوا عَلَيْكُمْ يَرْجُمُوكُمْ أَوْ يُعِيدُوكُمْ فِي مِلَّتِهِمْ وَلَن تُفْلِحُوا إِذًا أَبَدًا"
                     ],
                     // الصفحة 4: الآيات 21-27
                     [
-                        "وَكَذَٰلِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَمُوا أَنَّ وَعْدَ اللَّهِ حَقٌّ وَأَنَّ السَّاعَةَ لَا رَيْبَ فِيهَا إِذْ يَتَنَازَعُونَ بَيْنَهُمْ أَمْرَهُمْ ۖ فَقَالُوا ابْنُوا عَلَيْهِم بُنْيَانًا ۖ رَّبُّهُمْ أَعْلَمُ بِهِمْ ۚ قَالَ الَّذِينَ غَلَبُوا عَلَىٰ أَمْرِهِمْ لَنَتَّخِذَنَّ عَلَيْهِم مَّسْجِدًا",
-                        "سَيَقُولُونَ ثَلَاثَةٌ رَّابِعُهُمْ كَلْبُهُمْ وَيَقُولُونَ خَمْسَةٌ سَادِسُهُمْ كَلْبُهُمْ رَجْمًا بِالْغَيْبِ ۖ وَيَقُولُونَ سَبْعَةٌ وَثَامِنُهُمْ كَلْبُهُمْ ۚ قُل رَّبِّي أَعْلَمُ بِعِدَّتِهِم مَّا يَعْلَمُهُمْ إِلَّا قَلِيلٌ ۗ فَلَا تُمَارِ فِيهِمْ إِلَّا مِرَاءً ظَاهِرًا وَلَا تَسْتَفْتِ فِيهِمْ مِنْهُمْ أَحَدًا",
+                        "وَكَذَٰلِكَ أَعْثَرْنَا عَلَيْهِمْ لِيَعْلَمُوا أَنَّ وَعْدَ اللَّهِ حَقٌّ وَأَنَّ السَّاعَةَ لَا رَيْبَ فِيهَا إِذ يَتَنَازَعُونَ بَيْنَهُمْ أَمْرَهُمْ ۖ فَقَالُوا ابْنُوا عَلَيْهِم بُنْيَانًا ۖ رَّبُّهُمْ أَعْلَمُ بِهِمْ ۚ قَالَ الَّذِينَ غَلَبُوا عَلَىٰ أَمْرِهِمْ لَنَتَّخِذَنَّ عَلَيْهِم مَّسْجِدًا",
+                        "سَيَقُولُونَ ثَلَاثَةٌ رَّابِعُهُمْ كَلْبُهُمْ وَيَقُولُونَ خَمْسَةٌ سَادِسُهُمْ كَلْبُهُمْ رَجْمًا بِالْغَيْبِ ۖ وَيَقولُونَ سَبْعَةٌ وَثَامِنُهُمْ كَلْبُهُمْ ۚ قُل رَّبِّي أَعْلَمُ بِعِدَّتِهِم مَّا يَعْلَمُهُمْ إِلَّا قَلِيلٌ ۗ فَلَا تُمَارِ فِيهِمْ إِلَّا مِرَاءً ظَاهِرًا وَلَا تَسْتَفْتِ فِيهِمْ مِنْهُمْ أَحَدًا",
                         "وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا",
                         "إِلَّا أَن يَشَاءَ اللَّهُ ۚ وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ وَقُلْ عَسَىٰ أَن يَهْدِيَنِ رَبِّي لِأَقْرَبَ مِنْ هَٰذَا رَشَدًا",
                         "وَلَبِثُوا فِي كَهْفِهِمْ ثَلَاثَ مِائَةٍ سِنِينَ وَازْدَادُوا تِسْعًا",
@@ -1942,9 +2019,9 @@
                     // الصفحة 5: الآيات 28-34
                     [
                         "وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ الْحَيَاةِ الدُّنْيَا ۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلَبَهُ عَن ذِكْرِنَا وَاتَّبَعَ هَوَاهُ وَكَانَ أَمْرُهُ فُرُطًا",
-                        "وَقُلِ الْحَقُّ مِن رَّبِّكُمْ ۖ فَمَن شَاءَ فَلْيُؤْمِن وَمَن شَاءَ فَلْيَكْفُرْ ۚ إِنَّا أَعْتَدْنَا لِلظَّالِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا ۚ وَإِن يَسْتَغِيثُوا يُغَاثُوا بِمَاءٍ كَالْمُهْلِ يَشْوِي الْوُجُوهَ ۚ بِئْسَ الشَّرَابُ وَسَاءَتْ مُرْتَفَقًا",
+                        "وَقُلِ الْحَقُّ مِن رَّبِّكُمْ ۖ فَمَن شَاءَ فَلْيُؤْمِن وَمَن شَاءَ فَلْيَكْفُرْ ۚ إِنَّا أَعْتَدْنَا لِلظَّالِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا ۚ وَإِن يَسْتَغِيثُوا يُغَاثُوا بِمَاءٍ كَالْمُهْلِ يَشْوِي الْوُجُوهَ ۚ بِئْسَ الشَّرابُ وَسَاءَتْ مُرْتَفَقًا",
                         "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ إِنَّا لَا نُضِيعُ أَجْرَ مَنْ أَحْسَنَ عَمَلًا",
-                        "أُولَٰئِكَ لَهُمْ جَنَّاتُ عَدْنٍ تَجْرِي مِن تَحْتِهِمُ الْأَنْهَارُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِن ذَهَبٍ وَيَلْبَسُونَ ثِيَابًا خُضْرًا مِّن سُنْدُسٍ وَإِسْتَبْرَقٍ مُّتَّكِئِينَ فِيهَا عَلَى الْأَرَائِكِ ۚ نِعْمَ الثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا",
+                        "أُولَٰئِكَ لَهُمْ جَنَّاتُ عَدْنٍ تَجْرِي مِن تَحْتِهِمُ الْأَنْهَارُ يُحَلَّوْنَ فِيهَا مِنْ أَسَاوِرَ مِن ذَهَبٍ وَيَلْبَسُونَ ثِيابًا خُضْرًا مِّن سُنْدُسٍ وَإِسْتَبْرَقٍ مُّتَّكِئِينَ فِيهَا عَلَى الْأَرَائِكِ ۚ نِعْمَ الثَّوَابُ وَحَسُنَتْ مُرْتَفَقًا",
                         "وَاضْرِبْ لَهُم مَّثَلًا رَّجُلَيْنِ جَعَلْنَا لِأَحَدِهِمَا جَنَّتَيْنِ مِنْ أَعْنَابٍ وَحَفَفْنَاهُمَا بِنَخْلٍ وَجَعَلْنَا بَيْنَهُمَا زَرْعًا",
                         "كِلْتَا الْجَنَّتَيْنِ آتَتْ أُكُلَهَا وَلَمْ تَظْلِم مِّنْهُ شَيْئًا ۚ وَفَجَّرْنَا خِلَالَهُمَا نَهَرًا"
                     ],
@@ -1968,12 +2045,12 @@
                         "الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا ۖ وَالْبَاقِيَاتُ الصَّالِحَاتُ خَيْرٌ عِندَ رَبِّكَ ثَوَابًا وَخَيْرٌ أَمَلًا",
                         "وَيَوْمَ نُسَيِّرُ الْجِبَالَ وَتَرَى الْأَرْضَ بَارِزَةً وَحَشَرْنَاهُمْ فَلَمْ نُغَادِرْ مِنْهُمْ أَحَدًا",
                         "وَعُرِضُوا عَلَىٰ رَبِّكَ صَفًّا لَّقَدْ جِئْتُمُونَا كَمَا خَلَقْنَاكُمْ أَوَّلَ مَرَّةٍ ۚ بَل زَعَمْتُمْ أَلَّن نَّجْعَلَ لَكُم مَّوْعِدًا",
-                        "وَوُضِعَ الْكِتَابُ فَتَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ وَيَقُولُونَ يَا وَيْلَتَنَا مَالِ هَٰذَا الْكِتَابِ لَا يُغَادِرُ صَغِيرَةً وَلَا كَبِيرَةً إِلَّا أَحْصَاهَا ۚ وَوَجَدُوا مَا عَمِلُوا حَاضِرًا ۗ وَلَا يَظْلِمُ رَبُّكَ أَحَدًا",
+                        "وَوُضِعَ الْكِتَابُ فَتَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ وَيَقُولُونَ يَا وَيْلَتَنَا مَالِ هَٰذَا الْكِتَابِ لَا يُغَادِرُ صَغِيرَةً وَلَا كَبيرَةً إِلَّا أَحْصَاهَا ۚ وَوَجَدُوا مَا عَمِلُوا حَاضِرًا ۗ وَلَا يَظْلِمُ رَبُّكَ أَحَدًا",
                         "وَإِذْ قُلْنَا لِلْمَلَائِكَةِ اسْجُدُوا لِآدَمَ فَسَجَدُوا إِلَّا إِبْلِيسَ كَانَ مِنَ الْجِنِّ فَفَسَقَ عَنْ أَمْرِ رَبِّهِ ۗ أَفَتَتَّخِذُونَهُ وَذُرِّيَّتَهُ أَوْلِيَاءَ مِن دُونِي وَهُمْ لَكُمْ عَدُوٌّ ۚ بِئْسَ لِلظَّالِمِينَ بَدَلًا"
                     ],
                     // الصفحة 8: الآيات 54-61
                     [
-                        "مَا أَشْهَدتُّهُمْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضِ وَلَا خَلَقَ أَنفُسِهِمْ وَمَا كُنتُ مُتَّخِذَ الْمُضِلِّينَ عَدَدًا",
+                        "مَا أَشْهَدتُّهُمْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضِ وَلَا خَلَقَ أَنفْسِهِمْ وَمَا كُنتُ مُتَّخِذَ الْمُضِلِّينَ عَدَدًا",
                         "وَيَوْمَ يَقُولُ نَادُوا شُرَكَائِيَ الَّذِينَ زَعَمْتُمْ فَدَعَوْهُمْ فَلَمْ يَسْتَجِيبُوا لَهُمْ وَجَعَلْنَا بَيْنَهُم مَّوْبِقًا",
                         "وَرَأَى الْمُجْرِمُونَ النَّارَ فَظَنُّوا أَنَّهُم مُّوَاقِعُوهَا وَلَمْ يَجِدُوا عَنْهَا مَصْرِفًا",
                         "وَلَقَدْ صَرَّفْنَا فِي هَٰذَا الْقُرْآنِ لِلنَّاسِ مِن كُلِّ مَثَلٍ ۚ وَكَانَ الْإِنسَانُ أَكْثَرَ شَيْءٍ جَدَلًا",
@@ -2034,8 +2111,8 @@
                         "قَالَ هَٰذَا رَحْمَةٌ مِّن رَّبِّي ۖ فَإِذَا جَاءَ وَعْدُ رَبِّي جَعَلَهُ دَكَّاءَ ۖ وَكَانَ وَعْدُ رَبِّي حَقًا",
                         "وَوَضَعْنَا بَعْضَهُمْ يَوْمَئِذٍ يَمُوجُ فِي بَعْضٍ ۖ وَنُفِخَ فِي الصُّورِ فَجَمَعْنَاهُمْ جَمْعًا",
                         "وَعَرَضْنَا جَهَنَّمَ يَوْمَئِذٍ لِّلْكَافِرِينَ عَرَضًا",
-                        "الَّذِينَ كَانَتْ أَعْيُنُهُمْ فِي غِطَاءٍ عَن ذِكْرِي وَكَانُوا لَا يَسْتَطِيعُونَ سَمْعًا",
-                        "أَفَحَسِبَ الَّذِينَ كَفَرُوا أَن يَتَّخِذُوا عِبَادِي مِن دُونِي أَوْلِيَاءَ ۚ إِنَّا أَعْتَدْنَا جَهَنَّمَ لِلْكَافِرِينَ نُزُلًا",
+                        "الَّذِينَ كَانَتْ أَعْيُنُهُمْ فِي غِطاءٍ عَن ذِكْرِي وَكَانُوا لَا يَسْتَطِيعُونَ سَمْعًا",
+                        "أَفَحَسِبَ الَّذِينَ كَفَرُوا أَن يَتَّخِذُوا عِبَادِي مِن دُونِي أَوْلِياءَ ۚ إِنَّا أَعْتَدْنَا جَهَنَّمَ لِلْكَافِرِينَ نُزُلًا",
                         "قُلْ هَلْ نُنَبِّئُكُم بِالْأَخْسَرِينَ أَعْمَالًا",
                         "الَّذِينَ ضَلَّ سَعْيُهُمْ فِي الْحَيَاةِ الدُّنْيَا وَهُمْ يَحْسَبُونَ أَنَّهُمْ يُحْسِنُونَ صُنْعًا",
                         "أُولَٰئِكَ الَّذِينَ كَفَرُوا بِآيَاتِ رَبِّهِمْ وَلِقَائِهِ فَحَبِطَتْ أَعْمَالُهُمْ فَلَا نُقِيمُ لَهُمْ يَوْمَ الْقِيَامَةِ وَزْنًا",
@@ -2043,7 +2120,7 @@
                         "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ كَانَتْ لَهُمْ جَنَّاتُ الْفِرْدَوْسِ نُزُلًا",
                         "خَالِدِينَ فِيهَا لَا يَبْغُونَ عَنْهَا حِوَلًا",
                         "قُل لَّوْ كَانَ الْبَحْرُ مِدَادًا لِّكَلِمَاتِ رَبِّي لَنفِدَ الْبَحْرُ قَبْلَ أَن تَنفَدَ كَلِمَاتِ رَبِّي وَلَوْ جِئْنَا بِمِثْلِهِ مَدَدًا",
-                        "قُلْ إِنَّمَا أَنَا بَشَرٌ مِّثْلُكُمْ يُوحَىٰ إِلَيَّ أَنَّمَا إِلَٰهَكُمْ إِلَٰهٌ وَاحِدٌ ۖ فَمَن كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلِيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا"
+                        "قُلْ إِنَّمَا أَنَا بَشَرٌ مِّثْلُكُمْ يُوحَىٰ إِلَيَّ أَنَّمَا إِلَٰهَكُمْ إِلَٰهٌ وَاحِدٌ ۖ فَمَن كَانَ يَرْجُو لَقَاءَ رَبِّهِ فَلِيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا"
                     ]
                 ]
             },
@@ -2116,12 +2193,22 @@
         let isPlaying = false;
         let audioElement = null;
         
-        // دوال الكود السري للمكافآت
+        // متغير مشغل اليوتيوب
+        let youtubePlayer = null;
+        let currentYouTubeVideoId = '';
+        
+        // دوال الكود السري للمكافآت (للاستخدام لمرة واحدة فقط)
         const rewardCodes = {
-            'gd': 1000,
-            'work': 2500,
-            'zikr': 5000
+            'gd': { points: 1000, name: 'كود عادي' },
+            'work': { points: 2500, name: 'كود العمل الجاد' },
+            'zikr': { points: 5000, name: 'كورد الذكر' },
+            'deepseek': { points: 2500, name: 'كود DeepSeek' },
+            'الاستاذ عمرو انور': { points: 1000, name: 'كود الأستاذ عمرو أنور' }
         };
+        
+        // دوال الإشعارات الحقيقية
+        let notificationPermission = false;
+        let serviceWorkerRegistration = null;
         
         // الدوال الأساسية
         function initApp(){
@@ -2157,10 +2244,16 @@
             }
             
             // طلب إذن الإشعارات
-            if ("Notification" in window) {
-                if (Notification.permission === "default") {
-                    Notification.requestPermission();
-                }
+            requestNotificationPermission();
+            
+            // محاولة تسجيل Service Worker للإشعارات الحقيقية
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    serviceWorkerRegistration = registration;
+                    console.log('Service Worker مسجل بنجاح');
+                }).catch(function(error) {
+                    console.log('فشل تسجيل Service Worker:', error);
+                });
             }
         }
         
@@ -2527,8 +2620,14 @@
         
         function openSermon(youtubeURL){
             if(youtubeURL){
-                window.open(youtubeURL,'_blank');
-                showNotification('جاري فتح الخطبة على اليوتيوب');
+                // استخراج معرف الفيديو من رابط اليوتيوب
+                const videoId = extractYouTubeVideoId(youtubeURL);
+                if(videoId){
+                    playYouTubeVideo(videoId, 'خطبة إسلامية');
+                }else{
+                    window.open(youtubeURL,'_blank');
+                    showNotification('جاري فتح الخطبة على اليوتيوب');
+                }
             }else{
                 showNotification('لا يوجد رابط متاح');
             }
@@ -2541,10 +2640,27 @@
         
         function openYouTubeSurah(youtubeURL, isCustom = false, index = -1, sheikhId = ''){
             if(youtubeURL && youtubeURL.trim() !== ''){
-                window.open(youtubeURL,'_blank');
-                showNotification('جاري فتح السورة في اليوتيوب');
+                // استخراج معرف الفيديو من رابط اليوتيوب
+                const videoId = extractYouTubeVideoId(youtubeURL);
+                if(videoId){
+                    playYouTubeVideo(videoId, 'سورة قرآنية');
+                }else{
+                    window.open(youtubeURL,'_blank');
+                    showNotification('جاري فتح السورة في اليوتيوب');
+                }
             }else if(isCustom && index !== -1 && sheikhId !== ''){
-                playCustomAudio(sheikhId, index);
+                const surah = userData.customSurahs[sheikhId][index];
+                if(surah.url && surah.url.trim() !== ''){
+                    const videoId = extractYouTubeVideoId(surah.url);
+                    if(videoId){
+                        playYouTubeVideo(videoId, surah.title);
+                    }else{
+                        window.open(surah.url,'_blank');
+                        showNotification('جاري فتح السورة في اليوتيوب');
+                    }
+                }else{
+                    playCustomAudio(sheikhId, index);
+                }
             }else{
                 showNotification('لا يوجد رابط متاح');
             }
@@ -2982,34 +3098,68 @@
             }
         }
         
-        // دوال المكافآت
+        // دوال المكافآت (للاستخدام لمرة واحدة فقط)
         function checkRewardCode(){
-            const code = document.getElementById('reward-code-input').value.trim().toLowerCase();
+            const codeInput = document.getElementById('reward-code-input');
+            const code = codeInput.value.trim().toLowerCase();
+            
             if(!code){
                 showNotification('الرجاء إدخال كود مكافأة');
                 return;
             }
             
-            if(rewardCodes[code]){
-                const points = rewardCodes[code];
+            // البحث عن الكود في القائمة (مع مراعاة الحالة)
+            let rewardCode = null;
+            let codeKey = null;
+            
+            // البحث أولاً بالمطابقة التامة مع الحالة الصغيرة
+            if (rewardCodes[code]) {
+                rewardCode = rewardCodes[code];
+                codeKey = code;
+            } else {
+                // البحث في المفاتيح مع تجاهل الحالة
+                for (const key in rewardCodes) {
+                    if (key.toLowerCase() === code) {
+                        rewardCode = rewardCodes[key];
+                        codeKey = key;
+                        break;
+                    }
+                }
+            }
+            
+            if(rewardCode){
+                // التحقق إذا كان الكود قد استخدم من قبل
+                if (userData.usedRewardCodes[codeKey]) {
+                    showNotification('هذا الكود تم استخدامه من قبل!');
+                    codeInput.value = '';
+                    return;
+                }
+                
+                const points = rewardCode.points;
                 userData.points += points;
                 userData.pointsByActivity.rewards += points;
+                
+                // حفظ الكود كمستخدم
+                userData.usedRewardCodes[codeKey] = {
+                    usedAt: new Date().toISOString(),
+                    points: points
+                };
+                
                 updateLevelDisplay();
                 saveData();
-                showNotification(`🎉 مبروك! لقد حصلت على ${points} نقطة!`);
-                document.getElementById('reward-code-input').value = '';
+                showNotification(`🎉 مبروك! لقد حصلت على ${points} نقطة باستخدام كود ${rewardCode.name}!`);
+                codeInput.value = '';
             }else{
                 showNotification('الكود غير صحيح، حاول مرة أخرى');
             }
         }
         
-        // دوال منبه الأذكار
+        // دوال منبه الأذكار - معدلة
         function updateAlarmDisplay(){
             const morningTime = document.getElementById('morning-alarm-time');
             const eveningTime = document.getElementById('evening-alarm-time');
             const sleepTime = document.getElementById('sleep-alarm-time');
             const wakeupTime = document.getElementById('wakeup-alarm-time');
-            const afterPrayerTime = document.getElementById('after-prayer-alarm-time');
             const alarmStatus = document.getElementById('alarm-status');
             
             if(morningTime){
@@ -3024,13 +3174,29 @@
             if(wakeupTime){
                 wakeupTime.textContent = userData.azkarAlarms.wakeup || '--:--';
             }
-            if(afterPrayerTime){
-                afterPrayerTime.textContent = userData.azkarAlarms['after-prayer'] || '--:--';
-            }
             if(alarmStatus){
                 alarmStatus.textContent = userData.azkarAlarms.enabled ? 'مفعل' : 'غير مفعل';
                 alarmStatus.style.color = userData.azkarAlarms.enabled ? '#4CAF50' : '#f44336';
             }
+            
+            // تحديث أوقات أذكار بعد الصلاة
+            updateAfterPrayerAlarmsDisplay();
+        }
+        
+        function updateAfterPrayerAlarmsDisplay(){
+            const prayerAlarmsGrid = document.getElementById('prayer-alarms-grid');
+            if(!prayerAlarmsGrid) return;
+            
+            let html = '';
+            prayersList.forEach(prayer => {
+                const alarmTime = userData.azkarAlarms['after-prayer'][prayer] || '--:--';
+                html += `<div class="prayer-alarm-item" onclick="showPrayerAlarmTimeModal('${prayer}')">
+                    <div class="prayer-alarm-name">${prayer}</div>
+                    <div class="prayer-alarm-time">${alarmTime}</div>
+                </div>`;
+            });
+            
+            prayerAlarmsGrid.innerHTML = html;
         }
         
         function showAlarmTimeModal(alarmType){
@@ -3040,12 +3206,12 @@
                 'morning': 'أذكار الصباح',
                 'evening': 'أذكار المساء',
                 'sleep': 'أذكار النوم',
-                'wakeup': 'أذكار الاستيقاظ',
-                'after-prayer': 'أذكار بعد الصلاة'
+                'wakeup': 'أذكار الاستيقاظ'
             };
             
             document.getElementById('alarm-modal-title').textContent = `تحديد وقت ${alarmTitles[alarmType]}`;
             document.getElementById('alarm-type-input').value = alarmType;
+            document.getElementById('alarm-prayer-input').value = '';
             
             // تعيين الوقت الحالي إذا كان هناك وقت محفوظ
             const currentTime = userData.azkarAlarms[alarmType];
@@ -3057,10 +3223,33 @@
                     'morning': '06:00',
                     'evening': '18:00',
                     'sleep': '22:00',
-                    'wakeup': '05:00',
-                    'after-prayer': '19:00'
+                    'wakeup': '05:00'
                 };
                 document.getElementById('alarm-time-input').value = defaultTimes[alarmType] || '06:00';
+            }
+        }
+        
+        function showPrayerAlarmTimeModal(prayerName){
+            document.getElementById('alarm-time-modal').style.display = 'flex';
+            
+            document.getElementById('alarm-modal-title').textContent = `تحديد وقت أذكار بعد صلاة ${prayerName}`;
+            document.getElementById('alarm-type-input').value = 'after-prayer';
+            document.getElementById('alarm-prayer-input').value = prayerName;
+            
+            // تعيين الوقت الحالي إذا كان هناك وقت محفوظ
+            const currentTime = userData.azkarAlarms['after-prayer'][prayerName];
+            if(currentTime){
+                document.getElementById('alarm-time-input').value = currentTime;
+            }else{
+                // الأوقات الافتراضية حسب الصلاة
+                const defaultTimes = {
+                    'الفجر': '06:30',
+                    'الظهر': '14:00',
+                    'العصر': '17:00',
+                    'المغرب': '19:30',
+                    'العشاء': '21:00'
+                };
+                document.getElementById('alarm-time-input').value = defaultTimes[prayerName] || '18:00';
             }
         }
         
@@ -3071,13 +3260,19 @@
         function saveAlarmTime(){
             const alarmType = document.getElementById('alarm-type-input').value;
             const time = document.getElementById('alarm-time-input').value;
+            const prayerName = document.getElementById('alarm-prayer-input').value;
             
             if(!time){
                 showNotification('الرجاء تحديد وقت');
                 return;
             }
             
-            userData.azkarAlarms[alarmType] = time;
+            if(alarmType === 'after-prayer' && prayerName){
+                userData.azkarAlarms['after-prayer'][prayerName] = time;
+            }else{
+                userData.azkarAlarms[alarmType] = time;
+            }
+            
             saveData();
             updateAlarmDisplay();
             closeAlarmTimeModal();
@@ -3086,11 +3281,14 @@
                 'morning': 'أذكار الصباح',
                 'evening': 'أذكار المساء',
                 'sleep': 'أذكار النوم',
-                'wakeup': 'أذكار الاستيقاظ',
-                'after-prayer': 'أذكار بعد الصلاة'
+                'wakeup': 'أذكار الاستيقاظ'
             };
             
-            showNotification(`تم حفظ وقت ${alarmNames[alarmType]}`);
+            if(alarmType === 'after-prayer'){
+                showNotification(`تم حفظ وقت أذكار بعد صلاة ${prayerName}`);
+            }else{
+                showNotification(`تم حفظ وقت ${alarmNames[alarmType]}`);
+            }
         }
         
         function toggleAlarmStatus(){
@@ -3111,24 +3309,79 @@
                 {type: 'morning', name: 'أذكار الصباح', page: 'morning-azkar-page'},
                 {type: 'evening', name: 'أذكار المساء', page: 'evening-azkar-page'},
                 {type: 'sleep', name: 'أذكار النوم', page: 'sleep-azkar-page'},
-                {type: 'wakeup', name: 'أذكار الاستيقاظ', page: 'wakeup-azkar-page'},
-                {type: 'after-prayer', name: 'أذكار بعد الصلاة', page: 'after-prayer-azkar-page'}
+                {type: 'wakeup', name: 'أذكار الاستيقاظ', page: 'wakeup-azkar-page'}
             ];
             
-            // التحقق من جميع المنبهات
+            // التحقق من المنبهات العامة
             alarmTypes.forEach(alarm => {
                 if(userData.azkarAlarms[alarm.type] && userData.azkarAlarms[alarm.type] === currentTime){
                     showBrowserNotification(alarm.name, alarm.page);
                 }
             });
+            
+            // التحقق من منبهات أذكار بعد الصلاة
+            prayersList.forEach(prayer => {
+                const alarmTime = userData.azkarAlarms['after-prayer'][prayer];
+                if(alarmTime && alarmTime === currentTime){
+                    showBrowserNotification(`أذكار بعد صلاة ${prayer}`, 'after-prayer-azkar-page');
+                }
+            });
+        }
+        
+        // دوال الإشعارات الحقيقية
+        function requestNotificationPermission(){
+            if ("Notification" in window) {
+                if (Notification.permission === "default") {
+                    Notification.requestPermission().then(function(permission){
+                        notificationPermission = permission === "granted";
+                    });
+                } else {
+                    notificationPermission = Notification.permission === "granted";
+                }
+            }
+            
+            // طلب إذن الإشعارات الدفعية إذا كان متاحاً
+            if ('PushManager' in window) {
+                navigator.serviceWorker.ready.then(function(registration) {
+                    registration.pushManager.permissionState({userVisibleOnly: true}).then(function(permissionState) {
+                        if (permissionState === 'prompt') {
+                            registration.pushManager.subscribe({
+                                userVisibleOnly: true,
+                                applicationServerKey: urlBase64ToUint8Array('BLGz9f0Lb6y7V8Kv6j5hT4nM7bV2cX1z5qW8rT3yU6iH9oP2aS4dF7gJ1kL0mN5')
+                            }).then(function(subscription) {
+                                console.log('تم الاشتراك في الإشعارات الدفعية');
+                            }).catch(function(error) {
+                                console.log('فشل الاشتراك في الإشعارات الدفعية:', error);
+                            });
+                        }
+                    });
+                });
+            }
+        }
+        
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+            
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
         }
         
         function showBrowserNotification(alarmName, pageToOpen){
             // عرض إشعار المتصفح
-            if ("Notification" in window && Notification.permission === "granted") {
+            if ("Notification" in window && notificationPermission) {
                 const notification = new Notification(`⏰ وقت ${alarmName}!`, {
                     body: 'اضغط للذهاب إلى الأذكار',
-                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4af37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
+                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4af37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>',
+                    tag: 'islamic-app-notification',
+                    requireInteraction: true
                 });
                 
                 notification.onclick = function() {
@@ -3137,20 +3390,36 @@
                     notification.close();
                 };
                 
-                // إغلاق الإشعار تلقائياً بعد 10 ثواني
+                // إغلاق الإشعار تلقائياً بعد 30 ثانية
                 setTimeout(() => {
                     notification.close();
-                }, 10000);
+                }, 30000);
+                
+                // تشغيل صوت تنبيه
+                try{
+                    const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+                    audio.volume = 0.5;
+                    audio.play().catch(e => console.log('لا يمكن تشغيل الصوت:', e));
+                }catch(e){}
             }
             
             // عرض إشعار داخل التطبيق أيضاً
             showNotification(`⏰ وقت ${alarmName}! اضغط للذهاب إلى الأذكار`, true, pageToOpen);
             
-            // تشغيل صوت تنبيه
-            try{
-                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
-                audio.play();
-            }catch(e){}
+            // محاولة إرسال إشعار دفعي إذا كان Service Worker مسجلاً
+            if (serviceWorkerRegistration) {
+                serviceWorkerRegistration.showNotification(`⏰ وقت ${alarmName}!`, {
+                    body: 'اضغط للذهاب إلى الأذكار',
+                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4af37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>',
+                    tag: 'islamic-app-push-notification',
+                    requireInteraction: true,
+                    actions: [
+                        {action: 'open', title: 'فتح الأذكار'}
+                    ]
+                }).catch(error => {
+                    console.log('فشل إظهار الإشعار الدفعي:', error);
+                });
+            }
         }
         
         function showNotification(message, isAlarm = false, pageToOpen = ''){
@@ -3173,7 +3442,7 @@
                 if(notification.parentNode){
                     notification.remove();
                 }
-            },isAlarm ? 10000 : 3000);
+            },isAlarm ? 30000 : 3000);
         }
         
         function resetUserData(){
@@ -3193,7 +3462,13 @@
                     evening:'',
                     sleep:'',
                     wakeup:'',
-                    'after-prayer':'',
+                    'after-prayer':{
+                        'الفجر':'',
+                        'الظهر':'',
+                        'العصر':'',
+                        'المغرب':'',
+                        'العشاء':''
+                    },
                     enabled:false
                 };
                 userData.pointsByActivity={
@@ -3212,6 +3487,7 @@
                     'abdulrahman-al-sudais':[]
                 };
                 userData.audioFiles={};
+                userData.usedRewardCodes={};
                 updateLevelDisplay();
                 saveData();
                 showNotification('تم تصفير جميع بياناتك بنجاح');
@@ -3316,7 +3592,7 @@
             }
         }
         
-        // دوال الاستماع للقرآن
+        // دوال الاستماع للقرآن - معدلة
         function showSheikhSurahs(sheikhId) {
             const sheikh = sheikhsData[sheikhId];
             if (!sheikh) return;
@@ -3333,9 +3609,11 @@
             
             let surahsHTML = '';
             
-            // عرض السور الأساسية
+            // عرض السور الأساسية (يوتيوب)
             sheikh.surahs.forEach((surah, index) => {
-                surahsHTML += `<div class="surah-card" onclick="openYouTubeSurah('${surah.url}')">
+                const videoId = extractYouTubeVideoId(surah.url);
+                surahsHTML += `<div class="surah-card" onclick="playYouTubeVideo('${videoId}', '${surah.title}')">
+                    <div class="surah-type-badge">يوتيوب</div>
                     <div class="surah-card-title">${surah.title}</div>
                     <div class="surah-card-desc">${sheikh.name}</div>
                 </div>`;
@@ -3347,18 +3625,60 @@
                     const hasAudio = userData.audioFiles && userData.audioFiles[surah.id];
                     const hasYouTube = surah.url && surah.url.trim() !== '';
                     
-                    surahsHTML += `<div class="surah-card" onclick="${hasYouTube ? `openYouTubeSurah('${surah.url}', true, ${index}, '${sheikhId}')` : `playCustomAudio('${sheikhId}', ${index})`}">
-                        <div class="surah-type-badge">${hasYouTube ? 'يوتيوب' : (hasAudio ? 'ملف صوتي' : 'مخصص')}</div>
-                        <div class="surah-card-title">${surah.title}</div>
-                        <div class="surah-card-desc">${hasYouTube ? 'رابط يوتيوب' : (hasAudio ? 'ملف صوتي محفوظ' : 'بدون ملف')}</div>
-                        <div class="custom-azkar-actions" style="margin-top:10px">
-                            <button class="task-action-btn" onclick="event.stopPropagation(); removeCustomSurah('${sheikhId}', ${index})">🗑️</button>
-                        </div>
-                    </div>`;
+                    if (hasYouTube) {
+                        const videoId = extractYouTubeVideoId(surah.url);
+                        surahsHTML += `<div class="surah-card" onclick="playYouTubeVideo('${videoId}', '${surah.title}')">
+                            <div class="surah-type-badge">يوتيوب مخصص</div>
+                            <div class="surah-card-title">${surah.title}</div>
+                            <div class="surah-card-desc">تمت إضافته بواسطتك</div>
+                            <div class="custom-azkar-actions" style="margin-top:10px">
+                                <button class="task-action-btn" onclick="event.stopPropagation(); removeCustomSurah('${sheikhId}', ${index})">🗑️</button>
+                            </div>
+                        </div>`;
+                    } else if (hasAudio) {
+                        surahsHTML += `<div class="surah-card" onclick="playCustomAudio('${sheikhId}', ${index})">
+                            <div class="surah-type-badge">ملف صوتي</div>
+                            <div class="surah-card-title">${surah.title}</div>
+                            <div class="surah-card-desc">ملف صوتي محفوظ</div>
+                            <div class="custom-azkar-actions" style="margin-top:10px">
+                                <button class="task-action-btn" onclick="event.stopPropagation(); removeCustomSurah('${sheikhId}', ${index})">🗑️</button>
+                            </div>
+                        </div>`;
+                    } else {
+                        surahsHTML += `<div class="surah-card">
+                            <div class="surah-type-badge">مخصص</div>
+                            <div class="surah-card-title">${surah.title}</div>
+                            <div class="surah-card-desc">بدون ملف</div>
+                            <div class="custom-azkar-actions" style="margin-top:10px">
+                                <button class="task-action-btn" onclick="event.stopPropagation(); removeCustomSurah('${sheikhId}', ${index})">🗑️</button>
+                            </div>
+                        </div>`;
+                    }
                 });
             }
             
             surahsListElement.innerHTML = surahsHTML;
+        }
+        
+        function extractYouTubeVideoId(url) {
+            if (!url) return null;
+            
+            // أنماط مختلفة لروابط اليوتيوب
+            const patterns = [
+                /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/,
+                /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/,
+                /(?:youtu\.be\/)([a-zA-Z0-9_-]+)/,
+                /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]+)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) {
+                    return match[1];
+                }
+            }
+            
+            return null;
         }
         
         function handleAudioFileUpload(input) {
@@ -3439,7 +3759,9 @@
                     userData.audioFiles[surahId] = {
                         data: e.target.result.split(',')[1], // Base64 data
                         type: uploadingAudioFile.type,
-                        name: uploadingAudioFile.name
+                        name: uploadingAudioFile.name,
+                        size: uploadingAudioFile.size,
+                        lastModified: uploadingAudioFile.lastModified
                     };
                     
                     // إضافة السورة المخصصة وحفظ البيانات
@@ -3551,7 +3873,7 @@
             }
         }
         
-        // دوال مشغل الصوت
+        // دوال مشغل الصوت للملفات المحملة
         function playCustomAudio(sheikhId, index) {
             if (!userData.customSurahs[sheikhId] || !userData.customSurahs[sheikhId][index]) {
                 showNotification('السورة غير موجودة');
@@ -3564,13 +3886,6 @@
             currentAudioSheikh = sheikhId;
             currentAudioIndex = index;
             currentAudioList = userData.customSurahs[sheikhId];
-            
-            // إذا كان هناك رابط يوتيوب، افتحه في نافذة جديدة
-            if (surah.url && surah.url.trim() !== '') {
-                window.open(surah.url, '_blank');
-                showNotification('جاري فتح الرابط في اليوتيوب');
-                return;
-            }
             
             // إذا كان هناك ملف صوتي محفوظ
             if (surah.id && userData.audioFiles && userData.audioFiles[surah.id]) {
@@ -3700,6 +4015,56 @@
             }
             
             document.getElementById('audio-player-modal').style.display = 'none';
+        }
+        
+        // دوال مشغل اليوتيوب داخل التطبيق
+        function playYouTubeVideo(videoId, title) {
+            if (!videoId) {
+                showNotification('لا يمكن تشغيل هذا الفيديو');
+                return;
+            }
+            
+            currentYouTubeVideoId = videoId;
+            
+            document.getElementById('youtube-modal-title').textContent = title;
+            document.getElementById('youtube-player-modal').style.display = 'flex';
+            
+            // تهيئة مشغل اليوتيوب إذا لم يكن موجوداً
+            if (!youtubePlayer) {
+                youtubePlayer = new YT.Player('youtube-player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        'autoplay': 1,
+                        'controls': 1,
+                        'rel': 0,
+                        'modestbranding': 1,
+                        'playsinline': 1
+                    },
+                    events: {
+                        'onReady': onYouTubePlayerReady,
+                        'onStateChange': onYouTubePlayerStateChange
+                    }
+                });
+            } else {
+                youtubePlayer.loadVideoById(videoId);
+            }
+        }
+        
+        function onYouTubePlayerReady(event) {
+            event.target.playVideo();
+        }
+        
+        function onYouTubePlayerStateChange(event) {
+            // يمكنك إضافة ردود فعل لتغير حالة المشغل هنا
+        }
+        
+        function closeYouTubePlayer() {
+            if (youtubePlayer) {
+                youtubePlayer.pauseVideo();
+            }
+            document.getElementById('youtube-player-modal').style.display = 'none';
         }
         
         // دوال المواقع الأخرى
